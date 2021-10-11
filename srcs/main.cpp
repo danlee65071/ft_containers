@@ -124,8 +124,5 @@ int main(int argc, char** argv) {
 		std::cout << *it;
 	}
 	std::cout << std::endl;
-
-
-	std::vector<int>::it
 	return (0);
 }

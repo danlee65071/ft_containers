@@ -6,7 +6,7 @@
 /*   By: hcharlsi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/10 17:00:44 by hcharlsi          #+#    #+#             */
-/*   Updated: 2021/10/10 23:41:57 by hcharlsi         ###   ########.fr       */
+/*   Updated: 2021/10/11 21:21:14 by hcharlsi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,11 @@
 #define FT_CONTAINERS_ITERATOR_HPP
 
 #include <iterator>
+#include <memory>
 
 namespace ft
 {
+//	iterator traits
 	template<class Iterator>
 	struct iterator_traits
 	{
@@ -27,6 +29,7 @@ namespace ft
 		typedef typename Iterator::iterator_category iterator_category;
 	};
 
+//	reverse_iterator
 	template<class Iterator>
 	class reverse_iterator: public std::iterator<
 	        typename ft::iterator_traits<Iterator>::iterator_category,
@@ -38,6 +41,7 @@ namespace ft
 	protected:
 		Iterator current;
 	public:
+//		Member types
 		typedef Iterator iterator_type;
 		typedef ft::iterator_traits<Iterator>::iterator_category
 			iterator_category;
@@ -55,7 +59,23 @@ namespace ft
 //		Destructor
 		~reverse_iterator();
 
+//		Member functions
+		template<class U>
+		reverse_iterator& operator=(const reverse_iterator<U>& other);
+		iterator_type base() const;
+		reference operator*() const;
+		pointer operator->() const;
+		reference operator[] (difference_type n) const;
+		reverse_iterator& operator++();
+		reverse_iterator operator++(int);
+		reverse_iterator& operator--();
+		reverse_iterator operator--(int);
+		reverse_iterator operator+(difference_type n) const;
+		reverse_iterator operator-(difference_type n) const;
+		reverse_iterator operator+=(difference_type n) const;
+		reverse_iterator operator-=(difference_type n) const;
 
+//		Non-member functions
 	};
 }
 
