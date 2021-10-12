@@ -14,10 +14,6 @@
 #define FT_CONTAINERS_FT_CONTAINERS_HPP
 
 #include <iostream>
-
-namespace ft
-{
-
-}
+#include "iterator.hpp"
 
 #endif

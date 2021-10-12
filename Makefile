@@ -6,28 +6,29 @@
 #    By: hcharlsi <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/06 12:32:59 by hcharlsi          #+#    #+#              #
-#    Updated: 2021/10/06 12:33:02 by hcharlsi         ###   ########.fr        #
+#   Updated: 2021/10/12 01:03:23 by hcharlsi         ###   ########.fr       # #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = ft_container
 TEST_NAME = ft_container_test
 
-SRCS = main.cpp
+SRCS = main.cpp iterator.cpp
 DIR_SRCS = srcs
 PATH_SRCS = $(addprefix $(DIR_SRCS)/, $(SRCS))
 
-OBJS = $(patsubst %.o, %.cpp, $(PATH_SRCS))
+OBJS = $(patsubst %.cpp, %.o, $(SRCS))
 DIR_OBJS = objs
+PATH_OBJS = $(addprefix $(DIR_OBJS)/, $(OBJS))
 
-TEST_SRCS = test.cpp
-DIR_TEST_SRCS = test
-PATH_TEST_SRCS = $(addprefix $(DIR_TEST_SRCS)/, $(TEST_SRCS))
+#TEST_SRCS = test.cpp
+#DIR_TEST_SRCS = test
+#PATH_TEST_SRCS = $(addprefix $(DIR_TEST_SRCS)/, $(TEST_SRCS))
+#
+#TEST_OBJS = $(patsubst %.cpp, %.o, $(PATH_TEST_SRCS))
+#DIR_TEST_OBJS = test_objs
 
-TEST_OBJS = $(patsubst %.o, %.cpp, $(PATH_TEST_SRCS))
-DIR_TEST_OBJS = test_objs
-
-HEADER = ft_containers.hpp vector.hpp iterator.hpp
+HEADER = ft_containers.hpp iterator.hpp
 DIR_HEADER = includes
 PATH_HEADER = $(addprefix $(DIR_HEADER)/, $(HEADER))
 
@@ -40,14 +41,14 @@ RESET = \033[0m
 
 all: $(NAME)
 
-$(NAME): logo $(OBJS)
+$(NAME): logo $(PATH_OBJS)
 	@echo "$(GREEN)\nObjects were created $(RESET)"
-	@$(CC) $(FLAGS) $(DIR_HEADER) $(OBJS) -o $@
+	@$(CC) $(FLAGS) -I $(DIR_HEADER) $(PATH_OBJS) -o $@
 	@echo "$(GREEN)\nft_containers was compiled $(RESET)"
 
 $(DIR_OBJS)/%.o: $(DIR_SRCS)/%.cpp $(PATH_HEADER) Makefile
 	@mkdir -p $(DIR_OBJS)
-	@$(CC) $(FLAGS) $(DIR_HEADER) -c $< -o $@
+	@$(CC) $(FLAGS) -I $(DIR_HEADER) -c $< -o $@
 	@echo "$(GREEN).$(RESET)\c"
 
 logo:
@@ -71,17 +72,17 @@ fclean: clean
 	@(RM) $(TEST_NAME)
 	@echo "$(GREEN)fclean instruction was executed$(RESET)"
 
-test: $(TEST_NAME)
-
-$(TEST_NAME): logo $(TEST_OBJS)
-	@$(CC) $(FLAGS) $(TEST_OBJS) -o $@
-	@echo "$(GREEN)test was compiled$(RESET)"
-
-$(DIR_TEST_OBJS)/%.o: $(DIR_TEST_SRCS)/%.cpp Makefile
-	@mkdir -p $(DIR_TEST_OBJS)
-	@$(CC) $(FLAGS) -c $< -o $@
-	@echo "$(GREEN).$(RESET)\c"
+#test: $(TEST_NAME)
+#
+#$(TEST_NAME): logo $(OBJS) $(TEST_OBJS)
+#	@$(CC) $(FLAGS) $(TEST_OBJS) -o $@
+#	@echo "$(GREEN)test was compiled$(RESET)"
+#
+#$(DIR_TEST_OBJS)/%.o: $(DIR_TEST_SRCS)/%.cpp $(PATH_HEADER) Makefile
+#	@mkdir -p $(DIR_TEST_OBJS)
+#	@$(CC) $(FLAGS) -c $< -o $@
+#	@echo "$(GREEN).$(RESET)\c"
 
 re: fclean all
 
-.PHONY: all logo clean fclean re test
+.PHONY: all logo clean fclean re
