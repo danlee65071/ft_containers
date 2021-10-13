@@ -6,7 +6,7 @@
 /*   By: hcharlsi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/10 22:06:31 by hcharlsi          #+#    #+#             */
-/*   Updated: 2021/10/12 01:01:42 by hcharlsi         ###   ########.fr       */
+/*   Updated: 2021/10/12 11:53:26 by hcharlsi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ namespace ft
 	reverse_iterator<Iterator>& reverse_iterator<Iterator>::operator=
 	        (const reverse_iterator<U>& other)
 	{
-		if (this == other)
+		if (this == &other)
 			return *this;
 		this->current = other.base();
 		return *this;
