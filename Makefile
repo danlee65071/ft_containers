@@ -6,14 +6,14 @@
 #    By: hcharlsi <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/06 12:32:59 by hcharlsi          #+#    #+#              #
-#   Updated: 2021/10/12 01:03:23 by hcharlsi         ###   ########.fr       # #
+#   Updated: 2021/10/13 16:47:10 by hcharlsi         ###   ########.fr       # #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = ft_container
 TEST_NAME = ft_container_test
 
-SRCS = main.cpp iterator.cpp
+SRCS = main.cpp
 DIR_SRCS = srcs
 PATH_SRCS = $(addprefix $(DIR_SRCS)/, $(SRCS))
 

@@ -6,7 +6,7 @@
 /*   By: hcharlsi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/10 21:09:40 by hcharlsi          #+#    #+#             */
-/*   Updated: 2021/10/12 01:09:13 by hcharlsi         ###   ########.fr       */
+/*   Updated: 2021/10/14 16:58:41 by hcharlsi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,28 +131,27 @@
 #include <vector>
 
 int main() {
-	std::vector<int> a1(3);
-	a1.push_back(0);
-	a1.push_back(1);
-	a1.push_back(2);
+	std::vector<int> a2(4);
+	a2.push_back(0);
+	a2.push_back(1);
+	a2.push_back(2);
+	a2.push_back(3);
 
-//	std::vector<int> a2(4);
-//	a2.push_back(0);
-//	a2.push_back(1);
-//	a2.push_back(2);
-//	a2.push_back(3);
-//
-//	std::vector<int> a3(3);
-//	a3.push_back(40);
-//	a3.push_back(41);
-//	a3.push_back(42);
+	std::vector<int> a3(3);
+	a3.push_back(40);
+	a3.push_back(41);
+	a3.push_back(42);
 
-	ft::reverse_iterator<std::vector<int>::reverse_iterator> it1(a1.rbegin());
-	std::cout << *it1 << '\n';
-//	it1 = ft::reverse_iterator<std::vector<int>::reverse_iterator>(a2.rbegin());
-//	std::cout << *it1 << '\n';
-//	ft::reverse_iterator<std::vector<int>::reverse_iterator> it2;
-//	it2 = a3.rbegin();
-//	std::cout << *it2 << '\n';
-
+	ft::reverse_iterator<std::vector<int>::reverse_iterator> it1(a2.rend());
+	std::cout << "it1 = " << *it1 << '\n';
+	std::cout << "a2.rend = " << *(a2.rend()) << '\n';
+	it1 = ft::reverse_iterator<std::vector<int>::reverse_iterator>(a2.rbegin());
+	std::cout << "it1 = " << *it1 << '\n';
+	std::cout << "a2.rbegin = " << *(a2.rbegin()) << '\n';
+	ft::reverse_iterator<std::vector<int>::reverse_iterator> it2;
+	ft::reverse_iterator<std::vector<int>::reverse_iterator> it3(a3.rbegin());
+	it2 = it3;
+	std::cout << "it2 = " << *it2 << '\n';
+	std::cout << "a3.rbegin = " << *(a3.rbegin()) << '\n';
+	return 0;
 }
