@@ -1,7 +1,7 @@
 # ft_containers
 
 ## Содержание:
-* [О чем проект?](#what project?)
+* [О чем проект?](#"what project?")
 * [Немного о SFINAE](#SFINAE)
 
 ## О чем проект? <a name = "what project?"></a>
