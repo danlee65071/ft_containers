@@ -1,6 +1,9 @@
 # ft_containers
 
-## SFINAE
+## Содержание:
+* [SFINAE](#SFINAE)
+
+## SFINAE <a name = "SFINAE"></a>
 ***SFINAE*** - правило языка C++, связанное с шаблонами и перегрузкой функций.
 
 ***Правило SFINAE:***
