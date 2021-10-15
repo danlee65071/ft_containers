@@ -1,3 +1,5 @@
 # ft_containers
 
-## iterator_traits
+## SFINAE
+***SFINAE*** - правило языка C++, связанное с шаблонами и перегрузкой функций.
+
