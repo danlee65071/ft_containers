@@ -1,7 +1,10 @@
 # ft_containers
 
 ## Содержание:
+* [О чем проект?](#what project?)
 * [Немного о SFINAE](#SFINAE)
+
+## О чем проект? <a name = "what project?"></a>
 
 ## SFINAE <a name = "SFINAE"></a>
 ***SFINAE (substitution failure is not an error, неудавшаяся подстановка - не ошибка)*** - правило языка C++, связанное с шаблонами и перегрузкой функций.
