@@ -1,4 +1,4 @@
-# ft_containers
+# ft_containers Методичка
 
 ## Содержание:
 * [О чем проект?](#what_project?)
