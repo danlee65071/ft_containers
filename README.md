@@ -27,9 +27,8 @@
 ## Итераторы  <a name = "Iterators"></a>
 ***Итератор*** - интерфейс, предоставляющий доступ к элементам коллекции (массива или контейнера) и навигацию по ним.
 ***Виды итераторов:***
-'''mermaid
-graph TD;
- A[InputIterator]
-'''
+1) InputIterator <- ForwardIterator <- BidirectionalIterator <- RandomAccessIterator   
+***InputIterator*** - гарантирует только одного прохождения для контейнеров. Выражения: i == j, i != j, *i, i->m, ++i, i++.
+***ForwardIterator*** - гарантирует многопроходность для контейнеров. Выражения: те же выражения, что у InputIterator.
 
   
