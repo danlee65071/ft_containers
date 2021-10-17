@@ -30,7 +30,7 @@
 1) InputIterator <- ForwardIterator <- BidirectionalIterator <- RandomAccessIterator   
 ***InputIterator*** - гарантирует только одного прохождения для контейнеров. Выражения: i == j, i != j, *i, i->n, ++i, i++.
 ***ForwardIterator*** - гарантирует многопроходность для контейнеров. Выражения: те же выражения, что у InputIterator.
-***BidirectionalIteraator*** - гарантирует перемещение в обоих направлениях. Выражения: те же выражения, что у ForwardIterator и --i, i--.\
+***BidirectionalIteraator*** - гарантирует перемещение в обоих направлениях. Выражения: те же выражения, что у ForwardIterator и \--i, i--.\
 ***RandomAccesIterator*** - гарантирует доступ к любому элементу контейнера за O(1). Выражения: те же выражения, что у BidirectionalIterator и i += n, i + n, 
 i -=n, i - j, i[k], i < j, i > j, i >= j, i <= j.
 
