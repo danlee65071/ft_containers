@@ -61,8 +61,8 @@ LegacyIterator - это базовый набор требований, испо
 ***Требования:***
 
 Тип It удовлетворяет LegacyIterator если:
-* CopyConstructible
-* CopyAssignable
+* [CopyConstructible](#CopyConstructible)
+* [CopyAssignable](#CopyAssignable)
 * lvalues типа It удовлетворяет Swappable
 * iterator_traits<It> имеет определение членов value_type, difference_type, reference, pointer, iterator_category
 * При заданном rvalue типа It следуюцие выражения должны быть действительными и иметь следующие свойства:
@@ -79,7 +79,7 @@ LegacyIterator - это базовый набор требований, испо
   
   3) Они были аннулированы одной из операций по аннулированию итератора в последовательности, на которую они ссылаются
 
-***CopyConstructible***
+***CopyConstructible<a name = "CopyConstructible"></a>***
   
 CopyConstructible указывает, что экземпляр типа может быть создан копированием из выражения lvalue.
 
@@ -93,7 +93,8 @@ v - lvalue значение типа T или const T или rvalue значен
 
 u - произвольный идентификатор.
   
-***CopyAssignable***
+***CopyAssignable<a name = "CopyAssignable"></a>***
+
 CopyAssignable указывает, что экземпляр типа может быть назначен копией из выражения lvalue.
 
 ***Требования:***
