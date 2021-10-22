@@ -93,6 +93,9 @@ v - lvalue значение типа T или const T или rvalue значен
 
 u - произвольный идентификатор.
   
+***CopyAssignable***
+  
+  
 ***Иерархия итераторов:***
 1) InputIterator <- ForwardIterator <- BidirectionalIterator <- RandomAccessIterator   
 ***InputIterator*** - гарантирует только одного прохождения для контейнеров. Выражения: i == j, i != j, *i, i->n, ++i, i++.
