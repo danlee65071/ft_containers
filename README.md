@@ -94,7 +94,17 @@ v - lvalue значение типа T или const T или rvalue значен
 u - произвольный идентификатор.
   
 ***CopyAssignable***
+CopyAssignable указывает, что экземпляр типа может быть назначен копией из выражения lvalue.
+
+***Требования:***
   
+  1) Тип T удовлетворяет MoveAssignable (с C++11)
+  
+  2) t = v - значение t эквивалентно значению v, значение v не изменилось. Тип возварата T&.
+ 
+t - изменяемое выражение lvalue типа T,
+
+v - lvalue выражение типа T или const T или rvalue выражение типа const T.
   
 ***Иерархия итераторов:***
 1) InputIterator <- ForwardIterator <- BidirectionalIterator <- RandomAccessIterator   
