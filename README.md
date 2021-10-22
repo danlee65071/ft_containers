@@ -5,6 +5,7 @@
 * [Немного о SFINAE](#SFINAE)
 * [Категории выражений](#value_categories)
 * [Итераторы](#Iterators)
+  * [Названные требования(named requirements): LegacyIterator](#LegacyIterator)
 
 ## О чем проект? <a name = "what_project?"></a>
 Реализовать структуры данных из стандартной библиотеки C++98 STL (vector, map, stack, set). Ниже я постараюсь объяснить, как это все реализовано.
@@ -59,7 +60,7 @@ ______
 
 _____
 
-***Названные требования(named requirements): LegacyIterator***
+***Названные требования(named requirements): LegacyIterator<a name = "LegacyIterator"></a>***
 
 Требования LegacyIterator описывают типы, которые могут использоваться для индентификации и обхода элементов контейнера.
 LegacyIterator - это базовый набор требований, используемых другими типами итераторов: LegacyInputIterator, LegacyOutputIterator, LegacyBiderectionalIterator, LegacyRnadomIterator.
