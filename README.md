@@ -207,7 +207,7 @@ _____
 
 ## Реализация iterator_traits<a name = "realization_iterator_traits"></a>
  
-template<class Iterator>
+	template<class Iterator>
 	struct iterator_traits
 	{
 		typedef typename Iterator::difference_type difference_type;
