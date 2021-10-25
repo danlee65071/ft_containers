@@ -62,7 +62,7 @@ ______
 
 _____
 
-***Названные требования(named requirements): LegacyIterator<a name = "LegacyIterator"></a>***
+## Названные требования(named requirements): LegacyIterator<a name = "LegacyIterator"></a>
 
 Требования LegacyIterator описывают типы, которые могут использоваться для индентификации и обхода элементов контейнера.
 LegacyIterator - это базовый набор требований, используемых другими типами итераторов: LegacyInputIterator, LegacyOutputIterator, LegacyBiderectionalIterator, LegacyRnadomIterator.
@@ -157,6 +157,8 @@ i -=n, i - j, i[k], i < j, i > j, i >= j, i <= j.
 _____
 
 ## Iterator_traits<a name = "iterator_traits"></a>
+ 
+***iterator_traits*** - это класс свойств типа, который предоставляет унифицированный интерфейс для свойств типов [LegacyIterator](#LegacyIterator)
  
  
 
