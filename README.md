@@ -104,7 +104,7 @@ CopyConstructible указывает, что экземпляр типа мож�
   
   2) T(v) - значение T(v) эквиваллентно v, значение v не меняется
   
-v - lvalue значение типа T или const T или [rvalue](#value_categories) значение типа const T,
+v - [lvalue](#value_categories) значение типа T или const T или [rvalue](#value_categories) значение типа const T,
 
 u - произвольный идентификатор.
   
@@ -166,13 +166,17 @@ _____
  
 Определение итератора:
  
-1) template< class Iter >
-   
-   struct iterator_traits;
+1)
+	
+	template< class Iter >
+	
+   	struct iterator_traits;
  
-2) template< class T >
- 
-   struct iterator_traits< T* >;
+2)
+	
+	template< class T >
+	
+ 	struct iterator_traits< T* >;
  
 ## Описание структуры iterator_traits<a name = "struct_iterator_traits"></a>
  
