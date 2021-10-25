@@ -11,6 +11,7 @@
   * [Описание структуры iterator_traits](#struct_iterator_traits)
   * [Реализация iterator_traits](#realization_iterator_traits)
   * [Класс iterator](#class_iterator)
+* [Обратный итератор](#reverse_iterator)
 
 ## О чем проект? <a name = "what_project?"></a>
 Реализовать структуры данных из стандартной библиотеки C++98 STL (vector, map, stack, set). Ниже я постараюсь объяснить, как это все реализовано.
@@ -252,4 +253,7 @@ _____
 			
 ***Pointer*** - определяет указатель на тип, повторяемый по (T).
 			
-***Reference*** - определяет ссылку на тип, повторяемый по (T).			
+***Reference*** - определяет ссылку на тип, повторяемый по (T).	
+			
+# Обратный итератор<a name = "reverse_iterator"></a>
+
