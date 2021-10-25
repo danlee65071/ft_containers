@@ -158,7 +158,18 @@ _____
 
 ## Iterator_traits<a name = "iterator_traits"></a>
  
-***iterator_traits*** - это класс свойств типа, который предоставляет унифицированный интерфейс для свойств типов [LegacyIterator](#LegacyIterator)
+***iterator_traits*** - это класс свойств типа, который предоставляет унифицированный интерфейс для свойств типов [LegacyIterator](#LegacyIterator).
+ 
+Определение итератора:
+ 
+1) template< class Iter >
+   
+   struct iterator_traits;
+ 
+2) template< class T >
+ 
+   struct iterator_traits< T* >;
+ 
  
  
 
