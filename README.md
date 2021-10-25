@@ -70,7 +70,7 @@ LegacyIterator - это базовый набор требований, испо
 Тип It удовлетворяет LegacyIterator если:
 * [CopyConstructible](#CopyConstructible)
 * [CopyAssignable](#CopyAssignable)
-* lvalues типа It удовлетворяет Swappable
+* lvalues типа It удовлетворяет [Swappable](#Swappable)
 * iterator_traits<It> имеет определение членов value_type, difference_type, reference, pointer, iterator_category
 * При заданном rvalue типа It следуюцие выражения должны быть действительными и иметь следующие свойства:
   
@@ -119,6 +119,12 @@ t - изменяемое выражение lvalue типа T,
 v - lvalue выражение типа T или const T или rvalue выражение типа const T.
   
   ______
+ 
+ ***Swappable<a name = "Swappable"></a>***
+ 
+ Любое lvalue или rvalue этого типа может быть заменено любым lvalue или rvalue какого-либо другого типа, используя неквалифицированный вызов функции. 
+ 
+ _____
   
 ***Иерархия итераторов:***
 1) InputIterator <- ForwardIterator <- BidirectionalIterator <- RandomAccessIterator   
