@@ -6,6 +6,7 @@
 * [Категории выражений](#value_categories)
 * [Итераторы](#Iterators)
   * [Названные требования(named requirements): LegacyIterator](#LegacyIterator)
+  * [Иерархия и виды итераторов](#hierarchy_and_types_iterators)
 
 ## О чем проект? <a name = "what_project?"></a>
 Реализовать структуры данных из стандартной библиотеки C++98 STL (vector, map, stack, set). Ниже я постараюсь объяснить, как это все реализовано.
@@ -126,6 +127,8 @@ v - lvalue выражение типа T или const T или rvalue выраж
  
  _____
   
+## Иерархия и виды итераторов<a name = "hierarchy_and_types_iterators"></a>
+ 
 ***Иерархия итераторов:***
 1) InputIterator <- ForwardIterator <- BidirectionalIterator <- RandomAccessIterator   
 ***InputIterator*** - гарантирует только одного прохождения для контейнеров. Выражения: i == j, i != j, *i, i->n, ++i, i++.
