@@ -9,6 +9,7 @@
   * [Иерархия и виды итераторов](#hierarchy_and_types_iterators)
   * [Iterator traits](#iterator_traits)
   * [Описание структуры iterator_traits](#struct_iterator_traits)
+  * [Реализация iterator_traits](#realization_iterator_traits)
 
 ## О чем проект? <a name = "what_project?"></a>
 Реализовать структуры данных из стандартной библиотеки C++98 STL (vector, map, stack, set). Ниже я постараюсь объяснить, как это все реализовано.
@@ -189,7 +190,8 @@ _____
  
 ***reference*** - тип ссылки, возвращаемой при разыменовании итератора. Определение: Iter::reference.
  
-***iterator_category*** - тип, указывающий на набор операций, поддерживаемых итератором. Определение: Iter::iterator_category. 
+***iterator_category*** - тип, указывающий на набор операций, поддерживаемых итератором. Определение: Iter::iterator_category для шаблона с типом Iter.
+Определение: std :: random_access_iterator_tag для шаблона с типом T.
 
 Категории итераторов:
  
@@ -202,6 +204,28 @@ _____
 * input_iterator_tag.
  
 * output_iterator_tag.
+
+## Реализация iterator_traits<a name = "realization_iterator_traits"></a>
+ 
+template<class Iterator>
+	struct iterator_traits
+	{
+		typedef typename Iterator::difference_type difference_type;
+		typedef typename Iterator::value_type value_type;
+		typedef typename Iterator::pointer pointer;
+		typedef typename Iterator::reference reference;
+		typedef typename Iterator::iterator_category iterator_category;
+	};
+
+	template<class T>
+	struct iterator_traits<T*>
+	{
+		typedef ptrdiff_t difference_type;
+		typedef T value_type;
+		typedef T* pointer;
+		typedef T& reference;
+		typedef std::random_access_iterator_tag iterator_category;
+	};
 
  
  
