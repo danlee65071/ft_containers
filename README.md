@@ -8,6 +8,7 @@
   * [Названные требования(named requirements): LegacyIterator](#LegacyIterator)
   * [Иерархия и виды итераторов](#hierarchy_and_types_iterators)
   * [Iterator traits](#iterator_traits)
+  * [Описание структуры iterator_traits](#struct_iterator_traits)
 
 ## О чем проект? <a name = "what_project?"></a>
 Реализовать структуры данных из стандартной библиотеки C++98 STL (vector, map, stack, set). Ниже я постараюсь объяснить, как это все реализовано.
@@ -169,6 +170,39 @@ _____
 2) template< class T >
  
    struct iterator_traits< T* >;
+ 
+## Описание структуры iterator_traits<a name = "struct_iterator_traits"></a>
+ 
+Параметры шаблона: 
+ 
+***Iter*** - тип итератора для получения свойств типов полей структуры iterator_traits.
+ 
+***T*** - тип предоставляемый пользователем, который может использоваться в качестве итератора.
+
+Типы полей структуры:
+ 
+***differrence_type*** - целочисленный тип, представляющий значения смещений итераторов относительно друг друга. Определение: Iter::differnce_type.
+ 
+***value_type*** - тип значения, на которое указывает итератор. Определение: Iter::value_type.
+ 
+***pointer*** - тип указателя, возвращаемого при обращении к объекту итератора через operator->. Определение: Iter::ppointer.
+ 
+***reference*** - тип ссылки, возвращаемой при разыменовании итератора. Определение: Iter::reference.
+ 
+***iterator_category*** - тип, указывающий на набор операций, поддерживаемых итератором. Определение: Iter::iterator_category. 
+
+Категории итераторов:
+ 
+* random_access_iterator_tag. random_access_iterator_tag — наследник bidirectional_iterator_tag.
+
+* bidirectional_iterator_tag. bidirectional_iterator_tag является наследником forward_iterator_tag.
+ 
+* forward_iterator_tag. forward_iterator_tag является наследником input_iterator_tag и output_iterator_tag.
+ 
+* input_iterator_tag.
+ 
+* output_iterator_tag.
+
  
  
  
