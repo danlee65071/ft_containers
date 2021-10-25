@@ -7,6 +7,7 @@
 * [Итераторы](#Iterators)
   * [Названные требования(named requirements): LegacyIterator](#LegacyIterator)
   * [Иерархия и виды итераторов](#hierarchy_and_types_iterators)
+  * [Iterator traits](#iterator_traits)
 
 ## О чем проект? <a name = "what_project?"></a>
 Реализовать структуры данных из стандартной библиотеки C++98 STL (vector, map, stack, set). Ниже я постараюсь объяснить, как это все реализовано.
@@ -155,6 +156,8 @@ i -=n, i - j, i[k], i < j, i > j, i >= j, i <= j.
                                                 
 _____
 
-***Iterator_traits***
+## Iterator_traits<a name = "iterator_traits"></a>
+ 
+ 
 
 
