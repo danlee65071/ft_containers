@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_CONTAINERS_ITERATOR_HPP
-#define FT_CONTAINERS_ITERATOR_HPP
+#ifndef ITERATOR_HPP
+#define ITERATOR_HPP
 
 #include <iterator>
 #include <memory>

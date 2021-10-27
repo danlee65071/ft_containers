@@ -15,6 +15,7 @@
 
 #include <memory>
 #include "iterator"
+#include <vector>
 
 namespace ft
 {

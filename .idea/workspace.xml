@@ -18,16 +18,19 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3cefb1e5-6c12-41d8-a7b8-5c4099884960" name="Default Changelist" comment="reverse_iterator test">
+    <list default="true" id="3cefb1e5-6c12-41d8-a7b8-5c4099884960" name="Default Changelist" comment="reverse_iterator done">
+      <change afterPath="$PROJECT_DIR$/.idea/ft_containers.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/includes/my_type_traits.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_rebase_[Default_Changelist]/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_rebase__Default_Changelist_.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/Makefile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/includes/ft_containers.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/includes/ft_containers.hpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/includes/iterator.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/includes/iterator.hpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/includes/vector.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/includes/vector.hpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/objs/iterator.o" beforeDir="false" afterPath="$PROJECT_DIR$/objs/iterator.o" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/objs/main.o" beforeDir="false" afterPath="$PROJECT_DIR$/objs/main.o" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/srcs/iterator.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/objs/iterator.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/objs/main.o" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/srcs/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/main.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/test.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/test/test.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -92,6 +95,11 @@
     <property name="settings.editor.selected.configurable" value="org.jetbrains.plugins.github.ui.GithubSettingsConfigurable" />
   </component>
   <component name="RunManager" selected="Makefile Application.all">
+    <configuration default="true" type="CLionExternalRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true">
+      <method v="2">
+        <option name="CLION.EXTERNAL.BUILD" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="all" type="CLionNativeAppRunConfigurationType" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="ft_containers" TARGET_NAME="all" CONFIG_NAME="all" version="1" RUN_PATH="$PROJECT_DIR$/ft_container">
       <method v="2">
         <option name="CLION.COMPOUND.BUILD" enabled="true" />
@@ -115,11 +123,6 @@
     <configuration name="re" type="CLionNativeAppRunConfigurationType" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="ft_containers" TARGET_NAME="re" CONFIG_NAME="re" version="1">
       <method v="2">
         <option name="CLION.COMPOUND.BUILD" enabled="true" />
-      </method>
-    </configuration>
-    <configuration default="true" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true">
-      <method v="2">
-        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
     </configuration>
     <configuration default="true" type="GradleAppRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true">
@@ -150,7 +153,12 @@
       <workItem from="1634132830807" duration="774000" />
       <workItem from="1634151517598" duration="14000" />
       <workItem from="1634216343515" duration="3537000" />
-      <workItem from="1634236207320" duration="165000" />
+      <workItem from="1634236207320" duration="855000" />
+      <workItem from="1634281275999" duration="4423000" />
+      <workItem from="1634320937467" duration="529000" />
+      <workItem from="1634468587216" duration="18000" />
+      <workItem from="1634658408679" duration="5000" />
+      <workItem from="1634737690806" duration="460000" />
     </task>
     <task id="LOCAL-00001" summary="reverse_iterator constructors">
       <created>1633959489922</created>
@@ -166,7 +174,14 @@
       <option name="project" value="LOCAL" />
       <updated>1634044029601</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="reverse_iterator done">
+      <created>1634238906951</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1634238906951</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -187,6 +202,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="reverse_iterator constructors" />
     <MESSAGE value="reverse_iterator test" />
-    <option name="LAST_COMMIT_MESSAGE" value="reverse_iterator test" />
+    <MESSAGE value="reverse_iterator done" />
+    <option name="LAST_COMMIT_MESSAGE" value="reverse_iterator done" />
   </component>
 </project>
