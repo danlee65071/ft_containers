@@ -264,3 +264,20 @@ _____
 ***reverse_iterator*** - это адаптер итератора, который меняет направление данного итератора, который должен быть как минимум BidirectionalIterator.
 
 Другими словами, при наличии двунаправленного итератора std::reverse_iterator создает новый итератор, который перемещается от конца к началу последовательности, определенной базовым двунаправленным итератором.
+
+Определение:
+			
+template< class Iter >
+
+class reverse_iterator;
+
+Типы параметров:
+
+|Тип параметра	  |Определение					|
+|-----------------|---------------------------------------------|
+|iterator_type	  |Iter	     					|
+|iterator_category|std::iterator_traits<Iter>::iterator_category|
+|value_type	  |std::iterator_traits<Iter>::value_type       |
+|difference_type  |std::iterator_traits<Iter>::difference_type  |
+|pointer	  |std::iterator_traits<Iter>::pointer 		|
+|reference	  |std::iterator_traits<Iter>::reference	|
