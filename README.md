@@ -22,6 +22,9 @@
   	* [operator \*](#reverse_star)
   	* [operator ->](#reverse_arrow)
   	* [operator []](#reverse_[])
+  	* [operator ++](#reverse_++)
+  	* [operator --](#reverse_--)
+  	* [operator ++(int)](#reverse_++_int)
 
 ## О чем проект? <a name = "what_project?"></a>
 Реализовать структуры данных из стандартной библиотеки C++98 STL (vector, map, stack, set). Ниже я постараюсь объяснить, как это все реализовано.
@@ -424,3 +427,53 @@ ______
     };
 			
 ______
+
+***operator ++***<a name = "reverse_++"></a>
+			
+    reverse_iterator& operator++();
+			
+Преинкремент итератора.
+			
+Реализация:
+			
+    reverse_iterator& operator++()
+    {
+        --(this->current);
+        return *this;
+    };
+			
+_______
+
+***operator --***<a name = "reverse_--"></a>
+			
+    reverse_iterator& operator--();
+
+Предекремент итератора.
+			
+Реализация:
+			
+    reverse_iterator& operator++()
+    {
+        ++(this->current);
+        return *this;
+    };
+			
+______
+			
+***operator ++(int)***<a name = "reverse_++_int"></a>
+			
+    reverse_iterator operator++(int);
+
+Постинкремент итератора.
+			
+Реализация:
+			
+    reverse_iterator operator++(int)
+    {
+        reverse_iterator tmp(*this);
+
+        --(this->current);
+        return tmp;
+    };
+			
+_______
