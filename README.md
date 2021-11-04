@@ -720,3 +720,43 @@ _____
 			
     template<bool B, class T = void>
     using enable_if_t = typename enable_if<B,T>::type;
+			
+_____
+			
+## integral_constant<a name = ""></a>
+			
+    template<class T, T v>
+    struct integral_constant;
+			
+Обертка над статическими константами указанного типа. Это иногда полезно, особенно в метапрограммировании, ведь идет программирование типов, а не значений.
+			
+Реализация:
+			
+    template<class T, T v>
+    struct integral_constant
+    {
+        static const T value = v;
+        typedef T value_type;
+        typedef integral_constant<T, v> type;
+        operator value_type() const {return value;}
+    };			
+			
+***value*** - статическая константа типа T со значением v,
+			
+***operator value_type() const*** - функция преобразования, возвращает значение в оболочке.
+			
+Для T равного bool существуют два typedef:
+			
+    typedef bool_constant<true> true_type;
+    typedef bool_constant<false> false_type;
+			
+***bool_constant*** - шаблон помощник, его реализация:
+			
+    template<bool B>
+    using bool_constant = integral_constant<bool, B>;
+			
+_________
+			
+			
+			
+			
