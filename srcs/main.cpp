@@ -6,7 +6,7 @@
 /*   By: hcharlsi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/10 21:09:40 by hcharlsi          #+#    #+#             */
-/*   Updated: 2021/10/15 11:18:01 by hcharlsi         ###   ########.fr       */
+/*   Updated: 2021/11/04 19:12:30 by hcharlsi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -155,5 +155,15 @@ int main() {
 	it2 = it3;
 	std::cout << "it2 = " << *it2 << '\n';
 	std::cout << "a3.rbegin = " << *(a3.rbegin()) << '\n';
+
+	std::vector<int> v;
+	v.push_back(0);
+	v.push_back(1);
+	v.push_back(2);
+	v.push_back(3);
+	ft::reverse_iterator<std::vector<int>::reverse_iterator> ri1(v.rbegin()),
+			ri2(v.rend());
+	std::cout << (ri2 - ri1) << ' ';
+	std::cout << (ri1 - ri2) << '\n';
 	return 0;
 }

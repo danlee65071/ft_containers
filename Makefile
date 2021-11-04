@@ -6,7 +6,7 @@
 #    By: hcharlsi <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/06 12:32:59 by hcharlsi          #+#    #+#              #
-#   Updated: 2021/10/13 16:47:10 by hcharlsi         ###   ########.fr       # #
+#   Updated: 2021/11/04 18:46:13 by hcharlsi         ###   ########.fr       # #
 #                                                                              #
 # **************************************************************************** #
 
@@ -68,8 +68,8 @@ clean:
 	@echo "$(GREEN)clean instruction was executed$(RESET)"
 
 fclean: clean
-	@(RM) $(NAME)
-	@(RM) $(TEST_NAME)
+	@$(RM) $(NAME)
+	@$(RM) $(TEST_NAME)
 	@echo "$(GREEN)fclean instruction was executed$(RESET)"
 
 #test: $(TEST_NAME)
