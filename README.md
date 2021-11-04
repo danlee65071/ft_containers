@@ -33,6 +33,7 @@
   * [Функции, не являющиеся членами класса](#reverse_non_member)
   	* [operator ==](#reverse_==)
   	* [operator !=](#reverse_!=)
+  	* [operator <, <=, >, >=](#reverse_cmp)
 
 ## О чем проект? <a name = "what_project?"></a>
 Реализовать структуры данных из стандартной библиотеки C++98 STL (vector, map, stack, set). Ниже я постараюсь объяснить, как это все реализовано.
@@ -604,7 +605,7 @@ ______
 			
 ______
 			
-***operator <, <=, >, >=***<a name = ""></a>
+***operator <, <=, >, >=***<a name = "reverse_cmp"></a>
 			
     template< class Iterator1, class Iterator2 >
     bool operator<( const ft::reverse_iterator<Iterator1>& lhs,
