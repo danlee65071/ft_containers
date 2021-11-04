@@ -36,7 +36,8 @@
   	* [operator <, <=, >, >=](#reverse_cmp)
   	* [operator+(reverse_iterator)](#reverse_plus)
   	* [operator-(reverse_iterator)](#reverse_minus)
-  * [enable_if](#enable_if) 
+  * [enable_if](#enable_if)
+  * [integral_constant](#integral_constant)
 
 ## О чем проект? <a name = "what_project?"></a>
 Реализовать структуры данных из стандартной библиотеки C++98 STL (vector, map, stack, set). Ниже я постараюсь объяснить, как это все реализовано.
@@ -723,7 +724,7 @@ _____
 			
 _____
 			
-## integral_constant<a name = ""></a>
+## integral_constant<a name = "integral_constant"></a>
 			
     template<class T, T v>
     struct integral_constant;
