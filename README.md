@@ -34,6 +34,7 @@
   	* [operator ==](#reverse_==)
   	* [operator !=](#reverse_!=)
   	* [operator <, <=, >, >=](#reverse_cmp)
+  	* [operator+(reverse_iterator)](#reverse_plus)
 
 ## О чем проект? <a name = "what_project?"></a>
 Реализовать структуры данных из стандартной библиотеки C++98 STL (vector, map, stack, set). Ниже я постараюсь объяснить, как это все реализовано.
@@ -652,3 +653,25 @@ ______
     {
         return lhs.base() >= rhs.base();
     }
+_______
+			
+***operator+(reverse_iterator)***<a name = "reverse_plus"></a>
+			
+    template<class Iter>
+    reverse_iterator<Iter> operator+( typename reverse_iterator<Iter>::difference_type n,
+        const reverse_iterator<Iter>& it);
+			
+Возвращает инкрементированный итератор на n.
+			
+Реализация:
+			
+    template<class Iter>
+    reverse_iterator<Iter>
+    operator+(typename reverse_iterator<Iter>::difference_type n,
+        const reverse_iterator<Iter>& it)
+    {
+        return reverse_iterator<Iter>(it.base() - n);
+    }
+			
+______
+			
