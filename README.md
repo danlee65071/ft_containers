@@ -38,6 +38,7 @@
   	* [operator-(reverse_iterator)](#reverse_minus)
   * [enable_if](#enable_if)
   * [integral_constant](#integral_constant)
+  * [is_integral](#is_integral)
 
 ## О чем проект? <a name = "what_project?"></a>
 Реализовать структуры данных из стандартной библиотеки C++98 STL (vector, map, stack, set). Ниже я постараюсь объяснить, как это все реализовано.
@@ -749,7 +750,7 @@ _____
 			
 _________
 			
-## is_integral<a name = ""></a>
+## is_integral<a name = "is_integral"></a>
 			
     template< class T >
     struct is_integral;
@@ -757,7 +758,7 @@ _________
 Класс признаков, который определяет, является ли T целочисленным типом. Он наследует от integral_constant либо как true_type или false_type, в зависимости от того, Т представляет собой интегральный тип:			
 			
 |фундаментальные итегральные типы|
-----------------------------------
+|--------------------------------|
 |bool				 |
 |char				 |
 |signed char			 |
@@ -773,4 +774,4 @@ _________
 |unsigned long			 |
 |long long			 |
 |unsigned long long		 |
-----------------------------------
+
