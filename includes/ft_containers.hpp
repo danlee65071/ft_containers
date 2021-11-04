@@ -6,7 +6,7 @@
 /*   By: hcharlsi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/06 18:52:12 by hcharlsi          #+#    #+#             */
-/*   Updated: 2021/10/15 10:42:33 by hcharlsi         ###   ########.fr       */
+/*   Updated: 2021/11/04 19:33:32 by hcharlsi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #define FT_CONTAINERS_HPP
 
 #include <iostream>
-#include "iterator.hpp"
-#include "my_type_traits.hpp"
+#include "ft_iterator.hpp"
+#include "ft_type_traits.hpp"
 
 #endif

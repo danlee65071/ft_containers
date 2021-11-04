@@ -6,7 +6,7 @@
 /*   By: hcharlsi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/10 21:09:40 by hcharlsi          #+#    #+#             */
-/*   Updated: 2021/11/04 19:12:30 by hcharlsi         ###   ########.fr       */
+/*   Updated: 2021/11/04 23:31:57 by hcharlsi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -165,5 +165,17 @@ int main() {
 			ri2(v.rend());
 	std::cout << (ri2 - ri1) << ' ';
 	std::cout << (ri1 - ri2) << '\n';
+
+	std::cout << "is_integral:" << std::endl;
+	std::cout << "char: " << ft::is_integral<char>::value << std::endl;
+	std::cout << "int: " << ft::is_integral<int>::value << std::endl;
+	std::cout << "float: " << ft::is_integral<float>::value << std::endl;
+
+	if (ft::is_integral<int>() )
+		std::cout << "int is an integral type" << std::endl;
+
+	// same result as:
+	if ( ft::is_integral<int>::value)
+		std::cout << "int is an integral type" << std::endl;
 	return 0;
 }
