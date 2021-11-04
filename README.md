@@ -16,6 +16,7 @@
   * [Типы параметров](#reverse_types)
   * [Поля](#reverse_fields)
   * [Методы](#reverse_methods)
+  	* [Конструктор](#reverse_constructor)
 
 ## О чем проект? <a name = "what_project?"></a>
 Реализовать структуры данных из стандартной библиотеки C++98 STL (vector, map, stack, set). Ниже я постараюсь объяснить, как это все реализовано.
@@ -298,7 +299,7 @@ ________
 			
 Методы:<a name = "reverse_methods"></a>
 			
-***Constructor***
+***Constructor***<a name = "reverse_constructor"></a>
 
 Создает новый адаптер для итератора
 
