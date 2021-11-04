@@ -564,4 +564,26 @@ ________
         return *this;
     };			
 
+______
+			
 ### Функции, не являющиеся членами класса<a name = "reverse_non_member"></a>			
+
+_____
+			
+***operator ==***<a name = ""></a>
+
+    template< class Iterator1, class Iterator2 >
+    bool operator==(const ft::reverse_iterator<Iterator1>& lhs, 
+        const ft::reverse_iterator<Iterator2>& rhs);
+			
+Реализация:
+    
+    template<class Iterator1, class Iterator2>
+    bool operator==(const reverse_iterator<Iterator1>& lhs,
+        const reverse_iterator<Iterator2>& rhs)
+    {
+        return lhs.base() == rhs.base();
+    }
+			
+______
+			
