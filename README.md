@@ -17,6 +17,7 @@
   * [Поля](#reverse_fields)
   * [Методы](#reverse_methods)
   	* [Конструктор](#reverse_constructor)
+  	* [operator =](#reverse_=)
 
 ## О чем проект? <a name = "what_project?"></a>
 Реализовать структуры данных из стандартной библиотеки C++98 STL (vector, map, stack, set). Ниже я постараюсь объяснить, как это все реализовано.
@@ -314,3 +315,11 @@ reverse_iterator( const reverse_iterator<U>& other );
 Базовый итератор инициализируется итератором other.
 			
 ______
+
+***operator =***<a name = "reverse_="></a>
+			
+Базовым итератор присваивается значение базового итератора other, то есть other.base().
+			
+template< class U >
+			
+reverse_iterator& operator=( const reverse_iterator<U>& other );
