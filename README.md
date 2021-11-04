@@ -20,7 +20,7 @@
   	* [operator =](#reverse_=)
   	* [base](#reverse_base)
   	* [operator \*](#reverse_*)
-  	* [operator ->](#reverse_>)
+  	* [operator ->](#reverse_arrow)
 
 ## О чем проект? <a name = "what_project?"></a>
 Реализовать структуры данных из стандартной библиотеки C++98 STL (vector, map, stack, set). Ниже я постараюсь объяснить, как это все реализовано.
@@ -394,7 +394,7 @@ _____
 			
 ______
 			
-***operator ->***<a name = "#reverse_>"></a>
+***operator ->***<a name = "#reverse_arrow"></a>
 			
     pointer operator->() const;
 			
