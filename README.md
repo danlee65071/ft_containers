@@ -19,6 +19,7 @@
   	* [Конструктор](#reverse_constructor)
   	* [operator =](#reverse_=)
   	* [base](#reverse_base)
+  	* [operator \*](#reverse_*)
 
 ## О чем проект? <a name = "what_project?"></a>
 Реализовать структуры данных из стандартной библиотеки C++98 STL (vector, map, stack, set). Ниже я постараюсь объяснить, как это все реализовано.
@@ -373,3 +374,22 @@ ______
     {
         return this->current;
     };
+
+_____
+			
+***operator \* ***<a name = "reverse_*"></a>
+			
+    reference operator*() const;
+			
+Эквивалентно Iter tmp = current; return *--tmp;. Возвращает ссылку на элемент предшествующий current.
+			
+Реализация:
+	
+    reference operator*() const
+    {
+        Iterator tmp = this->current;
+        return *--tmp;
+    };
+			
+______
+			
