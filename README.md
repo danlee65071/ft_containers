@@ -311,7 +311,7 @@ ________
 			
 Реализация:
 			
-reverse_iterator(): current() {};
+    reverse_iterator(): current() {};
 			
 2) explicit reverse_iterator(iterator_type x);
 	
@@ -331,7 +331,7 @@ A a1 = (A)1 - OK, явное приведение.
 			
 Реализация:
 			
-explicit reverse_iterator(iterator_type x): current(x) {};
+    explicit reverse_iterator(iterator_type x): current(x) {};
 
 3) template<class U>
 			
@@ -341,10 +341,9 @@ reverse_iterator(const reverse_iterator<U>& other);
 			
 Реализация:
 			
-template<class U>
-			
-reverse_iterator(const reverse_iterator<U>& other):current(other.base()) {};
-			
+    template<class U>
+    reverse_iterator(const reverse_iterator<U>& other):current(other.base()) {};
+
 ______
 
 ***operator =***<a name = "reverse_="></a>
