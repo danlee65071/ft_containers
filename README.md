@@ -300,6 +300,16 @@ ________
 			
 ***Constructor***
 
-reverse_iterator();
-
 Создает новый адаптер для итератора
+
+1) reverse_iterator();
+		
+Конструктор по умолчанию. Базовый итератор инициализируется значением.
+
+2)template< class U >
+			
+reverse_iterator( const reverse_iterator<U>& other );
+			
+Базовый итератор инициализируется итератором other.
+			
+______
