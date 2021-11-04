@@ -308,12 +308,42 @@ ________
 1) reverse_iterator();
 		
 Конструктор по умолчанию. Базовый итератор инициализируется значением.
-
-2) template< class U >
 			
-reverse_iterator( const reverse_iterator<U>& other );
+Реализация:
+			
+reverse_iterator(): current() {};
+			
+2) explicit reverse_iterator(iterator_type x);
+	
+Базовый итератор инициализируется с помощью x.
+
+Указывает, что конструктор является явным,то есть его нельзя использовать для неявных преобразований и инициализации копированияв.
+
+Например:
+
+A a1 = 1 - ошибка
+			
+A a1 = a2 - ошибка
+			
+A a1(1) - OK
+			
+A a1 = (A)1 - OK, явное приведение.
+			
+Реализация:
+			
+explicit reverse_iterator(iterator_type x): current(x) {};
+
+3) template<class U>
+			
+reverse_iterator(const reverse_iterator<U>& other);
 			
 Базовый итератор инициализируется итератором other.
+			
+Реализация:
+			
+template<class U>
+			
+reverse_iterator(const reverse_iterator<U>& other):current(other.base()) {};
 			
 ______
 
