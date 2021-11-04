@@ -35,6 +35,7 @@
   	* [operator !=](#reverse_!=)
   	* [operator <, <=, >, >=](#reverse_cmp)
   	* [operator+(reverse_iterator)](#reverse_plus)
+  	* [operator-(reverse_iterator)](#reverse_minus)
 
 ## О чем проект? <a name = "what_project?"></a>
 Реализовать структуры данных из стандартной библиотеки C++98 STL (vector, map, stack, set). Ниже я постараюсь объяснить, как это все реализовано.
@@ -675,7 +676,7 @@ _______
 			
 ______
 			
-***operator-(reverse_iterator)***<a name = ""></a>
+***operator-(reverse_iterator)***<a name = "reverse_minus"></a>
 			
     template<class Iterator>
     typename reverse_iterator<Iterator>::difference_type
