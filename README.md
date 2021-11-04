@@ -749,6 +749,28 @@ _____
 			
 _________
 			
+## is_integral<a name = ""></a>
 			
+    template< class T >
+    struct is_integral;
 			
+Класс признаков, который определяет, является ли T целочисленным типом. Он наследует от integral_constant либо как true_type или false_type, в зависимости от того, Т представляет собой интегральный тип:			
 			
+|фундаментальные итегральные типы|
+----------------------------------
+|bool				 |
+|char				 |
+|signed char			 |
+|unsigned char			 |
+|wchar_t			 |
+|char16_t			 |
+|char32_t			 |
+|short				 |
+|unsigned short			 |
+|int				 |
+|unsigned int			 |
+|long				 |
+|unsigned long			 |
+|long long			 |
+|unsigned long long		 |
+----------------------------------
