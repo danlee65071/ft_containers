@@ -84,7 +84,7 @@ ______
 
 _____
 
-## Названные требования(named requirements): LegacyIterator<a name = "LegacyIterator"></a>
+### Названные требования(named requirements): LegacyIterator<a name = "LegacyIterator"></a>
 
 Требования LegacyIterator описывают типы, которые могут использоваться для индентификации и обхода элементов контейнера.
 LegacyIterator - это базовый набор требований, используемых другими типами итераторов: LegacyInputIterator, LegacyOutputIterator, LegacyBiderectionalIterator, LegacyRnadomIterator.
@@ -150,7 +150,7 @@ v - [lvalue](#value_categories) выражение типа T или const T и�
  
  _____
   
-## Иерархия и виды итераторов<a name = "hierarchy_and_types_iterators"></a>
+### Иерархия и виды итераторов<a name = "hierarchy_and_types_iterators"></a>
  
 ***Иерархия итераторов:***
 1) InputIterator <- ForwardIterator <- BidirectionalIterator <- RandomAccessIterator   
@@ -178,7 +178,7 @@ i -=n, i - j, i[k], i < j, i > j, i >= j, i <= j.
                                                 
 _____
 
-## Iterator_traits<a name = "iterator_traits"></a>
+### Iterator_traits<a name = "iterator_traits"></a>
  
 ***iterator_traits*** - это класс свойств типа, который предоставляет унифицированный интерфейс для свойств типов [LegacyIterator](#LegacyIterator).
  
@@ -194,7 +194,7 @@ _____
     template<class T>
     struct iterator_traits<T*>;
 
-## Описание структуры iterator_traits<a name = "struct_iterator_traits"></a>
+### Описание структуры iterator_traits<a name = "struct_iterator_traits"></a>
  
 Параметры шаблона: 
  
@@ -227,7 +227,7 @@ _____
  
 * output_iterator_tag.
 
-## Реализация iterator_traits<a name = "realization_iterator_traits"></a>
+### Реализация iterator_traits<a name = "realization_iterator_traits"></a>
  
 	template<class Iterator>
 	struct iterator_traits
@@ -249,7 +249,7 @@ _____
 		typedef std::random_access_iterator_tag iterator_category;
 	};
 
-## Класс iterator<a name = "class_iterator"></a>
+### Класс iterator<a name = "class_iterator"></a>
 	
 ***std::iterator*** - это базовый класс, предоставляемый для упрощения определений требуемых типов для итераторов.	
 	
@@ -275,7 +275,7 @@ _____
 			
 ***Reference*** - определяет ссылку на тип, повторяемый по (T).	
 			
-# Обратный итератор<a name = "reverse_iterator"></a>
+## Обратный итератор<a name = "reverse_iterator"></a>
 
 ***reverse_iterator*** - это адаптер итератора, который меняет направление данного итератора, который должен быть как минимум BidirectionalIterator.
 
@@ -302,12 +302,12 @@ _______
 
 __________
 	
-Поля:<a name = "reverse_fields"></a>
+### Поля:<a name = "reverse_fields"></a>
 
 current - базовый итератор(protected).
 ________
 			
-Методы:<a name = "reverse_methods"></a>
+### Методы:<a name = "reverse_methods"></a>
 			
 Ниже представленные функции класса объявлены в public секции.
 			
