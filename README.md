@@ -393,3 +393,17 @@ _____
 			
 ______
 			
+***operator ->***<a name = ""></a>
+			
+    pointer operator->() const;
+			
+Внутри функция вызывает operator * и возвращает свой адрес.
+			
+Реализация:
+			
+    pointer operator->() const
+    {
+        return &(operator*());
+    };
+			
+______
