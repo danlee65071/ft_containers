@@ -378,7 +378,7 @@ ______
 
 Возвращает базовый итератор.
 		
-    iterator_type base() const ;
+    iterator_type base() const;
 			
 Реализация:
 
