@@ -395,7 +395,7 @@ _____
 			
 ______
 			
-***operator ->***<a name = "#reverse_arrow"></a>
+***operator ->***<a name = "reverse_arrow"></a>
 			
     pointer operator->() const;
 			
