@@ -174,12 +174,11 @@ _____
 Определение итератора:
  
 1)
-    template< class Iter >
+    template<class Iter>
     struct iterator_traits;
-
 2)	
-    template< class T >	
-    struct iterator_traits< T* >;
+    template<class T>	
+    struct iterator_traits<T*>;
 
 ## Описание структуры iterator_traits<a name = "struct_iterator_traits"></a>
  
