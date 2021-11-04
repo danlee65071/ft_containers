@@ -174,17 +174,13 @@ _____
 Определение итератора:
  
 1)
-	
-	template< class Iter >
-	
-   	struct iterator_traits;
- 
-2)
-	
-	template< class T >
-	
- 	struct iterator_traits< T* >;
- 
+    template< class Iter >
+    struct iterator_traits;
+
+2)	
+    template< class T >	
+    struct iterator_traits< T* >;
+
 ## Описание структуры iterator_traits<a name = "struct_iterator_traits"></a>
  
 Параметры шаблона: 
@@ -275,9 +271,8 @@ _______
 			
 Определение:<a name= "reverse_def"></a>
 			
-template< class Iter >
-
-class reverse_iterator;
+    template< class Iter >
+    class reverse_iterator;
 
 _______
 			
@@ -333,9 +328,9 @@ A a1 = (A)1 - OK, явное приведение.
 			
     explicit reverse_iterator(iterator_type x): current(x) {};
 
-3) template<class U>
-			
-reverse_iterator(const reverse_iterator<U>& other);
+3) 
+    template<class U>			
+    reverse_iterator(const reverse_iterator<U>& other);
 			
 Базовый итератор инициализируется итератором other.
 			
@@ -350,9 +345,8 @@ ______
 			
 Базовым итератор присваивается значение базового итератора other, то есть other.base().
 			
-template< class U >
-			
-reverse_iterator& operator=( const reverse_iterator<U>& other );
+    template< class U >			
+    reverse_iterator& operator=( const reverse_iterator<U>& other );
 			
 ______
 			
