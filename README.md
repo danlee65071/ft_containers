@@ -716,11 +716,6 @@ _____
     {
         typedef T type;
     };
-
-Тип помощник:
-			
-    template<bool B, class T = void>
-    using enable_if_t = typename enable_if<B,T>::type;
 			
 _____
 			
@@ -748,13 +743,9 @@ _____
 			
 Для T равного bool существуют два typedef:
 			
-    typedef bool_constant<true> true_type;
-    typedef bool_constant<false> false_type;
+    typedef integral_constant<bool, true> true_type;
+    typedef integral_constant<bool, false> false_type;
 			
-***bool_constant*** - шаблон помощник, его реализация:
-			
-    template<bool B>
-    using bool_constant = integral_constant<bool, B>;
 			
 _________
 			
