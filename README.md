@@ -19,7 +19,7 @@
   	* [Конструктор](#reverse_constructor)
   	* [operator =](#reverse_=)
   	* [base](#reverse_base)
-  	* [operator \*](#reverse_*)
+  	* [operator \*](#reverse_star)
   	* [operator ->](#reverse_arrow)
   	* [operator []](#reverse_[])
 
@@ -379,7 +379,7 @@ ______
 
 _____
 			
-***operator \****<a name = "reverse_*"></a>
+***operator \****<a name = "reverse_star"></a>
 			
     reference operator*() const;
 			
