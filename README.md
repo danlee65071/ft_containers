@@ -306,7 +306,7 @@ ________
 		
 Конструктор по умолчанию. Базовый итератор инициализируется значением.
 
-2)template< class U >
+2) template< class U >
 			
 reverse_iterator( const reverse_iterator<U>& other );
 			
