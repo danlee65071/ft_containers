@@ -12,6 +12,10 @@
   * [Реализация iterator_traits](#realization_iterator_traits)
   * [Класс iterator](#class_iterator)
 * [Обратный итератор](#reverse_iterator)
+  * [Определение](#reverse_def)
+  * [Типы параметров](#reverse_types)
+  * [Поля](#reverse_fields)
+  * [Методы](#reverse_methods)
 
 ## О чем проект? <a name = "what_project?"></a>
 Реализовать структуры данных из стандартной библиотеки C++98 STL (vector, map, stack, set). Ниже я постараюсь объяснить, как это все реализовано.
@@ -264,14 +268,17 @@ _____
 ***reverse_iterator*** - это адаптер итератора, который меняет направление данного итератора, который должен быть как минимум BidirectionalIterator.
 
 Другими словами, при наличии двунаправленного итератора std::reverse_iterator создает новый итератор, который перемещается от конца к началу последовательности, определенной базовым двунаправленным итератором.
-
-Определение:
+_______
+			
+Определение:<a name= "reverse_def"></a>
 			
 template< class Iter >
 
 class reverse_iterator;
 
-Типы параметров:
+_______
+			
+Типы параметров:<a name = "reverse_types"></a>
 
 |Тип параметра	  |Определение					|
 |-----------------|---------------------------------------------|
@@ -281,3 +288,18 @@ class reverse_iterator;
 |difference_type  |std::iterator_traits<Iter>::difference_type  |
 |pointer	  |std::iterator_traits<Iter>::pointer 		|
 |reference	  |std::iterator_traits<Iter>::reference	|
+
+__________
+	
+Поля:<a name = "reverse_fields"></a>
+
+current - базовый итератор(private).
+________
+			
+Методы:<a name = "reverse_methods"></a>
+			
+***Constructor***
+
+reverse_iterator();
+
+Создает новый адаптер для итератора
