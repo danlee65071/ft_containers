@@ -32,6 +32,7 @@
   	* [operator -=](#reverse_-=)
   * [Функции, не являющиеся членами класса](#reverse_non_member)
   	* [operator ==](#reverse_==)
+  	* [operator !=](#reverse_!=)
 
 ## О чем проект? <a name = "what_project?"></a>
 Реализовать структуры данных из стандартной библиотеки C++98 STL (vector, map, stack, set). Ниже я постараюсь объяснить, как это все реализовано.
@@ -568,8 +569,6 @@ ________
 ______
 			
 ### Функции, не являющиеся членами класса<a name = "reverse_non_member"></a>			
-
-_____
 			
 ***operator ==***<a name = "reverse_=="></a>
 
@@ -588,3 +587,67 @@ _____
 			
 ______
 			
+***operator !=***<a name = "reverse_!="></a>
+			
+    template< class Iterator1, class Iterator2 >
+    bool operator!=( const ft::reverse_iterator<Iterator1>& lhs,
+        const ft::reverse_iterator<Iterator2>& rhs);
+			
+Реализация:
+    
+    template<class Iterator1, class Iterator2>
+    bool operator!=(const reverse_iterator<Iterator1>& lhs,
+        const reverse_iterator<Iterator2>& rhs)
+    {
+        return lhs.base() != rhs.base();
+    }
+			
+______
+			
+***operator <, <=, >, >=***<a name = ""></a>
+			
+    template< class Iterator1, class Iterator2 >
+    bool operator<( const ft::reverse_iterator<Iterator1>& lhs,
+        const ft::reverse_iterator<Iterator2>& rhs);
+			
+    template< class Iterator1, class Iterator2 >
+    bool operator<=( const ft::reverse_iterator<Iterator1>& lhs,
+        const ft::reverse_iterator<Iterator2>& rhs);
+			
+    template< class Iterator1, class Iterator2 >
+    bool operator>( const ft::reverse_iterator<Iterator1>& lhs,
+        const ft::reverse_iterator<Iterator2>& rhs);
+			
+    template< class Iterator1, class Iterator2 >
+    bool operator>( const ft::reverse_iterator<Iterator1>& lhs,
+        const ft::reverse_iterator<Iterator2>& rhs);
+			
+Реализации:
+			
+    template<class Iterator1, class Iterator2>
+    bool operator>(const reverse_iterator<Iterator1>& lhs,
+        const reverse_iterator<Iterator2>& rhs)
+    {
+        return lhs.base() > rhs.base();
+    }
+			
+    template<class Iterator1, class Iterator2>
+    bool operator<=(const reverse_iterator<Iterator1>& lhs,
+        const reverse_iterator<Iterator2>& rhs)
+    {
+        return lhs.base() <= rhs.base();
+    }
+			
+    template<class Iterator1, class Iterator2>
+    bool operator>(const reverse_iterator<Iterator1>& lhs,
+        const reverse_iterator<Iterator2>& rhs)
+    {
+        return lhs.base() > rhs.base();
+    }
+			
+    template<class Iterator1, class Iterator2>
+    bool operator>=(const reverse_iterator<Iterator1>& lhs,
+        const reverse_iterator<Iterator2>& rhs)
+    {
+        return lhs.base() >= rhs.base();
+    }
