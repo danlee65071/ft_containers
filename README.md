@@ -21,6 +21,7 @@
   	* [base](#reverse_base)
   	* [operator \*](#reverse_*)
   	* [operator ->](#reverse_arrow)
+  	* [operator []](#reverse_[])
 
 ## О чем проект? <a name = "what_project?"></a>
 Реализовать структуры данных из стандартной библиотеки C++98 STL (vector, map, stack, set). Ниже я постараюсь объяснить, как это все реализовано.
@@ -405,6 +406,21 @@ ______
     pointer operator->() const
     {
         return &(operator*());
+    };
+			
+______
+
+***operator []***<a name = "reverse_[]"></a>
+			
+    reference operator[] (difference_type n) const;
+			
+Доступ к элементу, расположенному в n позициях от элемента, на который в данный момент указывает итератор. Если такой элемент не существует, это вызывает неопределенное поведение.
+			
+Реализация:
+
+    reference operator[] (difference_type n) const
+    {
+        return *(*this + n);
     };
 			
 ______
