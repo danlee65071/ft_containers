@@ -377,7 +377,7 @@ ______
 
 _____
 			
-***operator \* ***<a name = "reverse_*"></a>
+***operator \****<a name = "reverse_*"></a>
 			
     reference operator*() const;
 			
