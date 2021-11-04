@@ -675,3 +675,23 @@ _______
 			
 ______
 			
+***operator-(reverse_iterator)***<a name = ""></a>
+			
+    template<class Iterator>
+    typename reverse_iterator<Iterator>::difference_type
+        operator-( const reverse_iterator<Iterator>& lhs,
+            const reverse_iterator<Iterator>& rhs );
+			
+Возвращает расстояние между двумя адапторами итераторов.
+			
+Реализация:
+			
+    template<class Iterator>
+    typename reverse_iterator<Iterator>::difference_type
+    operator-(const reverse_iterator<Iterator>& lhs,
+        const reverse_iterator<Iterator>& rhs)
+    {
+        return rhs.base() - lhs.base();
+    }
+			
+_____
