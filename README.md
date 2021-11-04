@@ -345,11 +345,20 @@ ______
 
 ***operator =***<a name = "reverse_="></a>
 			
-Базовым итератор присваивается значение базового итератора other, то есть other.base().
+Базовым итератор присваивается значение базового итератора other, то есть other.base(). Возвращает *this.
 			
     template< class U >			
     reverse_iterator& operator=( const reverse_iterator<U>& other );
 			
+Реализация:
+
+    template<class U>
+    reverse_iterator& operator=(const reverse_iterator<U>& other)
+    {
+        this->current = static_cast<reverse_iterator<Iterator> >(other.base());
+	return *this;
+    };
+
 ______
 			
 ***base***<a name = "reverse_base"></a>
