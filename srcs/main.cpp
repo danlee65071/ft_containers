@@ -6,7 +6,7 @@
 /*   By: hcharlsi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/10 21:09:40 by hcharlsi          #+#    #+#             */
-/*   Updated: 2021/11/04 23:31:57 by hcharlsi         ###   ########.fr       */
+/*   Updated: 2021/11/05 11:01:35 by hcharlsi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,6 +132,13 @@
 #include "../includes/ft_containers.hpp"
 #include <vector>
 
+bool mycomp (char c1, char c2)
+{ return std::tolower(c1)<std::tolower(c2); }
+
+bool mypredicate (int i, int j) {
+	return (i==j);
+}
+
 int main() {
 	std::vector<int> a2(4);
 	a2.push_back(0);
@@ -177,5 +184,37 @@ int main() {
 	// same result as:
 	if ( ft::is_integral<int>::value)
 		std::cout << "int is an integral type" << std::endl;
+//	lexicographical_compare
+	char foo[]="Apple";
+	char bar[]="apartment";
+
+	std::cout << std::boolalpha;
+
+	std::cout << "Comparing foo and bar lexicographically (foo<bar):\n";
+
+	std::cout << "Using default comparison (operator<): ";
+	std::cout << ft::lexicographical_compare(foo,foo+5,bar,bar+9);
+	std::cout << '\n';
+
+	std::cout << "Using mycomp as comparison object: ";
+	std::cout << ft::lexicographical_compare(foo,foo+5,bar,bar+9,mycomp);
+	std::cout << "\n\n";
+
+//	equal
+	int myints[] = {20,40,60,80,100};
+	std::vector<int>myvector (myints,myints+5);
+
+	if ( ft::equal (myvector.begin(), myvector.end(), myints) )
+		std::cout << "The contents of both sequences are equal.\n";
+	else
+		std::cout << "The contents of both sequences differ.\n";
+
+	myvector[3]=81;
+
+	if ( ft::equal (myvector.begin(), myvector.end(), myints, mypredicate) )
+		std::cout << "The contents of both sequences are equal.\n";
+	else
+		std::cout << "The contents of both sequences differ.\n\n";
+
 	return 0;
 }

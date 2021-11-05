@@ -39,6 +39,8 @@
   * [enable_if](#enable_if)
   * [integral_constant](#integral_constant)
   * [is_integral](#is_integral)
+  * [lexicographical_compare](#lexicographical_compare)
+  * [equal](#equal)  
 
 ## О чем проект? <a name = "what_project?"></a>
 Реализовать структуры данных из стандартной библиотеки C++98 STL (vector, map, stack, set). Ниже я постараюсь объяснить, как это все реализовано.
@@ -793,3 +795,90 @@ _________
     template<> struct is_integral<unsigned long>: public true_type {};
     template<> struct is_integral<long long>: public true_type {};
     template<> struct is_integral<unsigned long long>: public true_type {};
+
+________
+
+## lexicographical_compare<a name = "lexicographical_compare"></a>
+
+    template<class InputIt1, class InputIt2>
+    bool lexicographical_compare(InputIt1 first1, InputIt1 last1,
+        InputIt2 first2, InputIt2 last2);
+
+    template<class InputIt1, class InputIt2, class Compare>
+	bool lexicographical_compare(InputIt1 first1, InputIt1 last1,
+	    InputIt2 first2, InputIt2 last2, Compare comp);
+
+Возвращает, true если лексикографически диапазон [first1,last1) сравнивается меньше, чем диапазон [first2,last2).
+Лексикографическое сравнение обычно используется для сортировки слов по алфавиту в словарях.
+Оно включает в себя последовательное сравнение элементов, имеющих одинаковую позицию в обоих диапазонах, друг с другом до
+тех пор, пока один элемент не станет эквивалентным другому. Результат сравнения этих первых несовпадающих элементов 
+является результатом лексикографического сравнения. Если обе последовательности сравниваются до тех пор, пока одна
+из них не закончится, более короткая последовательность лексикографически меньше, чем более длинная. В первой версии для
+сравнения используется operator <, а во второй функцию компаратор.
+Реализация:
+
+    template<class InputIt1, class InputIt2>
+    bool lexicographical_compare(InputIt1 first1, InputIt1 last1,
+        InputIt2 first2, InputIt2 last2)
+    {
+        for ( ; (first1 != last1) && (first2 != last2); ++first1, (void) ++first2 )
+        {
+            if (*first1 < *first2)
+                return true;
+            if (*first2 < *first1)
+                return false;
+        }
+        return (first1 == last1) && (first2 != last2);
+    }
+
+    template<class InputIt1, class InputIt2, class Compare>
+	bool lexicographical_compare(InputIt1 first1, InputIt1 last1,
+	    InputIt2 first2, InputIt2 last2, Compare comp)
+	{
+		for (; first2 != last2; ++first1, (void) ++first2)
+		{
+			if (first1 == last1 || comp(*first1, *first2))
+				return true;
+			if (comp(*first2, *first1))
+				return false;
+		}
+		return false;
+	}
+
+_______
+
+## equal<a name = "equal"></a>
+
+    template<class InputIt1, class InputIt2>
+	bool equal(InputIt1 first1, InputIt1 last1, InputIt2 first2);
+
+    template<class InputIt1, class InputIt2, class BinaryPredicate>
+	bool equal(InputIt1 first1, InputIt1 last1, InputIt2 first2, BinaryPredicate p);
+
+Сравнивает элементы в диапазоне [first1,last1) с элементами в диапазоне, начинающемся с first2, и возвращает, true 
+если все элементы в обоих диапазонах совпадают. Элементы сравниваются с помощью operator== или с помощью предиката.
+
+Реализация:
+
+    template<class InputIt1, class InputIt2>
+	bool equal(InputIt1 first1, InputIt1 last1, InputIt2 first2)
+	{
+		for (; first1 != last1; ++first1, ++first2)
+		{
+			if (!(*first1 == *first2))
+				return false;
+		}
+		return true;
+	}
+
+    template<class InputIt1, class InputIt2, class BinaryPredicate>
+	bool equal(InputIt1 first1, InputIt1 last1, InputIt2 first2,
+			   BinaryPredicate p)
+	{
+		for (; first1 != last1; ++first1, ++first2)
+		{
+			if (!p(*first1, *first2))
+				return false;
+		}
+		return true;
+	}

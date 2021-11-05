@@ -18,13 +18,12 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3cefb1e5-6c12-41d8-a7b8-5c4099884960" name="Default Changelist" comment="reverse_iterator done">
-      <change afterPath="$PROJECT_DIR$/includes/ft_type_traits.hpp" afterDir="false" />
+    <list default="true" id="3cefb1e5-6c12-41d8-a7b8-5c4099884960" name="Default Changelist" comment="type_traits">
+      <change afterPath="$PROJECT_DIR$/includes/ft_algorithm.hpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/Makefile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/includes/ft_containers.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/includes/ft_containers.hpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/includes/iterator.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/includes/ft_iterator.hpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/includes/my_type_traits.hpp" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/srcs/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/main.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -165,7 +164,7 @@
       <workItem from="1634468587216" duration="18000" />
       <workItem from="1634658408679" duration="5000" />
       <workItem from="1634737690806" duration="460000" />
-      <workItem from="1636031293434" duration="14530000" />
+      <workItem from="1636031293434" duration="17772000" />
     </task>
     <task id="LOCAL-00001" summary="reverse_iterator constructors">
       <created>1633959489922</created>
@@ -188,7 +187,14 @@
       <option name="project" value="LOCAL" />
       <updated>1634238906951</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="type_traits">
+      <created>1636058041265</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1636058041265</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -199,7 +205,19 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="master" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
           </value>
         </entry>
       </map>
@@ -210,6 +228,7 @@
     <MESSAGE value="reverse_iterator constructors" />
     <MESSAGE value="reverse_iterator test" />
     <MESSAGE value="reverse_iterator done" />
-    <option name="LAST_COMMIT_MESSAGE" value="reverse_iterator done" />
+    <MESSAGE value="type_traits" />
+    <option name="LAST_COMMIT_MESSAGE" value="type_traits" />
   </component>
 </project>

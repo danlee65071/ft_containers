@@ -6,7 +6,7 @@
 /*   By: hcharlsi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/06 18:52:12 by hcharlsi          #+#    #+#             */
-/*   Updated: 2021/11/04 19:33:32 by hcharlsi         ###   ########.fr       */
+/*   Updated: 2021/11/04 22:59:08 by hcharlsi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,5 +16,6 @@
 #include <iostream>
 #include "ft_iterator.hpp"
 #include "ft_type_traits.hpp"
+#include "ft_algorithm.hpp"
 
 #endif

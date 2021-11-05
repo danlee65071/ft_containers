@@ -6,7 +6,7 @@
 #    By: hcharlsi <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/06 12:32:59 by hcharlsi          #+#    #+#              #
-#   Updated: 2021/11/04 19:33:32 by hcharlsi         ###   ########.fr       # #
+#   Updated: 2021/11/04 20:32:35 by hcharlsi         ###   ########.fr       # #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,7 @@ PATH_OBJS = $(addprefix $(DIR_OBJS)/, $(OBJS))
 #TEST_OBJS = $(patsubst %.cpp, %.o, $(PATH_TEST_SRCS))
 #DIR_TEST_OBJS = test_objs
 
-HEADER = ft_containers.hpp ft_iterator.hpp ft_type_traits.hpp
+HEADER = ft_containers.hpp ft_iterator.hpp ft_type_traits.hpp ft_algorithm.hpp
 DIR_HEADER = includes
 PATH_HEADER = $(addprefix $(DIR_HEADER)/, $(HEADER))
 
