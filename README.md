@@ -41,6 +41,8 @@
   * [is_integral](#is_integral)
   * [lexicographical_compare](#lexicographical_compare)
   * [equal](#equal)  
+  * [pair](#pair)
+  * [make_pair](#make_pair)
 
 ## О чем проект? <a name = "what_project?"></a>
 Реализовать структуры данных из стандартной библиотеки C++98 STL (vector, map, stack, set). Ниже я постараюсь объяснить, как это все реализовано.
@@ -881,4 +883,123 @@ _______
 				return false;
 		}
 		return true;
+	}
+
+______
+
+## pair<a name = "pair"></a>
+
+    template<class T1, class T2>
+    struct pair;
+
+Этот класс объединяет пару значений, которые могут быть разных типов (Т1, а также Т2). Доступ к отдельным значениям можно
+получить через его публичные члены: first, second.
+
+Параметры шаблона:
+
+|Тип участника|Определение|
+|-------------|-----------|
+|T1           |first_type  |
+|T2           |second_type|
+
+Поля:
+
+|Имя поля|Тип|
+|--------|---|
+|first    |T1 |
+|second  |T2 |
+
+Методы:
+
+1. Конструкторы:
+
+Конструктор по умолчанию.
+
+        pair() {};
+   
+Конструктор инициализации.
+    
+        pair(const T1& x, const T2& y) {};
+
+Конструктор копирования.
+    
+        template<class U1, class U2>
+        pair(const pair<U1, U2>& p) {};
+
+Реализация:
+
+    pair(): first(), second() {}
+    pair(const T1& x, const T2& y): first(x), second(y) {}
+    template<class U1, class U2>
+    pair(const pair<U1, U2>& p): first(p.first), second(p.second) {}
+
+2. operator=
+
+       pair& operator=(const pair& other){};
+
+Копирование контента other в текущий объект.
+
+Реализация:
+
+    pair& operator=(const pair& other)
+    {
+        this->first = other.first;
+        this->second = other.second;
+        return *this;
+    }
+
+3. Реализация функций, не являющихся членами:
+    
+        template<class T1, class T2>
+        bool operator==(const pair<T1,T2>& lhs, const pair<T1,T2>& rhs)
+        {
+            return  lhs.first == rhs.first && lhs.second == rhs.second;
+        }
+   
+        template<class T1, class T2>
+        bool operator!=(const pair<T1,T2>& lhs, const pair<T1,T2>& rhs)
+        {
+        return !(lhs == rhs);
+        }
+
+        template<class T1, class T2>
+        bool operator<(const pair<T1,T2>& lhs, const pair<T1,T2>& rhs)
+        {
+            return (lhs.first < rhs.first || (!(rhs.first < lhs.first)
+                && lhs.second < rhs.second));
+        }
+
+        template<class T1, class T2>
+        bool operator<=(const pair<T1,T2>& lhs, const pair<T1,T2>& rhs)
+        {
+            return !(rhs < lhs);
+        }
+
+        template<class T1, class T2>
+        bool operator>(const pair<T1,T2>& lhs, const pair<T1,T2>& rhs)
+        {
+            return rhs < lhs;
+        }
+
+        template<class T1, class T2>
+        bool operator>=(const std::pair<T1,T2>& lhs, const std::pair<T1,T2>& rhs)
+        {
+            return !(lhs < rhs);
+        }
+
+______
+
+## make_pair<a name = "make_pair"></a>
+
+    template <class T1, class T2>
+    pair<T1,T2> make_pair (T1 x, T2 y);
+
+Создает pair объект с его первым элементом x, а его вторым элементом y.
+
+Реализация:
+
+    template<class T1, class T2>
+	pair<T1, T2> make_pair(T1 x, T2 y)
+	{
+		return pair<T1, T2>(x, y);
 	}

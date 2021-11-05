@@ -18,10 +18,9 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3cefb1e5-6c12-41d8-a7b8-5c4099884960" name="Default Changelist" comment="type_traits">
-      <change afterPath="$PROJECT_DIR$/includes/ft_algorithm.hpp" afterDir="false" />
+    <list default="true" id="3cefb1e5-6c12-41d8-a7b8-5c4099884960" name="Default Changelist" comment="enable_if, integral_constant, is_integral, lexicographical_compare, equal">
+      <change afterPath="$PROJECT_DIR$/includes/ft_utility.hpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/Makefile" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/includes/ft_containers.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/includes/ft_containers.hpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/srcs/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/main.cpp" afterDir="false" />
@@ -164,7 +163,7 @@
       <workItem from="1634468587216" duration="18000" />
       <workItem from="1634658408679" duration="5000" />
       <workItem from="1634737690806" duration="460000" />
-      <workItem from="1636031293434" duration="17772000" />
+      <workItem from="1636031293434" duration="22622000" />
     </task>
     <task id="LOCAL-00001" summary="reverse_iterator constructors">
       <created>1633959489922</created>
@@ -194,7 +193,14 @@
       <option name="project" value="LOCAL" />
       <updated>1636058041265</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="enable_if, integral_constant, is_integral, lexicographical_compare, equal">
+      <created>1636099769853</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1636099769853</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -229,6 +235,7 @@
     <MESSAGE value="reverse_iterator test" />
     <MESSAGE value="reverse_iterator done" />
     <MESSAGE value="type_traits" />
-    <option name="LAST_COMMIT_MESSAGE" value="type_traits" />
+    <MESSAGE value="enable_if, integral_constant, is_integral, lexicographical_compare, equal" />
+    <option name="LAST_COMMIT_MESSAGE" value="enable_if, integral_constant, is_integral, lexicographical_compare, equal" />
   </component>
 </project>

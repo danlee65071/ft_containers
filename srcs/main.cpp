@@ -6,7 +6,7 @@
 /*   By: hcharlsi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/10 21:09:40 by hcharlsi          #+#    #+#             */
-/*   Updated: 2021/11/05 11:01:35 by hcharlsi         ###   ########.fr       */
+/*   Updated: 2021/11/05 19:06:46 by hcharlsi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -216,5 +216,32 @@ int main() {
 	else
 		std::cout << "The contents of both sequences differ.\n\n";
 
+//	pair constructors
+	ft::pair <std::string,double> product1;                     // default
+	// constructor
+	ft::pair <std::string,double> product2 ("tomatoes",2.30);   // value init
+	ft::pair <std::string,double> product3 (product2);          // copy
+	// constructor
+
+	product1 = ft::make_pair(std::string("lightbulbs"),0.99);   // using
+	// make_pair (move)
+
+	product2.first = "shoes";                  // the type of first is string
+	product2.second = 39.90;                   // the type of second is double
+
+	std::cout << "The price of " << product1.first << " is $" << product1.second << '\n';
+	std::cout << "The price of " << product2.first << " is $" << product2.second << '\n';
+	std::cout << "The price of " << product3.first << " is $" << product3.second << '\n';
+
+//	make_pair
+	ft::pair<int,int> f;
+	ft::pair<int,int> b;
+
+	f = ft::make_pair (10,20);
+	b = ft::make_pair (10.5,'A'); // ok: implicit conversion from
+	// pair<double,char>
+
+	std::cout << "foo: " << f.first << ", " << f.second << '\n';
+	std::cout << "bar: " << b.first << ", " << b.second << '\n';
 	return 0;
 }
