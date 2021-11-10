@@ -16,26 +16,26 @@
   * [Типы параметров](#reverse_types)
   * [Поля](#reverse_fields)
   * [Методы](#reverse_methods)
-  	* [Конструктор](#reverse_constructor)
-  	* [operator =](#reverse_=)
-  	* [base](#reverse_base)
-  	* [operator \*](#reverse_star)
-  	* [operator ->](#reverse_arrow)
-  	* [operator []](#reverse_[])
-  	* [operator ++](#reverse_++)
-  	* [operator --](#reverse_--)
-  	* [operator ++(int)](#reverse_++_int)
-  	* [operator --(int)](#reverse_--_int)
-  	* [operator +](#reverse_+)
-  	* [operator -](#reverse_-)
-  	* [operator +=](#reverse_+=)
-  	* [operator -=](#reverse_-=)
+      * [Конструктор](#reverse_constructor)
+      * [operator =](#reverse_=)
+      * [base](#reverse_base)
+      * [operator \*](#reverse_star)
+      * [operator ->](#reverse_arrow)
+      * [operator []](#reverse_[])
+      * [operator ++](#reverse_++)
+      * [operator --](#reverse_--)
+      * [operator ++(int)](#reverse_++_int)
+      * [operator --(int)](#reverse_--_int)
+      * [operator +](#reverse_+)
+      * [operator -](#reverse_-)
+      * [operator +=](#reverse_+=)
+      * [operator -=](#reverse_-=)
   * [Функции, не являющиеся членами класса](#reverse_non_member)
-  	* [operator ==](#reverse_==)
-  	* [operator !=](#reverse_!=)
-  	* [operator <, <=, >, >=](#reverse_cmp)
-  	* [operator+(reverse_iterator)](#reverse_plus)
-  	* [operator-(reverse_iterator)](#reverse_minus)
+      * [operator ==](#reverse_==)
+      * [operator !=](#reverse_!=)
+      * [operator <, <=, >, >=](#reverse_cmp)
+      * [operator+(reverse_iterator)](#reverse_plus)
+      * [operator-(reverse_iterator)](#reverse_minus)
   * [enable_if](#enable_if)
   * [integral_constant](#integral_constant)
   * [is_integral](#is_integral)
@@ -43,6 +43,7 @@
   * [equal](#equal)  
   * [pair](#pair)
   * [make_pair](#make_pair)
+  * [Vector](#Vector)
 
 ## О чем проект? <a name = "what_project?"></a>
 Реализовать структуры данных из стандартной библиотеки C++98 STL (vector, map, stack, set). Ниже я постараюсь объяснить, как это все реализовано.
@@ -1003,3 +1004,20 @@ ______
 	{
 		return pair<T1, T2>(x, y);
 	}
+
+______
+
+## Vector<a name = "Vector"></a>
+
+***Vector*** - Векторы - это контейнеры последовательностей, представляющие массивы, размер которых может изменяться.
+Как и массивы, векторы используют непрерывные места хранения для своих элементов, что означает, что к их элементам также
+можно получить доступ, используя смещения в обычных указателях на его элементы, причем так же эффективно, как и в 
+массивах. Но в отличие от массивов их размер может изменяться динамически, а их хранение автоматически обрабатывается 
+контейнером. Внутри векторы используют динамически распределенный массив для хранения своих элементов. Возможно, 
+потребуется перераспределить этот массив, чтобы он увеличивался в размере при вставке новых элементов, что подразумевает
+выделение нового массива и перемещение в него всех элементов. Это относительно дорогостоящая задача с точки зрения 
+времени обработки, и поэтому векторы не перераспределяются каждый раз, когда элемент добавляется в контейнер.
+Вместо этого векторные контейнеры могут выделять некоторую дополнительную память, чтобы приспособиться к возможному 
+росту, и, таким образом, контейнер может иметь фактическую емкость больше, чем хранилище, строго необходимое для 
+хранения его элементов. Следовательно, по сравнению с массивами, векторы потребляют больше памяти в обмен на возможность
+управлять хранилищем и эффективно динамически расти.

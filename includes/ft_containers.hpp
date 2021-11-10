@@ -18,5 +18,6 @@
 # include "ft_type_traits.hpp"
 # include "ft_algorithm.hpp"
 # include "ft_utility.hpp"
+# include "ft_vector.hpp"
 
 #endif

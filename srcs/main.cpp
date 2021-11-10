@@ -6,7 +6,7 @@
 /*   By: hcharlsi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/10 21:09:40 by hcharlsi          #+#    #+#             */
-/*   Updated: 2021/11/05 19:06:46 by hcharlsi         ###   ########.fr       */
+/*   Updated: 2021/11/10 14:43:49 by                  ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -243,5 +243,24 @@ int main() {
 
 	std::cout << "foo: " << f.first << ", " << f.second << '\n';
 	std::cout << "bar: " << b.first << ", " << b.second << '\n';
+
+//  vector default constructor
+    ft::vector<int> ft_v;
+//    vector fill constructor
+    ft::vector<int> fill_v(10, 45);
+//    push_back
+    fill_v.push_back(1);
+//    size
+    std::cout << "fill_v size: " << fill_v.size() << '\n';
+
+//    max_size
+    std::cout << "max size my vector: " << fill_v.max_size() << '\n';
+
+//    vector range constructor
+    std::vector<int> std_range(4, 100);
+//    ft::vector<int> ft_range_v(it1, it2);
+
+//    vector copy constructor
+    ft::vector<int> copy_v(fill_v);
 	return 0;
 }

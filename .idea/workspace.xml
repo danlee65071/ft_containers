@@ -18,10 +18,13 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3cefb1e5-6c12-41d8-a7b8-5c4099884960" name="Default Changelist" comment="pair, make_pair">
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
+    <list default="true" id="3cefb1e5-6c12-41d8-a7b8-5c4099884960" name="Default Changelist" comment="vector constructors">
+      <change afterPath="$PROJECT_DIR$/includes/ft_vector.hpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/includes/vector.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/includes/vector.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/includes/ft_containers.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/includes/ft_containers.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/includes/vector.hpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/srcs/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/main.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -126,9 +129,9 @@
         <option name="CLION.COMPOUND.BUILD" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="GradleAppRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true">
+    <configuration default="true" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true">
       <method v="2">
-        <option name="com.jetbrains.cidr.cpp.gradle.execution.GradleNativeBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
     </configuration>
     <list>
@@ -163,7 +166,10 @@
       <workItem from="1636031293434" duration="23231000" />
       <workItem from="1636371801139" duration="480000" />
       <workItem from="1636372608814" duration="5188000" />
-      <workItem from="1636382370138" duration="5484000" />
+      <workItem from="1636382370138" duration="5853000" />
+      <workItem from="1636457371821" duration="5000" />
+      <workItem from="1636466474373" duration="13020000" />
+      <workItem from="1636543241387" duration="2761000" />
     </task>
     <task id="LOCAL-00001" summary="reverse_iterator constructors">
       <created>1633959489922</created>
@@ -207,7 +213,14 @@
       <option name="project" value="LOCAL" />
       <updated>1636128756412</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="vector constructors">
+      <created>1636391300669</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1636391300670</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -244,6 +257,7 @@
     <MESSAGE value="type_traits" />
     <MESSAGE value="enable_if, integral_constant, is_integral, lexicographical_compare, equal" />
     <MESSAGE value="pair, make_pair" />
-    <option name="LAST_COMMIT_MESSAGE" value="pair, make_pair" />
+    <MESSAGE value="vector constructors" />
+    <option name="LAST_COMMIT_MESSAGE" value="vector constructors" />
   </component>
 </project>
