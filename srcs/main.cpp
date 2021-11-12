@@ -6,7 +6,7 @@
 /*   By: hcharlsi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/10 21:09:40 by hcharlsi          #+#    #+#             */
-/*   Updated: 2021/11/10 14:43:49 by                  ###   ########.fr       */
+/*   Updated: 2021/11/12 19:35:51 by                  ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -247,7 +247,7 @@ int main() {
 //  vector default constructor
     ft::vector<int> ft_v;
 //    vector fill constructor
-    ft::vector<int> fill_v(10, 45);
+    ft::vector<int> fill_v(4, 45);
 //    push_back
     fill_v.push_back(1);
 //    size
@@ -256,11 +256,48 @@ int main() {
 //    max_size
     std::cout << "max size my vector: " << fill_v.max_size() << '\n';
 
-//    vector range constructor
-    std::vector<int> std_range(4, 100);
 //    ft::vector<int> ft_range_v(it1, it2);
 
 //    vector copy constructor
     ft::vector<int> copy_v(fill_v);
-	return 0;
+
+    for(int i = 0; i < 4; ++i)
+        std::cout << copy_v[i] << '\n';
+    std::cout << '\n';
+
+    ft::vector<int> ft_v2(2, 20);
+
+    ft_v2.push_back(11);
+    for (int i = 0; i < 3; i++)
+        std::cout << ft_v2[i] << '\n';
+    std::cout << '\n';
+//    operator=
+    copy_v = ft_v2;
+//    operator[]
+    for (int i = 0; i < 3; i++)
+    {
+        std::cout << "element copy_v[" << i << "]: " << copy_v[i] << '\n';
+        std::cout << "element ft_v2[" << i << "]: " << ft_v2[i] << '\n';
+        std::cout << '\n';
+    }
+
+//    at
+    std::cout << "at copy_v[2]: " << copy_v.at(2) << '\n';
+
+//    front
+    std::cout << "first element copy_v: " << copy_v.front() << '\n';
+
+//    back
+    std::cout << "last element copy_v: " << copy_v.back() << '\n';
+
+//    begin
+    std::cout << "\n empty_v begin: " << *copy_v.begin() << '\n';
+
+//    end
+    std::cout << "\n end iterator vector: " << *copy_v.end() << '\n';
+
+//    range constructor
+    ft::vector<int> range_v(copy_v.begin(), copy_v.end());
+
+    return 0;
 }
