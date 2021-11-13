@@ -6,7 +6,7 @@
 /*   By: hcharlsi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/10 21:09:40 by hcharlsi          #+#    #+#             */
-/*   Updated: 2021/11/12 19:35:51 by                  ###   ########.fr       */
+/*   Updated: 2021/11/13 20:06:02 by                  ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -250,6 +250,7 @@ int main() {
     ft::vector<int> fill_v(4, 45);
 //    push_back
     fill_v.push_back(1);
+    std::cout << "\npushback fill_v: " << fill_v.back() << '\n';
 //    size
     std::cout << "fill_v size: " << fill_v.size() << '\n';
 
@@ -291,13 +292,46 @@ int main() {
     std::cout << "last element copy_v: " << copy_v.back() << '\n';
 
 //    begin
-    std::cout << "\n empty_v begin: " << *copy_v.begin() << '\n';
+    std::cout << "\nempty_v begin: " << *copy_v.begin() << '\n';
 
 //    end
-    std::cout << "\n end iterator vector: " << *copy_v.end() << '\n';
+    std::cout << "\nend iterator vector: " << *copy_v.end() << '\n';
 
 //    range constructor
     ft::vector<int> range_v(copy_v.begin(), copy_v.end());
+    std::cout << "range vector[0]: " << range_v[0] << '\n';
 
+//    capacity
+    std::cout << "\ncapacity copy_v: " << copy_v.capacity() << '\n';
+
+//    reserve
+    std::cout << "\nsize copy_v until reserve: " << copy_v.size() << '\n';
+    std::cout << "capacity copy_v until reserve: " << copy_v.capacity() << '\n';
+    copy_v.reserve(6);
+    std::cout << "\nsize copy_v after reserve: " << copy_v.size() << '\n';
+    std::cout << "capacity copy_v after reserve: " << copy_v.capacity() << '\n';
+
+//    resize
+    {
+        ft::vector<int> myvector;
+
+        // set some initial content:
+        for (int i=1;i<10;i++) myvector.push_back(i);
+
+        myvector.resize(5);
+        myvector.resize(8,100);
+        myvector.resize(12);
+
+        std::cout << "myvector contains:";
+        for (int i=0;i< static_cast<int>(myvector.size());i++)
+            std::cout << ' ' << myvector[i];
+        std::cout << '\n';
+    }
+
+//    empty
+    ft::vector<int> empty_v;
+
+    std::cout << "\nempty empty_v: " << empty_v.empty() << '\n';
+    std::cout << "empty copy_v: " << copy_v.empty() << '\n';
     return 0;
 }

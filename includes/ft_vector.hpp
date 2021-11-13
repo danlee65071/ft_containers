@@ -6,7 +6,7 @@
 /*   By: hcharlsi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/06 20:02:37 by hcharlsi          #+#    #+#             */
-/*   Updated: 2021/11/12 19:42:54 by                  ###   ########.fr       */
+/*   Updated: 2021/11/13 20:09:23 by                  ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,9 +50,9 @@ namespace ft
         explicit vector(const allocator_type& alloc = allocator_type()): pbegin(0), pend(0), pcapacity(0), alloc(alloc) {}
 //      range constructor
         template<class InputIterator>
-        template<class enable_if<!is_integral<InputIterator>::value,
-                typename iterator_traits<InputIterator>::iterator_category::value>::type>
-        vector(InputIterator first, InputIterator last, const allocator_type& alloc = allocator_type());
+        vector(InputIterator first,
+               typename enable_if<!is_integral<InputIterator>::value, InputIterator>::type last,
+                const allocator_type& alloc = allocator_type());
 //      fill constructor
         explicit vector(size_type n, const value_type& val = value_type(), const allocator_type& alloc = allocator_type());
 //      copy constructor
@@ -99,12 +99,32 @@ namespace ft
         const_iterator end() const;
 /***********************************************************************************************************************/
 
-//        Member functions
+//        Capacity
 /***********************************************************************************************************************/
-//        max_size
-        size_type max_size() const;
 //        size
         size_type size() const;
+//        max_size
+        size_type max_size() const;
+//        resize
+        void resize(size_type n, value_type val = value_type());
+//        capacity
+        size_type capacity() const;
+//        empty
+        bool empty() const;
+//        reserve
+        void reserve(size_type n);
+/***********************************************************************************************************************/
+
+//        Modifiers
+/***********************************************************************************************************************/
+//        range assign
+        template<class InputIterator>
+        void assign(InputIterator first, InputIterator last);
+/***********************************************************************************************************************/
+
+//        Member functions
+/***********************************************************************************************************************/
+
 //        push_back
         void push_back(const value_type& val);
 
@@ -116,7 +136,6 @@ namespace ft
 
 //        vector allocate
         void vallocate(size_type n);
-
 //        construct at end
         void construct_at_end(size_type n, const_reference val);
 //        vector deallocate
@@ -143,9 +162,9 @@ namespace ft
 //    vector range constructor
     template<class T, class Allocator>
     template<class InputIterator>
-    template<typename enable_if<!is_integral<InputIterator>::value,
-            typename iterator_traits<InputIterator>::iterator_category::value>::type>
-    vector<T, Allocator>::vector(InputIterator first, InputIterator last, const allocator_type &alloc)
+    vector<T, Allocator>::vector(InputIterator first,
+                                 typename enable_if<!is_integral<InputIterator>::value, InputIterator>::type last,
+                                 const allocator_type &alloc)
                                          : pbegin(0), pend(0), pcapacity(0), alloc(alloc)
     {
         for (; first != last; ++first)
@@ -174,7 +193,7 @@ namespace ft
     vector<T, Allocator>::~vector()
     {
         this->vdeallocate(this->pcapacity - this->pbegin);
-        this->pbegin = this->pend = this->pcapacity = NULL;
+        this->pbegin = this->pend = this->pcapacity = 0;
     }
 /***********************************************************************************************************************/
 
@@ -295,9 +314,17 @@ namespace ft
     }
 /***********************************************************************************************************************/
 
-//    Member functions implementation
+//        Capacity
 /***********************************************************************************************************************/
-//    vector max_size
+    //    size
+    template<class T, class Allocator>
+    typename vector<T, Allocator>::size_type
+    vector<T, Allocator>::size() const
+    {
+        return static_cast<size_type>(this->pend - this->pbegin);
+    }
+
+    //    max_size
     template<class T, class Allocator>
     typename vector<T, Allocator>::size_type
     vector<T, Allocator>::max_size() const
@@ -305,36 +332,63 @@ namespace ft
         return std::min<T>(this->alloc.max_size(), std::numeric_limits<difference_type>::max());
     }
 
+//    resize
+    template<class T, class Allocator>
+    void vector<T, Allocator>::resize(size_type n, value_type val)
+    {
+        if (n > this->capacity())
+            this->reserve(n);
+        for (pointer it = this->pend; it < this->pbegin + n; ++it)
+            this->alloc.construct(it, val);
+        this->pend = this->pbegin + n;
+    }
+
+//    capacity
+    template<class T, class Allocator>
+    typename vector<T, Allocator>::size_type
+    vector<T, Allocator>::capacity() const
+    {
+        return static_cast<size_type>(this->pcapacity - this->pbegin);
+    }
+
+//    empty
+    template<class T, class Allocator>
+    bool vector<T, Allocator>::empty() const
+    {
+        return this->pbegin == this->pend;
+    }
+
+//    reserve
+    template<class T, class Allocator>
+    void vector<T, Allocator>::reserve(size_type n)
+    {
+        if (n > this->capacity())
+        {
+            size_t size = this->pend - this->pbegin;
+            pointer new_begin = this->alloc.allocate(n);
+            for (size_t i = 0; i < size; ++i)
+                this->alloc.construct(new_begin + i, *(this->pbegin + i));
+            this->vdeallocate(this->pcapacity - this->pbegin);
+            this->pbegin = new_begin;
+            this->pend = this->pbegin + size;
+            this->pcapacity = this->pbegin + n;
+        }
+    }
+/***********************************************************************************************************************/
+
+//    Member functions implementation
+/***********************************************************************************************************************/
+
+
 //    push_back
     template<class T, class Allocator>
     void vector<T, Allocator>::push_back(const value_type &val)
     {
-        size_t cap = this->pcapacity - this->pbegin;
-
-        if (this->pend != this->pcapacity)
-        {
-            this->alloc.construct(this->pend, val);
-            ++this->pend;
-        }
-        else
-        {
-            pointer new_begin = this->alloc.allocate((cap > 0 ? cap : 1) * 2);
-            for (size_t i = 0; i < cap; ++i)
-                this->alloc.construct(new_begin + i, *(this->pbegin + i));
-            this->alloc.construct(new_begin + cap, val);
-            this->vdeallocate(cap);
-            this->pbegin = new_begin;
-            this->pend = this->pbegin + cap + 1;
-            this->pcapacity = this->pbegin + (cap > 0 ? cap : 1) * 2;
-        }
-    }
-
-//    size
-    template<class T, class Allocator>
-    typename vector<T, Allocator>::size_type
-    vector<T, Allocator>::size() const
-    {
-        return static_cast<size_type>(this->pend - this->pbegin);
+        size_type cap = this->pcapacity - this->pbegin;
+        if (this->pend == this->pcapacity)
+            this->reserve(2 * (cap > 0 ? cap : 1));
+        this->alloc.construct(this->pend, val);
+        ++this->pend;
     }
 /***********************************************************************************************************************/
 
