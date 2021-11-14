@@ -6,7 +6,7 @@
 /*   By: hcharlsi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/10 21:09:40 by hcharlsi          #+#    #+#             */
-/*   Updated: 2021/11/14 14:52:42 by                  ###   ########.fr       */
+/*   Updated: 2021/11/14 23:03:48 by hcharlsi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -423,14 +423,14 @@ int main() {
 
         // "it" no longer valid, get a new one:
         it = myvector.begin();
-
+//
         ft::vector<int> anothervector (2,400);
         myvector.insert (it+2,anothervector.begin(),anothervector.end());
 
         int myarray [] = { 501,502,503 };
         myvector.insert (myvector.begin(), myarray, myarray+3);
 
-        std::cout << "myvector contains:";
+        std::cout << "\nmyvector contains:";
         for (it=myvector.begin(); it<myvector.end(); it++)
             std::cout << ' ' << *it;
         std::cout << '\n';

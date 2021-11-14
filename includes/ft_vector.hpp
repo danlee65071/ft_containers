@@ -6,7 +6,7 @@
 /*   By: hcharlsi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/06 20:02:37 by hcharlsi          #+#    #+#             */
-/*   Updated: 2021/11/14 15:58:24 by                  ###   ########.fr       */
+/*   Updated: 2021/11/14 23:03:14 by hcharlsi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,7 +141,8 @@ namespace ft
         void insert(iterator position, size_type n, const value_type& val);
 //        range insert
         template<class InputIterator>
-        void insert(iterator position, InputIterator first, InputIterator last);
+        typename enable_if<!is_integral<InputIterator>::value, void>::type
+        insert(iterator position, InputIterator first, InputIterator last);
 //        clear
         void clear();
 /***********************************************************************************************************************/
@@ -480,16 +481,19 @@ namespace ft
             this->push_back(val);
         else
         {
-            pointer new_begin = (this->size() + 1 < this->capacity) ? this->alloc.allocate(this->capacity()) :
-                        this->alloc.allocate(this->capacity() * 2);
+        	size_type n_alloc = (this->size() + 1 < this->capacity()) ?
+								this->capacity() : this->capacity() * 2;
+			pointer new_begin = this->alloc.allocate(n_alloc);
             size_type i = 0;
             for (; i < static_cast<size_type>(position - this->pbegin); ++i)
-                new_begin.push_back(*(this->pbegin + i));
-            new_begin.push_back(val);
+                this->alloc.construct(new_begin + i, *(this->pbegin + i));
+			this->alloc.construct(new_begin + i, val);
             for (; i < this->size(); ++i)
-                new_begin.push_back(*(this->pbegin + i));
+                this->alloc.construct(new_begin + i + 1, *(this->pbegin + i));
             this->clear();
-            this->pbegin = new_begin;
+			this->pbegin = new_begin;
+			this->pend = new_begin + i + 1;
+			this->pcapacity = new_begin + n_alloc;
         }
         return this->pbegin;
     }
@@ -503,41 +507,50 @@ namespace ft
                 this->push_back(val);
         else
         {
-            pointer new_begin = (this->size() + 1 < this->capacity) ? this->alloc.allocate(this->capacity()) :
-                                this->alloc.allocate(this->capacity() * 2);
-            size_type i = 0;
-            for (; i < static_cast<size_type>(position - this->pbegin); ++i)
-                new_begin.push_back(*(this->pbegin + i));
-            for (pointer it = position; it < position + n; ++it)
-                new_begin.push_back(val);
+			size_type n_alloc = (this->size() + 1 < this->capacity()) ?
+								this->capacity() : this->capacity() * 2;
+			pointer new_begin = this->alloc.allocate(n_alloc);
+			size_type i = 0;
+			size_type j = 0;
+			for (; i < static_cast<size_type>(position - this->pbegin); ++i)
+				this->alloc.construct(new_begin + i, *(this->pbegin + i));
+            for (pointer it = position; it < position + n; ++it, ++j)
+                this->alloc.construct(new_begin + i + j, val);
             for (; i < this->size(); ++i)
-                new_begin.push_back(*(this->pbegin + i));
+                this->alloc.construct(new_begin + i + j, *(this->pbegin + i));
             this->clear();
             this->pbegin = new_begin;
+            this->pend = new_begin + i + j;
+            this->pcapacity = new_begin + n_alloc;
         }
     }
 
 //    range insert
     template<class T, class Allocator>
     template<class InputIterator>
-    void vector<T, Allocator>::insert(iterator position, InputIterator first, InputIterator last)
+	typename enable_if<!is_integral<InputIterator>::value, void>::type
+    vector<T, Allocator>::insert(iterator position, InputIterator first, InputIterator last)
     {
         if (position == this->pend)
             for (InputIterator it = first; it != last; ++it)
                 this->push_back(*it);
         else
         {
-            pointer new_begin = (this->size() + 1 < this->capacity) ? this->alloc.allocate(this->capacity()) :
-                                this->alloc.allocate(this->capacity() * 2);
-            size_type i = 0;
-            for (; i < static_cast<size_type>(position - this->pbegin); ++i)
-                new_begin.push_back(*(this->pbegin + i));
-            for (InputIterator it = first; it != last; ++it)
-                new_begin.push_back(*it);
+			size_type n_alloc = (this->size() + 1 < this->capacity()) ?
+								this->capacity() : this->capacity() * 2;
+			pointer new_begin = this->alloc.allocate(n_alloc);
+			size_type i = 0;
+			size_type j = 0;
+			for (; i < static_cast<size_type>(position - this->pbegin); ++i)
+				this->alloc.construct(new_begin + i, *(this->pbegin + i));
+            for (InputIterator it = first; it != last; ++it, ++j)
+                this->alloc.construct(new_begin + i + j, *it);
             for (; i < this->size(); ++i)
-                new_begin.push_back(*(this->pbegin + i));
+				this->alloc.construct(new_begin + i + j, *(this->pbegin + i));
             this->clear();
-            this->pbegin = new_begin;
+			this->pbegin = new_begin;
+			this->pend = new_begin + i + j;
+			this->pcapacity = new_begin + n_alloc;
         }
     }
 

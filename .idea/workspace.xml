@@ -14,14 +14,20 @@
   </component>
   <component name="CMakeSettings">
     <configurations>
-      <configuration PROFILE_NAME="Debug" ENABLED="true" CONFIG_NAME="Debug" />
+      <configuration PROFILE_NAME="Debug" CONFIG_NAME="Debug" ENABLED="true" />
     </configurations>
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3cefb1e5-6c12-41d8-a7b8-5c4099884960" name="Default Changelist" comment="vector modifiers functions">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ft_container" beforeDir="false" afterPath="$PROJECT_DIR$/ft_container" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/includes/ft_algorithm.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/includes/ft_algorithm.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/includes/ft_type_traits.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/includes/ft_type_traits.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/includes/ft_utility.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/includes/ft_utility.hpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/includes/ft_vector.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/includes/ft_vector.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/objs/main.o" beforeDir="false" afterPath="$PROJECT_DIR$/objs/main.o" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/srcs/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/main.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/test.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/test/test.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -170,6 +176,7 @@
       <workItem from="1636885968471" duration="6331000" />
       <workItem from="1636903263116" duration="2000" />
       <workItem from="1636911660999" duration="4000" />
+      <workItem from="1636916966157" duration="3199000" />
     </task>
     <task id="LOCAL-00001" summary="reverse_iterator constructors">
       <created>1633959489922</created>
@@ -282,5 +289,16 @@
     <MESSAGE value="vector functions" />
     <MESSAGE value="vector modifiers functions" />
     <option name="LAST_COMMIT_MESSAGE" value="vector modifiers functions" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/srcs/main.cpp</url>
+          <line>421</line>
+          <option name="timeStamp" value="9" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
