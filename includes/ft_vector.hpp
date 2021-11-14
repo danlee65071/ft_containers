@@ -6,7 +6,7 @@
 /*   By: hcharlsi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/06 20:02:37 by hcharlsi          #+#    #+#             */
-/*   Updated: 2021/11/13 20:09:23 by                  ###   ########.fr       */
+/*   Updated: 2021/11/14 15:58:24 by                  ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,6 +97,14 @@ namespace ft
         iterator end();
 //        const end
         const_iterator end() const;
+//        rbegin
+        reverse_iterator rbegin();
+//        const rbegin
+        const_reverse_iterator rbegin() const;
+//        rend
+        reverse_iterator rend();
+//        const rend
+        const_reverse_iterator rend() const;
 /***********************************************************************************************************************/
 
 //        Capacity
@@ -119,14 +127,27 @@ namespace ft
 /***********************************************************************************************************************/
 //        range assign
         template<class InputIterator>
-        void assign(InputIterator first, InputIterator last);
+        typename enable_if<!is_integral<InputIterator>::value, void>::type
+        assign(InputIterator first, InputIterator last);
+//        fill assign
+        void assign(size_type n, const value_type& val);
+//        push_back
+        void push_back(const value_type& val);
+//        pop_back
+        void pop_back();
+//        single element insert
+        iterator insert(iterator position, const value_type& val);
+//        fill insert
+        void insert(iterator position, size_type n, const value_type& val);
+//        range insert
+        template<class InputIterator>
+        void insert(iterator position, InputIterator first, InputIterator last);
+//        clear
+        void clear();
 /***********************************************************************************************************************/
 
 //        Member functions
 /***********************************************************************************************************************/
-
-//        push_back
-        void push_back(const value_type& val);
 
     private:
         pointer pbegin;
@@ -163,9 +184,8 @@ namespace ft
     template<class T, class Allocator>
     template<class InputIterator>
     vector<T, Allocator>::vector(InputIterator first,
-                                 typename enable_if<!is_integral<InputIterator>::value, InputIterator>::type last,
-                                 const allocator_type &alloc)
-                                         : pbegin(0), pend(0), pcapacity(0), alloc(alloc)
+        typename enable_if<!is_integral<InputIterator>::value, InputIterator>::type last,
+            const allocator_type &alloc): pbegin(0), pend(0), pcapacity(0), alloc(alloc)
     {
         for (; first != last; ++first)
             push_back(*first);
@@ -192,8 +212,7 @@ namespace ft
     template<class T, class Allocator>
     vector<T, Allocator>::~vector()
     {
-        this->vdeallocate(this->pcapacity - this->pbegin);
-        this->pbegin = this->pend = this->pcapacity = 0;
+        this->clear();
     }
 /***********************************************************************************************************************/
 
@@ -312,6 +331,38 @@ namespace ft
     {
         return this->pend;
     }
+
+//    rbegin
+    template<class T, class Allocator>
+    typename vector<T, Allocator>::reverse_iterator
+    vector<T, Allocator>::rbegin()
+    {
+        return (reverse_iterator(this->end()));
+    }
+
+//    const rbegin
+    template<class T, class Allocator>
+    typename vector<T, Allocator>::const_reverse_iterator
+    vector<T, Allocator>::rbegin() const
+    {
+        return (rbegin(this->end()));
+    }
+
+//    rend
+    template<class T, class Allocator>
+    typename vector<T, Allocator>::reverse_iterator
+    vector<T, Allocator>::rend()
+    {
+        return (reverse_iterator(this->begin()));
+    }
+
+//    const rend
+    template<class T, class Allocator>
+    typename vector<T, Allocator>::const_reverse_iterator
+    vector<T, Allocator>::rend() const
+    {
+        return (reverse_iterator(this->begin()));
+    }
 /***********************************************************************************************************************/
 
 //        Capacity
@@ -340,6 +391,9 @@ namespace ft
             this->reserve(n);
         for (pointer it = this->pend; it < this->pbegin + n; ++it)
             this->alloc.construct(it, val);
+        if (n < static_cast<size_type>(this->pend - this->pbegin))
+            for (pointer it = this->pbegin + n; it < this->pend; ++it)
+                this->alloc.destroy(it);
         this->pend = this->pbegin + n;
     }
 
@@ -376,9 +430,27 @@ namespace ft
     }
 /***********************************************************************************************************************/
 
-//    Member functions implementation
+//        Modifiers
 /***********************************************************************************************************************/
+//        range assign
+    template<class T, class Allocator>
+    template<class InputIterator>
+    typename enable_if<!is_integral<InputIterator>::value, void>::type
+    vector<T, Allocator>::assign(InputIterator first, InputIterator last)
+    {
+        this->clear();
+        for(; first != last; ++first)
+            this->push_back(*first);
+    }
 
+//    fill assign
+    template<class T, class Allocator>
+    void vector<T, Allocator>::assign(size_type n, const value_type &val)
+    {
+        this->clear();
+        for(size_type i = 0; i < n; ++i)
+            this->push_back(val);
+    }
 
 //    push_back
     template<class T, class Allocator>
@@ -389,6 +461,92 @@ namespace ft
             this->reserve(2 * (cap > 0 ? cap : 1));
         this->alloc.construct(this->pend, val);
         ++this->pend;
+    }
+
+//    pop_back
+    template<class T, class Allocator>
+    void vector<T, Allocator>::pop_back()
+    {
+        this->alloc.destroy(this->pend - 1);
+        --this->pend;
+    }
+
+//    single element insert
+    template<class T, class Allocator>
+    typename vector<T, Allocator>::iterator
+    vector<T, Allocator>::insert(iterator position, const value_type &val)
+    {
+        if (position == this->pend)
+            this->push_back(val);
+        else
+        {
+            pointer new_begin = (this->size() + 1 < this->capacity) ? this->alloc.allocate(this->capacity()) :
+                        this->alloc.allocate(this->capacity() * 2);
+            size_type i = 0;
+            for (; i < static_cast<size_type>(position - this->pbegin); ++i)
+                new_begin.push_back(*(this->pbegin + i));
+            new_begin.push_back(val);
+            for (; i < this->size(); ++i)
+                new_begin.push_back(*(this->pbegin + i));
+            this->clear();
+            this->pbegin = new_begin;
+        }
+        return this->pbegin;
+    }
+
+//    fill insert
+    template<class T, class Allocator>
+    void vector<T, Allocator>::insert(iterator position, size_type n, const value_type &val)
+    {
+        if (position == this->pend)
+            for (size_type i = 0; i < n; ++i)
+                this->push_back(val);
+        else
+        {
+            pointer new_begin = (this->size() + 1 < this->capacity) ? this->alloc.allocate(this->capacity()) :
+                                this->alloc.allocate(this->capacity() * 2);
+            size_type i = 0;
+            for (; i < static_cast<size_type>(position - this->pbegin); ++i)
+                new_begin.push_back(*(this->pbegin + i));
+            for (pointer it = position; it < position + n; ++it)
+                new_begin.push_back(val);
+            for (; i < this->size(); ++i)
+                new_begin.push_back(*(this->pbegin + i));
+            this->clear();
+            this->pbegin = new_begin;
+        }
+    }
+
+//    range insert
+    template<class T, class Allocator>
+    template<class InputIterator>
+    void vector<T, Allocator>::insert(iterator position, InputIterator first, InputIterator last)
+    {
+        if (position == this->pend)
+            for (InputIterator it = first; it != last; ++it)
+                this->push_back(*it);
+        else
+        {
+            pointer new_begin = (this->size() + 1 < this->capacity) ? this->alloc.allocate(this->capacity()) :
+                                this->alloc.allocate(this->capacity() * 2);
+            size_type i = 0;
+            for (; i < static_cast<size_type>(position - this->pbegin); ++i)
+                new_begin.push_back(*(this->pbegin + i));
+            for (InputIterator it = first; it != last; ++it)
+                new_begin.push_back(*it);
+            for (; i < this->size(); ++i)
+                new_begin.push_back(*(this->pbegin + i));
+            this->clear();
+            this->pbegin = new_begin;
+        }
+    }
+
+//    clear
+    template<class T, class Allocator>
+    void vector<T, Allocator>::clear()
+    {
+        this->vdeallocate(this->pcapacity - this->pbegin);
+        this->pbegin = this->pend = this->pcapacity = 0;
     }
 /***********************************************************************************************************************/
 

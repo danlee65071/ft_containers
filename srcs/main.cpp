@@ -6,7 +6,7 @@
 /*   By: hcharlsi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/10 21:09:40 by hcharlsi          #+#    #+#             */
-/*   Updated: 2021/11/13 20:06:02 by                  ###   ########.fr       */
+/*   Updated: 2021/11/14 14:52:42 by                  ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -333,5 +333,107 @@ int main() {
 
     std::cout << "\nempty empty_v: " << empty_v.empty() << '\n';
     std::cout << "empty copy_v: " << copy_v.empty() << '\n';
+
+//    clear
+    {
+        ft::vector<int> myvector;
+        myvector.push_back (100);
+        myvector.push_back (200);
+        myvector.push_back (300);
+
+        std::cout << "\nmyvector contains:";
+        for (unsigned i=0; i<myvector.size(); i++)
+            std::cout << ' ' << myvector[i];
+        std::cout << '\n';
+
+        myvector.clear();
+        myvector.push_back (1101);
+        myvector.push_back (2202);
+
+        std::cout << "myvector contains:";
+        for (unsigned i=0; i<myvector.size(); i++)
+            std::cout << ' ' << myvector[i];
+        std::cout << '\n';
+    }
+
+//    assign
+    {
+        ft::vector<int> first;
+        ft::vector<int> second;
+        ft::vector<int> third;
+
+        first.assign (7,100);             // 7 ints with a value of 100
+
+        ft::vector<int>::iterator it;
+        it=first.begin()+1;
+
+        second.assign (it,first.end()-1); // the 5 central values of first
+
+        int myints[] = {1776,7,4};
+        third.assign (myints,myints+3);   // assigning from array.
+
+        std::cout << "\nSize of first: " << int (first.size()) << '\n';
+        std::cout << "Size of second: " << int (second.size()) << '\n';
+        std::cout << "Size of third: " << int (third.size()) << '\n';
+    }
+
+//    reverse iterators
+    {
+        ft::vector<int> myvector (5);  // 5 default-constructed ints
+
+        ft::vector<int>::reverse_iterator rit = myvector.rbegin();
+
+        int i=0;
+        for (rit = myvector.rbegin(); rit!= myvector.rend(); ++rit)
+            *rit = ++i;
+
+        std::cout << "\nmyvector contains:";
+        for (ft::vector<int>::iterator it = myvector.begin(); it != myvector.end(); ++it)
+            std::cout << ' ' << *it;
+        std::cout << '\n';
+    }
+
+//    pop_back
+    {
+        ft::vector<int> myvector;
+        int sum (0);
+        myvector.push_back (100);
+        myvector.push_back (200);
+        myvector.push_back (300);
+
+        while (!myvector.empty())
+        {
+            sum+=myvector.back();
+            myvector.pop_back();
+        }
+
+        std::cout << "\nThe elements of myvector add up to " << sum << '\n';
+        std::cout << "size myvector: " << myvector.size() << '\n';
+    }
+
+//    insert
+    {
+        ft::vector<int> myvector (3,100);
+        ft::vector<int>::iterator it;
+
+        it = myvector.begin();
+        it = myvector.insert ( it , 200 );
+
+        myvector.insert (it,2,300);
+
+        // "it" no longer valid, get a new one:
+        it = myvector.begin();
+
+        ft::vector<int> anothervector (2,400);
+        myvector.insert (it+2,anothervector.begin(),anothervector.end());
+
+        int myarray [] = { 501,502,503 };
+        myvector.insert (myvector.begin(), myarray, myarray+3);
+
+        std::cout << "myvector contains:";
+        for (it=myvector.begin(); it<myvector.end(); it++)
+            std::cout << ' ' << *it;
+        std::cout << '\n';
+    }
     return 0;
 }

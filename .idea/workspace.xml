@@ -18,7 +18,7 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3cefb1e5-6c12-41d8-a7b8-5c4099884960" name="Default Changelist" comment="vector functions">
+    <list default="true" id="3cefb1e5-6c12-41d8-a7b8-5c4099884960" name="Default Changelist" comment="vector modifiers functions">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/includes/ft_vector.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/includes/ft_vector.hpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/srcs/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/main.cpp" afterDir="false" />
@@ -126,11 +126,6 @@
         <option name="CLION.COMPOUND.BUILD" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="GradleAppRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true">
-      <method v="2">
-        <option name="com.jetbrains.cidr.cpp.gradle.execution.GradleNativeBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
-      </method>
-    </configuration>
     <list>
       <item itemvalue="Makefile Application.all" />
       <item itemvalue="Makefile Application.fclean" />
@@ -171,7 +166,10 @@
       <workItem from="1636630577170" duration="5353000" />
       <workItem from="1636646625643" duration="560000" />
       <workItem from="1636713845269" duration="6914000" />
-      <workItem from="1636806687722" duration="9038000" />
+      <workItem from="1636806687722" duration="9213000" />
+      <workItem from="1636885968471" duration="6331000" />
+      <workItem from="1636903263116" duration="2000" />
+      <workItem from="1636911660999" duration="4000" />
     </task>
     <task id="LOCAL-00001" summary="reverse_iterator constructors">
       <created>1633959489922</created>
@@ -236,7 +234,14 @@
       <option name="project" value="LOCAL" />
       <updated>1636735553436</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="vector modifiers functions">
+      <created>1636823520003</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1636823520003</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -275,6 +280,7 @@
     <MESSAGE value="pair, make_pair" />
     <MESSAGE value="vector constructors" />
     <MESSAGE value="vector functions" />
-    <option name="LAST_COMMIT_MESSAGE" value="vector functions" />
+    <MESSAGE value="vector modifiers functions" />
+    <option name="LAST_COMMIT_MESSAGE" value="vector modifiers functions" />
   </component>
 </project>
