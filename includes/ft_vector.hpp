@@ -6,7 +6,7 @@
 /*   By: hcharlsi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/06 20:02:37 by hcharlsi          #+#    #+#             */
-/*   Updated: 2021/11/14 23:03:14 by hcharlsi         ###   ########.fr       */
+/*   Updated: 2021/11/15 12:39:23 by                  ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -143,6 +143,12 @@ namespace ft
         template<class InputIterator>
         typename enable_if<!is_integral<InputIterator>::value, void>::type
         insert(iterator position, InputIterator first, InputIterator last);
+//        erase
+        iterator erase(iterator position);
+//        range erase
+        iterator erase(iterator first, iterator last);
+//        swap
+        void swap(vector &x);
 //        clear
         void clear();
 /***********************************************************************************************************************/
@@ -477,7 +483,7 @@ namespace ft
     typename vector<T, Allocator>::iterator
     vector<T, Allocator>::insert(iterator position, const value_type &val)
     {
-        if (position == this->pend)
+        if (position == this->pend - 1)
             this->push_back(val);
         else
         {
@@ -502,7 +508,7 @@ namespace ft
     template<class T, class Allocator>
     void vector<T, Allocator>::insert(iterator position, size_type n, const value_type &val)
     {
-        if (position == this->pend)
+        if (position == this->pend - 1)
             for (size_type i = 0; i < n; ++i)
                 this->push_back(val);
         else
@@ -531,7 +537,7 @@ namespace ft
 	typename enable_if<!is_integral<InputIterator>::value, void>::type
     vector<T, Allocator>::insert(iterator position, InputIterator first, InputIterator last)
     {
-        if (position == this->pend)
+        if (position == this->pend - 1)
             for (InputIterator it = first; it != last; ++it)
                 this->push_back(*it);
         else
@@ -540,7 +546,7 @@ namespace ft
 								this->capacity() : this->capacity() * 2;
 			pointer new_begin = this->alloc.allocate(n_alloc);
 			size_type i = 0;
-			size_type j = 0;
+            size_type j = 0;
 			for (; i < static_cast<size_type>(position - this->pbegin); ++i)
 				this->alloc.construct(new_begin + i, *(this->pbegin + i));
             for (InputIterator it = first; it != last; ++it, ++j)
@@ -552,6 +558,74 @@ namespace ft
 			this->pend = new_begin + i + j;
 			this->pcapacity = new_begin + n_alloc;
         }
+    }
+
+//    erase
+    template<class T, class Allocator>
+    typename vector<T, Allocator>::iterator
+    vector<T, Allocator>::erase(iterator position)
+    {
+        size_type next_pos = static_cast<size_type>(position - this->pbegin);
+        if (position == this->pend - 1)
+            this->pop_back();
+        else
+        {
+            size_type cap = this->capacity();
+            pointer new_begin = this->alloc.allocate(cap);
+            size_type i = 0;
+            for (; i < static_cast<size_type>(position - this->pbegin); ++i)
+                this->alloc.construct(new_begin + i, *(this->pbegin + i));
+            ++i;
+            for (;i < this->size(); ++i)
+                this->alloc.construct(new_begin + i - 1, *(this->pbegin + i));
+            this->clear();
+            this->pbegin = new_begin;
+            this->pend = new_begin + i - 1;
+            this->pcapacity = new_begin + cap;
+
+        }
+        return reinterpret_cast<iterator>(this->pbegin + next_pos);
+    }
+
+//    range erase
+    template<class T, class Allocator>
+    typename vector<T, Allocator>::iterator
+    vector<T, Allocator>::erase(iterator first, iterator last)
+    {
+        size_type cap = this->capacity();
+        size_type next_pos = last - this->pbegin;
+        size_type qnty_erase = static_cast<size_type>(last - first);
+        pointer new_begin = this->alloc.allocate(cap);
+        size_type i = 0;
+        for (; i < static_cast<size_type>(first - this->pbegin); ++i)
+            this->alloc.construct(new_begin + i, *(this->pbegin + i));
+        i += qnty_erase;
+        for (; i < this->size(); ++i)
+            this->alloc.construct(new_begin + i - qnty_erase, *(this->pbegin + i));
+        this->clear();
+        this->pbegin = new_begin;
+        this->pend = new_begin + i - qnty_erase;
+        this->pcapacity = new_begin + cap;
+        return reinterpret_cast<iterator>(this->pbegin + next_pos);
+    }
+
+//    swap
+    template<class T, class Allocator>
+    void vector<T, Allocator>::swap(vector<T, Allocator> &x)
+    {
+        pointer tmp_begin = x.pbegin;
+        pointer tmp_end = x.pend;
+        pointer tmp_capacity = x.pcapacity;
+        allocator_type tmp_alloc = x.alloc;
+
+        x.pbegin = this->pbegin;
+        x.pend = this->pend;
+        x.pcapacity = this->pcapacity;
+        x.alloc = this->alloc;
+        this->pbegin = tmp_begin;
+        this->pend = tmp_end;
+        this->pcapacity = tmp_capacity;
+        this->alloc = tmp_alloc;
     }
 
 //    clear
