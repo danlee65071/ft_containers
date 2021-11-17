@@ -6,7 +6,7 @@
 /*   By: hcharlsi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/06 20:02:37 by hcharlsi          #+#    #+#             */
-/*   Updated: 2021/11/15 12:39:23 by                  ###   ########.fr       */
+/*   Updated: 2021/11/17 12:11:37 by                  ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -151,6 +151,12 @@ namespace ft
         void swap(vector &x);
 //        clear
         void clear();
+/***********************************************************************************************************************/
+
+//        Allocator
+/***********************************************************************************************************************/
+//        get_allocator
+        allocator_type get_allocator() const;
 /***********************************************************************************************************************/
 
 //        Member functions
@@ -637,6 +643,19 @@ namespace ft
     }
 /***********************************************************************************************************************/
 
+//    Allocator
+/***********************************************************************************************************************/
+//    get_allocator
+    template<class T, class Allocator>
+    typename vector<T, Allocator>::allocator_type
+    vector<T, Allocator>::get_allocator() const
+    {
+        return allocator_type(this->alloc);
+    }
+/***********************************************************************************************************************/
+
+//    Private functions
+/***********************************************************************************************************************/
 //    vector allocate
     template<class T, class Allocator>
     void vector<T, Allocator>::vallocate(size_type n)
@@ -667,6 +686,59 @@ namespace ft
             this->alloc.destroy(this->pbegin + i);
         this->alloc.deallocate(this->pbegin, n);
     }
+/***********************************************************************************************************************/
+
+//    Non-member functions
+/***********************************************************************************************************************/
+//    operator==
+    template<class T, class Allocator>
+    inline bool operator==(const vector<T, Allocator>& lhs, const vector<T, Allocator>& rhs)
+    {
+        return lhs.size() == rhs.size() && equal(lhs.begin(), lhs.end(), rhs.begin());
+    }
+
+//    operator!=
+    template<class T, class Allocator>
+    inline bool operator!=(const vector<T, Allocator>& lhs, const vector<T, Allocator>& rhs)
+    {
+        return !(lhs == rhs);
+    }
+
+//    operator<
+    template<class T, class Allocator>
+    inline bool operator<(const vector<T, Allocator>& lhs, const vector<T, Allocator>& rhs)
+    {
+        return lexicographical_compare(lhs.begin(), lhs.end(), rhs.begin(), rhs.end());
+    }
+
+//    operator<=
+    template<class T, class Allocator>
+    inline bool operator<=(const vector<T, Allocator>& lhs, const vector<T, Allocator>& rhs)
+    {
+        return !(rhs < lhs);
+    }
+
+//    operator>
+    template<class T, class Allocator>
+    inline bool operator>(const vector<T, Allocator>& lhs, const vector<T, Allocator>& rhs)
+    {
+        return rhs < lhs;
+    }
+
+//    operator>=
+    template<class T, class Allocator>
+    inline bool operator>=(const vector<T, Allocator>& lhs, const vector<T, Allocator>& rhs)
+    {
+        return !(lhs < rhs);
+    }
+
+//    swap
+    template<class T, class Allocator>
+    inline void swap(vector<T, Allocator>&lhs, vector<T, Allocator>&rhs)
+    {
+        lhs.swap(rhs);
+    }
+/***********************************************************************************************************************/
 }
 
 #endif

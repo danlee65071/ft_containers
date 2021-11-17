@@ -6,7 +6,7 @@
 /*   By: hcharlsi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/10 21:09:40 by hcharlsi          #+#    #+#             */
-/*   Updated: 2021/11/15 13:16:29 by                  ###   ########.fr       */
+/*   Updated: 2021/11/17 12:27:16 by                  ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -360,34 +360,112 @@ int main() {
 
 //    swap
     {
-//        ft::vector<int> foo (3,100);   // three ints with a value of 100
-//        ft::vector<int> bar (5,200);   // five ints with a value of 200
-//
-//        foo.swap(bar);
-//
-//        std::cout << "\nfoo contains:";
-//        for (unsigned i=0; i<foo.size(); i++)
-//            std::cout << ' ' << foo[i];
-//        std::cout << '\n';
-//
-//        std::cout << "bar contains:";
-//        for (unsigned i=0; i<bar.size(); i++)
-//            std::cout << ' ' << bar[i];
-//        std::cout << '\n';
-        std::string test1 = "test1";
-        std::string test2 = "test2";
-        std::string test3 = "test3";
-        std::vector<std::string> my;
-        my.push_back (test1);
-        my.push_back (test2);
-        my.push_back (test3);
-        test2 = "ewrtrefds";
-        for(std::vector<std::string>::iterator i = my.begin(); i != my.end(); i++)
-        {
-            std::cout << *i << std::endl;
-        }
+        ft::vector<int> foo (3,100);   // three ints with a value of 100
+        ft::vector<int> bar (5,200);   // five ints with a value of 200
 
+        foo.swap(bar);
 
+        std::cout << "\nfoo contains:";
+        for (unsigned i=0; i<foo.size(); i++)
+            std::cout << ' ' << foo[i];
+        std::cout << '\n';
+
+        std::cout << "bar contains:";
+        for (unsigned i=0; i<bar.size(); i++)
+            std::cout << ' ' << bar[i];
+        std::cout << '\n';
+    }
+
+//    get_allocator
+    {
+        ft::vector<int> myvector;
+        int * p;
+        unsigned int i;
+
+        // allocate an array with space for 5 elements using vector's allocator:
+        p = myvector.get_allocator().allocate(5);
+
+        // construct values in-place on the array:
+        for (i=0; i<5; i++) myvector.get_allocator().construct(&p[i],i);
+
+        std::cout << "\nThe allocated array contains:";
+        for (i=0; i<5; i++) std::cout << ' ' << p[i];
+        std::cout << '\n';
+
+        // destroy and deallocate:
+        for (i=0; i<5; i++) myvector.get_allocator().destroy(&p[i]);
+        myvector.get_allocator().deallocate(p,5);
+    }
+
+//    operator ==,!=,<,<=,>,>=
+    {
+        ft::vector<int> alice;
+        alice.push_back(1);
+        alice.push_back(2);
+        alice.push_back(3);
+        ft::vector<int> bob;
+        bob.push_back(7);
+        bob.push_back(8);
+        bob.push_back(9);
+        bob.push_back(10);
+        ft::vector<int> eve;
+        eve.push_back(1);
+        eve.push_back(2);
+        eve.push_back(3);
+
+        std::cout << std::boolalpha;
+
+        // Compare non equal containers
+        std::cout << "\nalice == bob returns " << (alice == bob) << '\n';
+        std::cout << "alice != bob returns " << (alice != bob) << '\n';
+        std::cout << "alice <  bob returns " << (alice < bob) << '\n';
+        std::cout << "alice <= bob returns " << (alice <= bob) << '\n';
+        std::cout << "alice >  bob returns " << (alice > bob) << '\n';
+        std::cout << "alice >= bob returns " << (alice >= bob) << '\n';
+
+        std::cout << '\n';
+
+        // Compare equal containers
+        std::cout << "alice == eve returns " << (alice == eve) << '\n';
+        std::cout << "alice != eve returns " << (alice != eve) << '\n';
+        std::cout << "alice <  eve returns " << (alice < eve) << '\n';
+        std::cout << "alice <= eve returns " << (alice <= eve) << '\n';
+        std::cout << "alice >  eve returns " << (alice > eve) << '\n';
+        std::cout << "alice >= eve returns " << (alice >= eve) << '\n';
+    }
+
+//    swap non-member function
+    {
+        ft::vector<int> alice;
+        alice.push_back(1);
+        alice.push_back(2);
+        alice.push_back(3);
+        ft::vector<int> bob;
+        bob.push_back(7);
+        bob.push_back(8);
+        bob.push_back(9);
+        bob.push_back(10);
+
+        // Print state before swap
+        std::cout << "\nalice: ";
+        for(ft::vector<int>::iterator it = alice.begin(); it != alice.end(); ++it)
+            std::cout << *it << " ";
+        std::cout << "\n" "bob  : ";
+        for(ft::vector<int>::iterator it = bob.begin(); it != bob.end(); ++it)
+            std::cout << *it << " ";
+        std::cout << '\n';
+
+        std::cout << "-- SWAP\n";
+        std::swap(alice, bob);
+
+        // Print state after swap
+        std::cout << "alice: ";
+        for(ft::vector<int>::iterator it = alice.begin(); it != alice.end(); ++it)
+            std::cout << *it << " ";
+        std::cout << "\n" "bob  : ";
+        for(ft::vector<int>::iterator it = bob.begin(); it != bob.end(); ++it)
+            std::cout << *it << " ";
+        std::cout << '\n';
     }
     return 0;
 }
