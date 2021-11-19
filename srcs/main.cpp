@@ -6,12 +6,13 @@
 /*   By: hcharlsi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/10 21:09:40 by hcharlsi          #+#    #+#             */
-/*   Updated: 2021/11/17 12:27:16 by                  ###   ########.fr       */
+/*   Updated: 2021/11/19 20:03:53 by                  ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_containers.hpp"
 #include <vector>
+#include <ctime>
 
 bool mycomp (char c1, char c2)
 { return std::tolower(c1)<std::tolower(c2); }
@@ -21,35 +22,42 @@ bool mypredicate (int i, int j) {
 }
 
 int main() {
-	std::vector<int> a2(4);
+    unsigned int start = clock();
+//    ft::vector<int> *vec = new ft::vector<int>;
+//    for (int i = 0; i < 1000000; ++i) {
+//        vec->push_back(i);
+//    }
+//    vec->erase(vec->begin(), vec->end());
+//    delete vec;
+	ft::vector<int> a2;
 	a2.push_back(0);
 	a2.push_back(1);
 	a2.push_back(2);
 	a2.push_back(3);
 
-	std::vector<int> a3(3);
+	ft::vector<int> a3(3);
 	a3.push_back(40);
 	a3.push_back(41);
 	a3.push_back(42);
 
-	ft::reverse_iterator<std::vector<int>::reverse_iterator> it1(a2.rend());
+	ft::reverse_iterator<ft::vector<int>::reverse_iterator> it1(a2.rend());
 	std::cout << "it1 = " << *it1 << '\n';
-	std::cout << "a2.rend = " << *(a2.rend()) << '\n';
-	it1 = ft::reverse_iterator<std::vector<int>::reverse_iterator>(a2.rbegin());
+	std::cout << "a2.rend = " << *a2.rend() << '\n';
+	it1 = ft::reverse_iterator<ft::vector<int>::reverse_iterator>(a2.rbegin());
 	std::cout << "it1 = " << *it1 << '\n';
 	std::cout << "a2.rbegin = " << *(a2.rbegin()) << '\n';
-	ft::reverse_iterator<std::vector<int>::reverse_iterator> it2;
-	ft::reverse_iterator<std::vector<int>::reverse_iterator> it3(a3.rbegin());
+	ft::reverse_iterator<ft::vector<int>::reverse_iterator> it2;
+	ft::reverse_iterator<ft::vector<int>::reverse_iterator> it3(a3.rbegin());
 	it2 = it3;
 	std::cout << "it2 = " << *it2 << '\n';
 	std::cout << "a3.rbegin = " << *(a3.rbegin()) << '\n';
 
-	std::vector<int> v;
+	ft::vector<int> v;
 	v.push_back(0);
 	v.push_back(1);
 	v.push_back(2);
 	v.push_back(3);
-	ft::reverse_iterator<std::vector<int>::reverse_iterator> ri1(v.rbegin()),
+	ft::reverse_iterator<ft::vector<int>::reverse_iterator> ri1(v.rbegin()),
 			ri2(v.rend());
 	std::cout << (ri2 - ri1) << ' ';
 	std::cout << (ri1 - ri2) << '\n';
@@ -467,5 +475,7 @@ int main() {
             std::cout << *it << " ";
         std::cout << '\n';
     }
+    unsigned int end = clock();
+    std::cout << end - start << '\n';
     return 0;
 }

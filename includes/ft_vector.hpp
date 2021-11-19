@@ -6,7 +6,7 @@
 /*   By: hcharlsi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/06 20:02:37 by hcharlsi          #+#    #+#             */
-/*   Updated: 2021/11/17 12:11:37 by                  ###   ########.fr       */
+/*   Updated: 2021/11/19 20:09:01 by                  ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -374,7 +374,7 @@ namespace ft
     typename vector<T, Allocator>::const_reverse_iterator
     vector<T, Allocator>::rend() const
     {
-        return (reverse_iterator(this->begin()));
+        return (rend(this->begin()));
     }
 /***********************************************************************************************************************/
 
@@ -432,7 +432,8 @@ namespace ft
         if (n > this->capacity())
         {
             size_t size = this->pend - this->pbegin;
-            pointer new_begin = this->alloc.allocate(n);
+            pointer new_begin;
+            new_begin = this->alloc.allocate(n);
             for (size_t i = 0; i < size; ++i)
                 this->alloc.construct(new_begin + i, *(this->pbegin + i));
             this->vdeallocate(this->pcapacity - this->pbegin);
@@ -662,7 +663,7 @@ namespace ft
     {
         if (2 * n > max_size())
             throw std::length_error("vector");
-        pbegin = pend = this->alloc.allocate(2 * n);
+        this->pbegin = this->pend = this->alloc.allocate(2 * n);
         pcapacity = pbegin + 2 * n;
     }
 
