@@ -6,7 +6,7 @@
 /*   By: hcharlsi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/10 21:09:40 by hcharlsi          #+#    #+#             */
-/*   Updated: 2021/11/19 20:03:53 by                  ###   ########.fr       */
+/*   Updated: 2021/11/19 21:40:25 by                  ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -475,6 +475,9 @@ int main() {
             std::cout << *it << " ";
         std::cout << '\n';
     }
+
+    std::input
+
     unsigned int end = clock();
     std::cout << end - start << '\n';
     return 0;
