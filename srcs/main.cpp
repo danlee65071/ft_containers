@@ -6,12 +6,13 @@
 /*   By: hcharlsi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/10 21:09:40 by hcharlsi          #+#    #+#             */
-/*   Updated: 2021/11/19 21:40:25 by                  ###   ########.fr       */
+/*   Updated: 2021/11/20 02:35:27 by                  ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_containers.hpp"
 #include <vector>
+#include <list>
 #include <ctime>
 
 bool mycomp (char c1, char c2)
@@ -476,9 +477,28 @@ int main() {
         std::cout << '\n';
     }
 
-    std::input
+    {
+        ft::vector<int> my_vector;
+        for (int i=0; i<10; i++) my_vector.push_back (i*10);
+
+        ft::vector<int>::iterator it = my_vector.begin();
+
+        ft::advance (it,5);
+
+        std::cout << "\niterator advance:\nThe sixth element in mylist is: " << *it << '\n';
+    }
+
+    {
+        ft::vector<int> mylist;
+        for (int i=0; i<10; i++) mylist.push_back (i*10);
+
+        ft::vector<int>::iterator first = mylist.begin();
+        ft::vector<int>::iterator last = mylist.end();
+
+        std::cout << "\ndistance:\nThe distance is: " << ft::distance(first,last) << '\n';
+    }
 
     unsigned int end = clock();
-    std::cout << end - start << '\n';
+    std::cout << '\n' << end - start << '\n';
     return 0;
 }

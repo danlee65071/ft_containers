@@ -6,7 +6,7 @@
 /*   By: hcharlsi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/06 18:52:12 by hcharlsi          #+#    #+#             */
-/*   Updated: 2021/11/05 10:31:36 by hcharlsi         ###   ########.fr       */
+/*   Updated: 2021/11/20 00:41:54 by                  ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #define FT_CONTAINERS_HPP
 
 # include <iostream>
+# include "ft_map.hpp"
 # include "ft_iterator.hpp"
 # include "ft_type_traits.hpp"
 # include "ft_algorithm.hpp"

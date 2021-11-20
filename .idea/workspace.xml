@@ -19,9 +19,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3cefb1e5-6c12-41d8-a7b8-5c4099884960" name="Default Changelist" comment="vector done">
+      <change afterPath="$PROJECT_DIR$/includes/ft_map.hpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/Makefile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/a.out.dSYM/Contents/Resources/DWARF/a.out" beforeDir="false" afterPath="$PROJECT_DIR$/a.out.dSYM/Contents/Resources/DWARF/a.out" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ft_container" beforeDir="false" afterPath="$PROJECT_DIR$/ft_container" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ft_container.dSYM/Contents/Resources/DWARF/ft_container" beforeDir="false" afterPath="$PROJECT_DIR$/ft_container.dSYM/Contents/Resources/DWARF/ft_container" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/includes/ft_algorithm.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/includes/ft_algorithm.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/includes/ft_containers.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/includes/ft_containers.hpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/includes/ft_iterator.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/includes/ft_iterator.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/includes/ft_utility.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/includes/ft_utility.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/objs/main.o" beforeDir="false" afterPath="$PROJECT_DIR$/objs/main.o" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/srcs/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/main.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/test.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/test/test.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -184,6 +194,8 @@
       <workItem from="1637156218650" duration="865000" />
       <workItem from="1637168269567" duration="83000" />
       <workItem from="1637338172296" duration="6549000" />
+      <workItem from="1637358109950" duration="474000" />
+      <workItem from="1637358830477" duration="7507000" />
     </task>
     <task id="LOCAL-00001" summary="reverse_iterator constructors">
       <created>1633959489922</created>

@@ -6,15 +6,12 @@
 /*   By: hcharlsi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/10 17:00:44 by hcharlsi          #+#    #+#             */
-/*   Updated: 2021/11/19 22:40:28 by                  ###   ########.fr       */
+/*   Updated: 2021/11/20 02:37:49 by                  ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef ITERATOR_HPP
 #define ITERATOR_HPP
-
-#include <iterator>
-#include <memory>
 
 namespace ft
 {
@@ -53,8 +50,69 @@ namespace ft
 		typedef T value_type;
 		typedef T* pointer;
 		typedef T& reference;
-		typedef std::random_access_iterator_tag iterator_category;
+		typedef random_access_iterator_tag iterator_category;
 	};
+
+//    advance
+    template<class InputIterator>
+    inline void _advance(InputIterator& it,
+                        typename iterator_traits<InputIterator>::difference_type n, input_iterator_tag)
+    {
+        for (; n > 0; --n)
+            ++it;
+    }
+
+    template<class BidirectionalIterator>
+    inline void _advance(BidirectionalIterator& it,
+                         typename iterator_traits<BidirectionalIterator>::difference_type n, bidirectional_iterator_tag)
+    {
+        if (n >= 0)
+            for (; n > 0;--n)
+                ++it;
+        else
+            for (; n < 0; ++n)
+                --it;
+    }
+
+    template<class RandomAccessIterator>
+    inline void _advance(RandomAccessIterator& it,
+                         typename iterator_traits<RandomAccessIterator>::difference_type n,
+                         random_access_iterator_tag)
+    {
+        it += n;
+    }
+
+    template<class Iterator, class Distance>
+    inline void advance(Iterator& it, Distance n)
+    {
+        int int_n = static_cast<int>(n);
+        _advance(it, int_n, typename iterator_traits<Iterator>::iterator_category());
+    }
+
+//    distance
+    template<class InputIterator>
+    inline typename iterator_traits<InputIterator>::difference_type
+    _distance(InputIterator first, InputIterator last, input_iterator_tag)
+    {
+        typename iterator_traits<InputIterator>::difference_type n(0);
+        for (; first != last; ++first)
+            ++n;
+        return n;
+    }
+
+    template<class RandomAccessIterator>
+    inline typename iterator_traits<RandomAccessIterator>::difference_type
+    _distance(RandomAccessIterator first, RandomAccessIterator last, random_access_iterator_tag)
+    {
+        return last - first;
+    }
+
+    template<class Iterator>
+    inline typename iterator_traits<Iterator>::difference_type
+    distance(Iterator first, Iterator last)
+    {
+        return _distance(first, last, typename iterator_traits<Iterator>::iterator_category());
+    }
 
 //	reverse_iterator
 	template<class Iterator>
