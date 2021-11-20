@@ -10,32 +10,11 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/ft_containers.hpp"
+//#include "../includes/ft_containers.hpp"
 #include <vector>
+#include <map>
 
 int main() {
-//	std::vector<int> a1(3);
-//	a1.push_back(0);
-//	a1.push_back(1);
-//	a1.push_back(2);
-
-//	std::vector<int> a2(4);
-//	a2.push_back(0);
-//	a2.push_back(1);
-//	a2.push_back(2);
-//	a2.push_back(3);
-//make
-//	std::vector<int> a3(3);
-//	a3.push_back(40);
-//	a3.push_back(41);
-//	a3.push_back(42);
-
-//	std::reverse_iterator<std::vector<int>::reverse_iterator> it1(a1.rbegin());
-	std::cout << "*it1" << '\n';
-//	it1 = ft::reverse_iterator<std::vector<int>::reverse_iterator>(a2.rbegin());
-//	std::cout << *it1 << '\n';
-//	ft::reverse_iterator<std::vector<int>::reverse_iterator> it2;
-//	it2 = a3.rbegin();
-//	std::cout << *it2 << '\n';
+    std::__map_iterator<std::map<std::string, int>::iterator> it;
 
 }

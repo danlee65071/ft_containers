@@ -61,6 +61,72 @@ namespace ft
 	template<> struct is_integral<unsigned long>: public true_type {};
 	template<> struct is_integral<long long>: public true_type {};
 	template<> struct is_integral<unsigned long long>: public true_type {};
+
+    //    remove_cv
+    template< class T > struct remove_cv                   { typedef T type; };
+    template< class T > struct remove_cv<const T>          { typedef T type; };
+    template< class T > struct remove_cv<volatile T>       { typedef T type; };
+    template< class T > struct remove_cv<const volatile T> { typedef T type; };
+
+//    remove_const
+    template< class T > struct remove_const                { typedef T type; };
+    template< class T > struct remove_const<const T>       { typedef T type; };
+
+//    remove_volatile
+    template< class T > struct remove_volatile             { typedef T type; };
+    template< class T > struct remove_volatile<volatile T> { typedef T type; };
+
+//    is_same
+    template<class T, class U>
+    struct is_same : false_type {};
+
+    template<class T>
+    struct is_same<T, T> : std::true_type {};
+
+//    is_floating_point
+    template< class T >
+    struct is_floating_point: integral_constant<bool, is_same<float, typename remove_cv<T>::type>::value
+                                                      || is_same<double, typename remove_cv<T>::type>::value
+                                                      || is_same<long double, typename remove_cv<T>::type>::value> {};
+
+//    is_arithmetic
+    template< class T >
+    struct is_arithmetic: integral_constant<bool, is_integral<T>::value || is_floating_point<T>::value> {};
+
+//    is_pointer
+    template<class T>
+    struct is_pointer_helper: false_type {};
+
+    template<class T>
+    struct is_pointer_helper<T*>: true_type {};
+
+    template<class T>
+    struct is_pointer: is_pointer_helper<typename remove_cv<T>::type> {};
+
+//    is_member_pointer
+    template< class T >
+    struct is_member_pointer_helper: false_type {};
+
+    template< class T, class U >
+    struct is_member_pointer_helper<T U::*>: true_type {};
+
+    template< class T >
+    struct is_member_pointer: is_member_pointer_helper<typename remove_cv<T>::type> {};
+
+//    is_scalar
+    template< class T >
+    struct is_scalar : integral_constant<bool, is_arithmetic<T>::value || is_pointer<T>::value
+            || is_member_pointer<T>::value> {};
+
+//    is_array
+    template<class T>
+    struct is_array: false_type {};
+
+    template<class T>
+    struct is_array<T[]>: true_type {};
+
+    template<class T, std::size_t N>
+    struct is_array<T[N]>: true_type {};
 }
 
 #endif
