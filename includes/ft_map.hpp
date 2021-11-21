@@ -6,7 +6,7 @@
 /*   By:  <>                                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/20 02:39:58 by                   #+#    #+#             */
-/*   Updated: 2021/11/20 11:18:36 by                  ###   ########.fr       */
+/*   Updated: 2021/11/21 16:24:43 by                  ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,30 @@ namespace ft
         _map_iterator(TreeIterator other): it(other) {}
 
         reference operator*() const { return it->__get_value(); }
-        pointer operator->() const { return }
+        pointer operator->() const { return it; }
+
+        _map_iterator& operator++() { ++it; return *this; }
+        _map_iterator operator++(int)
+        {
+            _map_iterator tmp(*this);
+            ++(*this);
+            return tmp;
+        }
+        _map_iterator& operator--() {--it; return *this;}
+        _map_iterator operator--(int)
+        {
+            _map_iterator tmp(*this);
+            --(*this);
+            return tmp;
+        }
+
+        friend bool operator==(const _map_iterator& x, const _map_iterator& y)
+        {return x.it == y.it;}
+
+        friend bool operator!=(const _map_iterator& x, const _map_iterator& y)
+        {return x.it != y.it;}
+
+        template <class, class, class, class> friend class map;
     };
 
     template < class Key, class T, class Compare = std::less<Key>,

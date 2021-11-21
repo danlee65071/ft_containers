@@ -6,7 +6,7 @@
 /*   By: hcharlsi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/04 19:34:42 by hcharlsi          #+#    #+#             */
-/*   Updated: 2021/11/14 22:09:27 by hcharlsi         ###   ########.fr       */
+/*   Updated: 2021/11/21 18:37:39 by                  ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,6 +127,35 @@ namespace ft
 
     template<class T, std::size_t N>
     struct is_array<T[N]>: true_type {};
+
+//    void_t
+    template<class>
+    struct _void_t { typedef void type; };
+
+//    is_union
+    template <class T> struct is_union: public integral_constant<bool, __is_union(T)> {};
+
+//    is_class
+    struct _two {char lx[2];};
+    namespace detail
+    {
+        template<class T>
+        integral_constant<bool, !is_union<T>::value> test(int T::*);
+
+        template<class>
+        _two test(...);
+    }
+
+    template<class T>
+    struct is_class: public integral_constant<bool, sizeof(detail::test<T>(0)) == 1 && !is_union<T>::value> {};
+
+//    is_object
+    template<class T>
+    struct is_object: public integral_constant<bool, is_scalar<T>::value ||
+                                                        is_array<T>::value ||
+                                                        is_union<T>::value ||
+                                                        is_class<T>::value > {};
+
 }
 
 #endif
