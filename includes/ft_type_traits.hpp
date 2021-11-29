@@ -81,7 +81,7 @@ namespace ft
     struct is_same : false_type {};
 
     template<class T>
-    struct is_same<T, T> : std::true_type {};
+    struct is_same<T, T> : true_type {};
 
 //    is_floating_point
     template< class T >

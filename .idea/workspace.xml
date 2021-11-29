@@ -18,13 +18,12 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3cefb1e5-6c12-41d8-a7b8-5c4099884960" name="Default Changelist" comment="vector done">
-      <change afterPath="$PROJECT_DIR$/includes/ft_memory.hpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/includes/ft_tree.h" afterDir="false" />
+    <list default="true" id="aa33f766-fbaa-495c-9083-436ea7852f78" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/ft_containers.iml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/Makefile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/includes/ft_map.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/includes/ft_map.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/includes/ft_tree.h" beforeDir="false" afterPath="$PROJECT_DIR$/includes/ft_tree.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/includes/ft_type_traits.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/includes/ft_type_traits.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/objs/main.o" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/test/test.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/test/test.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -42,15 +41,6 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-    <option name="UPDATE_TYPE" value="REBASE" />
-  </component>
-  <component name="GitSEFilterConfiguration">
-    <file-type-list>
-      <filtered-out-file-type name="LOCAL_BRANCH" />
-      <filtered-out-file-type name="REMOTE_BRANCH" />
-      <filtered-out-file-type name="TAG" />
-      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
-    </file-type-list>
   </component>
   <component name="MakefileLocalSettings">
     <option name="availableProjects">
@@ -79,10 +69,7 @@
       </map>
     </option>
   </component>
-  <component name="OCResolveContextSettings">
-    <option name="configuration" value="$PROJECT_DIR$/srcs/main.cpp" />
-  </component>
-  <component name="ProjectId" id="1zKGxiZgnQEINjI76svLrRNKWId" />
+  <component name="ProjectId" id="21VqC2OP8gaupoeAl8dGz6lL3XQ" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -92,17 +79,14 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="RunOnceActivity.cidr.known.project.marker" value="true" />
-    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="cf.first.check.clang-format" value="false" />
     <property name="cidr.known.project.marker" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
-    <property name="nodejs_package_manager_path" value="npm" />
-    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+    <property name="settings.editor.selected.configurable" value="vcs.Git" />
   </component>
   <component name="RunManager" selected="Makefile Application.all">
     <configuration default="true" type="CLionExternalRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true">
@@ -110,7 +94,7 @@
         <option name="CLION.EXTERNAL.BUILD" enabled="true" />
       </method>
     </configuration>
-    <configuration name="all" type="CLionNativeAppRunConfigurationType" PROGRAM_PARAMS="200" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="ft_containers" TARGET_NAME="all" CONFIG_NAME="all" version="1" RUN_PATH="$PROJECT_DIR$/ft_container">
+    <configuration name="all" type="CLionNativeAppRunConfigurationType" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="ft_containers" TARGET_NAME="all" CONFIG_NAME="all" version="1">
       <method v="2">
         <option name="CLION.COMPOUND.BUILD" enabled="true" />
       </method>
@@ -151,146 +135,15 @@
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="3cefb1e5-6c12-41d8-a7b8-5c4099884960" name="Default Changelist" comment="" />
-      <created>1633889619806</created>
+      <changelist id="aa33f766-fbaa-495c-9083-436ea7852f78" name="Changes" comment="" />
+      <created>1638036470741</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1633889619806</updated>
-      <workItem from="1633889625816" duration="5855000" />
-      <workItem from="1633983494049" duration="253000" />
-      <workItem from="1633983756091" duration="422000" />
-      <workItem from="1633984262070" duration="7897000" />
-      <workItem from="1634132830807" duration="774000" />
-      <workItem from="1634151517598" duration="14000" />
-      <workItem from="1634216343515" duration="3537000" />
-      <workItem from="1634236207320" duration="855000" />
-      <workItem from="1634281275999" duration="4423000" />
-      <workItem from="1634320937467" duration="529000" />
-      <workItem from="1634468587216" duration="18000" />
-      <workItem from="1634658408679" duration="5000" />
-      <workItem from="1634737690806" duration="460000" />
-      <workItem from="1636031293434" duration="23231000" />
-      <workItem from="1636371801139" duration="480000" />
-      <workItem from="1636372608814" duration="5188000" />
-      <workItem from="1636382370138" duration="5853000" />
-      <workItem from="1636457371821" duration="5000" />
-      <workItem from="1636466474373" duration="13020000" />
-      <workItem from="1636543241387" duration="3304000" />
-      <workItem from="1636560470392" duration="2697000" />
-      <workItem from="1636630577170" duration="5353000" />
-      <workItem from="1636646625643" duration="560000" />
-      <workItem from="1636713845269" duration="6914000" />
-      <workItem from="1636806687722" duration="9213000" />
-      <workItem from="1636885968471" duration="6331000" />
-      <workItem from="1636903263116" duration="2000" />
-      <workItem from="1636911660999" duration="4000" />
-      <workItem from="1636916966157" duration="3199000" />
-      <workItem from="1636965208907" duration="5875000" />
-      <workItem from="1636984319894" duration="197000" />
-      <workItem from="1637057371991" duration="2885000" />
-      <workItem from="1637137218445" duration="3128000" />
-      <workItem from="1637147670823" duration="965000" />
-      <workItem from="1637156218650" duration="865000" />
-      <workItem from="1637168269567" duration="83000" />
-      <workItem from="1637338172296" duration="6549000" />
-      <workItem from="1637358109950" duration="474000" />
-      <workItem from="1637358830477" duration="7507000" />
-      <workItem from="1637393799605" duration="5000000" />
-      <workItem from="1637425730306" duration="6000" />
-      <workItem from="1637490725392" duration="12694000" />
+      <updated>1638036470741</updated>
+      <workItem from="1638036474119" duration="261000" />
+      <workItem from="1638036894796" duration="133000" />
+      <workItem from="1638208442356" duration="6700000" />
     </task>
-    <task id="LOCAL-00001" summary="reverse_iterator constructors">
-      <created>1633959489922</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1633959489923</updated>
-    </task>
-    <task id="LOCAL-00002" summary="reverse_iterator test">
-      <created>1634044029601</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1634044029601</updated>
-    </task>
-    <task id="LOCAL-00003" summary="reverse_iterator done">
-      <created>1634238906951</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1634238906951</updated>
-    </task>
-    <task id="LOCAL-00004" summary="type_traits">
-      <created>1636058041265</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1636058041265</updated>
-    </task>
-    <task id="LOCAL-00005" summary="enable_if, integral_constant, is_integral, lexicographical_compare, equal">
-      <created>1636099769853</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1636099769853</updated>
-    </task>
-    <task id="LOCAL-00006" summary="pair, make_pair">
-      <created>1636128756412</created>
-      <option name="number" value="00006" />
-      <option name="presentableId" value="LOCAL-00006" />
-      <option name="project" value="LOCAL" />
-      <updated>1636128756412</updated>
-    </task>
-    <task id="LOCAL-00007" summary="vector constructors">
-      <created>1636391300669</created>
-      <option name="number" value="00007" />
-      <option name="presentableId" value="LOCAL-00007" />
-      <option name="project" value="LOCAL" />
-      <updated>1636391300670</updated>
-    </task>
-    <task id="LOCAL-00008" summary="vector constructors">
-      <created>1636549526968</created>
-      <option name="number" value="00008" />
-      <option name="presentableId" value="LOCAL-00008" />
-      <option name="project" value="LOCAL" />
-      <updated>1636549526968</updated>
-    </task>
-    <task id="LOCAL-00009" summary="vector functions">
-      <created>1636735553436</created>
-      <option name="number" value="00009" />
-      <option name="presentableId" value="LOCAL-00009" />
-      <option name="project" value="LOCAL" />
-      <updated>1636735553436</updated>
-    </task>
-    <task id="LOCAL-00010" summary="vector modifiers functions">
-      <created>1636823520003</created>
-      <option name="number" value="00010" />
-      <option name="presentableId" value="LOCAL-00010" />
-      <option name="project" value="LOCAL" />
-      <updated>1636823520003</updated>
-    </task>
-    <task id="LOCAL-00011" summary="vector done">
-      <created>1637068477969</created>
-      <option name="number" value="00011" />
-      <option name="presentableId" value="LOCAL-00011" />
-      <option name="project" value="LOCAL" />
-      <updated>1637068477969</updated>
-    </task>
-    <task id="LOCAL-00012" summary="vector done">
-      <created>1637141492892</created>
-      <option name="number" value="00012" />
-      <option name="presentableId" value="LOCAL-00012" />
-      <option name="project" value="LOCAL" />
-      <updated>1637141492893</updated>
-    </task>
-    <task id="LOCAL-00013" summary="vector done">
-      <created>1637346728266</created>
-      <option name="number" value="00013" />
-      <option name="presentableId" value="LOCAL-00013" />
-      <option name="project" value="LOCAL" />
-      <updated>1637346728266</updated>
-    </task>
-    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -301,36 +154,10 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State>
-              <option name="FILTERS">
-                <map>
-                  <entry key="branch">
-                    <value>
-                      <list>
-                        <option value="master" />
-                      </list>
-                    </value>
-                  </entry>
-                </map>
-              </option>
-            </State>
+            <State />
           </value>
         </entry>
       </map>
     </option>
-    <option name="oldMeFiltersMigrated" value="true" />
-  </component>
-  <component name="VcsManagerConfiguration">
-    <MESSAGE value="reverse_iterator constructors" />
-    <MESSAGE value="reverse_iterator test" />
-    <MESSAGE value="reverse_iterator done" />
-    <MESSAGE value="type_traits" />
-    <MESSAGE value="enable_if, integral_constant, is_integral, lexicographical_compare, equal" />
-    <MESSAGE value="pair, make_pair" />
-    <MESSAGE value="vector constructors" />
-    <MESSAGE value="vector functions" />
-    <MESSAGE value="vector modifiers functions" />
-    <MESSAGE value="vector done" />
-    <option name="LAST_COMMIT_MESSAGE" value="vector done" />
   </component>
 </project>
