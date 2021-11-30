@@ -6,7 +6,7 @@
 /*   By:  <>                                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/21 16:35:26 by                   #+#    #+#             */
-/*   Updated: 2021/11/29 23:23:34 by                  ###   ########.fr       */
+/*   Updated: 2021/11/30 13:20:33 by                  ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,10 @@
 #define FT_CONTAINERS_FT_TREE_H
 
 # include <memory>
+# include <__tree>
 # include "ft_memory.hpp"
 # include "ft_utility.hpp"
+# include "ft_iterator.hpp"
 
 namespace ft
 {
@@ -144,8 +146,8 @@ namespace ft
         typedef typename pointer_traits<NodePtr>::element_type _node_type;
         typedef _NodePtr _node_pointer;
         typedef T _node_value_type;
-        typedef typename _rebind_pointer<VoidPtr, _node_value_type>::type _node_type_pointer;
-        typedef typename _tree_map_pointer_types<T, VoidPtr> _map_pointer_base;
+        typedef typename _rebind_pointer<VoidPtr, _node_value_type>::type _node_value_type_pointer;
+        typedef typename _rebind_pointer<VoidPtr, const _node_value_type>::type _const_node_value_type_pointer;
         typedef typename conditioinal<is_pointer<_node_pointer>::value,
             typename _base::_end_node_pointer, _node_pointer>::type _iter_pointer;
     };
@@ -156,6 +158,79 @@ namespace ft
     {
         typedef typename _rebind_pointer<VoidPtr, _tree_node<ValueT, ValuePtr> >::type _NodePtr;
         typedef _tree_node_types<_NodePtr> type;
+    };
+
+//    _tree_iterator
+    template<class T, class NodePtr, class DiffType>
+    class _tree_iterator
+    {
+        typedef _tree_node_types<NodePtr> _NodeTypes;
+        typedef NodePtr _node_pointer;
+        typedef typename _NodeTypes::_node_base_pointer _node_base_pointer;
+        typedef typename _NodeTypes::_end_node_pointer _end_node_pointer;
+        typedef typename _NodeTypes::_iter_pointer _iter_pointer;
+        typedef pointer_traits<_node_pointer> _pointer_traits;
+
+        _iter_pointer _ptr;
+    public:
+        typedef bidirectional_iterator_tag iterator_category;
+        typedef T value_type;
+        typedef DiffType difference_type;
+        typedef value_type& reference;
+        typedef typename _NodeTypes::_node_value_type_pointer pointer;
+
+        _tree_iterator(): _ptr(0) {}
+
+        reference operator*() const {return _get_np()->_value;}
+
+        pointer operator->() const {return pointer_traits<pointer>::pointer_to(_get_np()->_value);}
+
+        _tree_iterator& operator++()
+        {
+            _ptr = static_cast<_iter_pointer>(_tree_next_iter<_end_node_pointer>
+                    (static_cast<_node_base_pointer>(_ptr)));
+            return (*this);
+        }
+
+        _tree_iterator operator++(int)
+        {
+            _tree_iterator t(*this);
+
+            ++(*this);
+            return t;
+        }
+
+        _tree_iterator& operator--()
+        {
+            _ptr = static_cast<_iter_pointer>(_tree_prev_iter<_node_base_pointer>
+                    (static_cast<_end_node_pointer>(_ptr)));
+            return (*this);
+        }
+
+        _tree_iterator operator++(int)
+        {
+            _tree_iterator t(*this);
+
+            --(*this);
+            return t;
+        }
+
+        friend bool operator==(const _tree_iterator& x, const _tree_iterator& y)
+        {
+            return x._ptr == y._ptr;
+        }
+
+        friend bool operator!=(const _tree_iterator& x, const _tree_iterator& y)
+        {
+            return !(x == y);
+        }
+    private:
+        explicit _tree_iterator(_node_pointer p): _ptr(p) {}
+        explicit _tree_iterator(_end_node_pointer): _ptr(p) {}
+        _node_pointer _get_np() const {return static_cast<_node_pointer>(_ptr);}
+        template <class, class, class> friend class _tree;
+        template <class, class, class> friend class _tree_const_iterator;
+        template <class, class, class, class> friend class map;
     };
 
 //    tree
