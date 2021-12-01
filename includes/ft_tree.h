@@ -6,7 +6,7 @@
 /*   By:  <>                                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/21 16:35:26 by                   #+#    #+#             */
-/*   Updated: 2021/11/30 17:19:00 by                  ###   ########.fr       */
+/*   Updated: 2021/12/01 11:45:37 by                  ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -430,6 +430,71 @@ namespace ft
         {
             return addressof(_end_node()->_left);
         }
+
+		explicit _tree(const value_comp& comp):
+				_begin_node_(_iter_pointer()),
+				_pair1_(_default_init_tag(), _node_allocator(a)),
+				_pair3_(0, _default_init_tag())
+		{
+			_begin_node() = _end_node();
+		}
+
+		explicit _tree(const allocator_type& a):
+			_begin_node_(_iter_pointer()),
+			_pair1_(_default_init_tag(), _node_allocator(a)),
+			_pair3_(0, _default_init_tag())
+		{
+			_begin_node() = _end_node();
+		}
+
+		_tree(const value_compare& comp, const allocator_type& a):
+			_begin_node_(_iter_pointer()),
+			_pair1_(_default_init_tag(),_node_allocator(a)),
+			_pair3_(0, comp)
+		{
+			_begin_node() = _end_node();
+		}
+
+		_tree(const _tree& t):
+			_begin_node_(_iter_pointer()),
+			_pair1_(_default_init_tag(), t._node_alloc()),
+			_pair3_(0, t.value_comp())
+		{
+			_begin_node() = _end_node();
+		}
+
+		_tree& operator=(const _tree& t)
+		{
+			if (this != &t)
+			{
+				value_comp() = t.value_comp();
+				_copy_assign_alloc(t);
+				_assign_multi(t.begin(), t.end());
+			}
+			return *this;
+		}
+
+		template<class ForwardIterator>
+		void _assign_unique(ForwardIterator first, ForwardIterator last)
+		{
+			typedef iterator_traits<ForwardIterator> Itraits;
+			typedef typename Itraits::value_type  ItValueType;
+
+			if (size() != 0)
+			{
+				_DetachedTreeCache cache(this);
+
+				for (; cache._get() != 0 && first != last; ++first)
+				{
+					if (_node_assign_unique(*first, cache._get()).second)
+						cache._advance();
+				}
+			}
+		}
+
+		void
     };
+
+
 }
 #endif

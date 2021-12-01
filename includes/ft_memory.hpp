@@ -17,6 +17,9 @@
 
 namespace ft
 {
+//	_default_init_tag
+	struct _default_init_tag {};
+
 //    has_element_type
     template<class T, class = void>
     struct _has_element_type: false_type {};
