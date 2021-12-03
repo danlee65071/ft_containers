@@ -20,7 +20,6 @@
   <component name="ChangeListManager">
     <list default="true" id="aa33f766-fbaa-495c-9083-436ea7852f78" name="Changes" comment="tree_iterator">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/includes/ft_memory.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/includes/ft_memory.hpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/includes/ft_tree.h" beforeDir="false" afterPath="$PROJECT_DIR$/includes/ft_tree.h" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -103,6 +102,7 @@
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="vcs.Git" />
   </component>
   <component name="RunManager" selected="Makefile Application.all">
@@ -131,9 +131,9 @@
         <option name="CLION.COMPOUND.BUILD" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true">
+    <configuration default="true" type="GradleAppRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true">
       <method v="2">
-        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+        <option name="com.jetbrains.cidr.cpp.gradle.execution.GradleNativeBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
     </configuration>
     <list>
@@ -157,7 +157,8 @@
       <workItem from="1638208442356" duration="6700000" />
       <workItem from="1638265548600" duration="3417000" />
       <workItem from="1638277359689" duration="2694000" />
-      <workItem from="1638341065408" duration="2534000" />
+      <workItem from="1638341065408" duration="2841000" />
+      <workItem from="1638558492451" duration="5001000" />
     </task>
     <task id="LOCAL-00001" summary="tree_iterator">
       <created>1638268458233</created>

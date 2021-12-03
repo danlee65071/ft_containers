@@ -6,7 +6,7 @@
 /*   By:  <>                                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/21 16:35:26 by                   #+#    #+#             */
-/*   Updated: 2021/12/01 11:45:37 by                  ###   ########.fr       */
+/*   Updated: 2021/12/03 23:24:05 by                  ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,27 @@ namespace ft
         while (_tree_is_left_child(xx))
             xx = xx->_parent_unsafe();
     }
+
+//	_tree_leaf
+	template<class NodePtr>
+	NodePtr _tree_leaf(NodePtr x)
+	{
+		while (true)
+		{
+			if (x->_left != 0)
+			{
+				x = x->_left;
+				continue;
+			}
+			if (x->_right != 0)
+			{
+				x = x->_right;
+				continue;
+			}
+			break;
+		}
+		return x;
+	}
 
 //    _tree_node_base_types
     template<class VoidPtr>
@@ -490,11 +511,206 @@ namespace ft
 						cache._advance();
 				}
 			}
+			for (; first != last; ++first)
+				_insert_unique(*first);
 		}
 
-		void
+		template<class InputIterator>
+		void _assign_multi(InputIterator first, InputIterator last)
+		{
+			typedef iterator_traits<InputIterator> Itraits;
+			typedef typename Itraits::value_type ItValueType;
+
+			if (size() != 0)
+			{
+				_DetachedTreeCache cache(this);
+				for (; cache._get() && first != last; ++first)
+				{
+					cache._get()->_value = *first;
+					_node_insert_multi(cache._get());
+					_cache._advance();
+				}
+			}
+			for (; first != last; ++first)
+				_insert_multi(_NodeTypes::_get_value(*first));
+		}
+
+		iterator _node_insert_multi(_node_pointer n)
+		{
+			_parent_pointer  _parent;
+			_node_base_pointer& _child = _find_leaf_high(_parent, _NodesTypes::_get_key(n->_value));
+			_insert_node_at(_parent, _child, static_cast<_node_base_pointer>(n));
+			return iterator(n);
+		}
+
+		iterator _node_insert_multi(const_iterator p, _node_pointer n)
+		{
+			_parent_pointer _parent;
+			_node_base_pointer& _child = _find_leaf(p, _parent, _NodeTypes::_get_key(n->_value));
+			_insert_node_at(_parent, _child, static_cast<_node_base_pointer>(n));
+			return iterator(n);
+		}
+
+	private:
+		_node_base_pointer& _find_leaf_low(_parent_pointer& _parent, const key_type& v)
+		{
+			_node_pointer n = __root();
+			if (n != nullptr)
+			{
+				while (true)
+				{
+					if (value_comp()(n->_value, v))
+					{
+						if (n->_right != 0)
+							n = static_cast<__node_pointer>(n->_right);
+						else
+						{
+							_parent = static_cast<_parent_pointer>(n);
+							return n->_right;
+						}
+					}
+					else
+					{
+						if (n->_left != 0)
+							n = static_cast<__node_pointer>(n->_left);
+						else
+						{
+							_parent = static_cast<_parent_pointer>(n);
+							return _parent->_left;
+						}
+					}
+				}
+			}
+			_parent = static_cast<_parent_pointer>(_end_node());
+			return _parent->_left;
+		}
+
+		_node_base_pointer& _find_leaf_high(_parent_pointer& _parent, const key_type& v)
+		{
+			_node_pointer n = __root();
+			if (n != 0)
+			{
+				while (true)
+				{
+					if (value_comp()(v, n->_value))
+					{
+						if (n->_left != 0)
+							n = static_cast<_node_pointer>(n->_left);
+						else
+						{
+							_parent = static_cast<_parent_pointer>(n);
+							return _parent->_left;
+						}
+					}
+					else
+					{
+						if (n->_right != 0)
+							n = static_cast<_parent_pointer>(n->_right);
+						else
+						{
+							_parent = static_cast<_parent_pointer>(n);
+							return n->_right;
+						}
+					}
+				}
+			}
+			_parent = static_cast<_parent_pointer>(_end_node());
+			return _parent->_left;
+		}
+
+		_node_base_pointer& _find_leaf(const_iterator hint, _parent_pointer& _parent,
+									   const key_type& v)
+		{
+			if (hint == end() || !value_comp()(*hint, v))
+			{
+				const_iterator prior = hint;
+				if (prior == begin() || !value_comp()(v, *--prior))
+				{
+					if (hint._ptr->_left == 0)
+					{
+						_parent = static_cast<_parent_pointer>(hint._ptr;
+						return _parent->_left;
+					}
+					else
+					{
+						_parent = static_cast<_parent_pointer>(prior._ptr);
+						return static_cast<__node_base_pointer>(prior._ptr)->_right;
+					}
+				}
+				return _find_leaf_high(_parent, v);
+			}
+			return _find_leaf_low(_parent, v);
+		}
+
+		struct _DetachedTreeCache
+		{
+		private:
+			_tree *_t;
+			_node_pointer _cache_root;
+			_node_pointer _cache_elem;
+
+			static _node_pointer _detach_from_tree(_tree *t)
+			{
+				_node_pointer _cache = static_cast<_node_pointer>(t->_begin_node());
+				t->_begin_node() = t->_end_node();
+				t->_end_node()->_left->_parent = 0;
+				t->_end_node()->_left = 0;
+				t->size() = 0;
+				if (_cache->_right != 0)
+					_cache = static_cast<_node_pointer>(_cache->_right);
+				return _cache;
+			}
+
+			static _node_pointer _detach_next(_node_pointer)
+			{
+				if (_cache->_parent == 0)
+					return 0;
+				if (_tree_is_left_child(static_cast<_node_base_pointer>(_cache)))
+				{
+					_cache->_parent->_left = 0;
+					_cache = static_cast<_node_pointer>(_cache->_parent);
+					if (_cache->_right == 0)
+						return _cache;
+					return static_cast<_node_pointer>(_tree_leaf(_cache->_right));
+				}
+				_cache->_parent_unsafe()->_right = 0;
+				_cache = static_cast<_node_pointer>(_cache->_parent);
+				if (_cache->_left == 0)
+					return _cache;
+				return static_cast<_node_pointer>(_tree_leaf(_cache->_left));
+			}
+
+		public:
+			explicit _DetachedTreeCache(_tree *t): _t(t),
+				_cache_root(_detach_from_tree(t))
+			{
+				_advance();
+			}
+
+			_node_pointer _get() const
+			{
+				return _cache_elem;
+			}
+
+			void _advance()
+			{
+				_cache_elem = _cache_root;
+				if (_cache_root)
+					_cache_root = _detach_next(_cache_root);
+			}
+
+			~_DetachedTreeCache()
+			{
+				_t->destroy(_cache_elem);
+				if (_cache_root)
+				{
+					while (_cache_root->_parent != 0)
+						_cache_root = static_cast<_node_pointer>(_cache_root->_parent);
+					_t->destroy(_cache_root);
+				}
+			}
+
+		};
     };
-
-
 }
 #endif
