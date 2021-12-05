@@ -18,7 +18,7 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="aa33f766-fbaa-495c-9083-436ea7852f78" name="Changes" comment="tree_iterator">
+    <list default="true" id="aa33f766-fbaa-495c-9083-436ea7852f78" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/includes/ft_tree.h" beforeDir="false" afterPath="$PROJECT_DIR$/includes/ft_tree.h" afterDir="false" />
     </list>
@@ -158,7 +158,7 @@
       <workItem from="1638265548600" duration="3417000" />
       <workItem from="1638277359689" duration="2694000" />
       <workItem from="1638341065408" duration="2841000" />
-      <workItem from="1638558492451" duration="5001000" />
+      <workItem from="1638558492451" duration="7419000" />
     </task>
     <task id="LOCAL-00001" summary="tree_iterator">
       <created>1638268458233</created>
@@ -167,7 +167,14 @@
       <option name="project" value="LOCAL" />
       <updated>1638268458233</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="tree assign">
+      <created>1638563696296</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1638563696296</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -187,6 +194,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="tree_iterator" />
-    <option name="LAST_COMMIT_MESSAGE" value="tree_iterator" />
+    <MESSAGE value="tree assign" />
+    <option name="LAST_COMMIT_MESSAGE" value="tree assign" />
   </component>
 </project>

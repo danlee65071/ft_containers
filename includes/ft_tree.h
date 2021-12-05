@@ -6,7 +6,7 @@
 /*   By:  <>                                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/21 16:35:26 by                   #+#    #+#             */
-/*   Updated: 2021/12/03 23:24:05 by                  ###   ########.fr       */
+/*   Updated: 2021/12/04 20:51:30 by                  ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,103 @@ namespace ft
 			break;
 		}
 		return x;
+	}
+
+//	_tree_left_rotate
+	template <class NodePtr>
+	void _tree_left_rotate(NodePtr x)
+	{
+		NodePtr y = x->_right;
+		x->_right = y->_left;
+		if (x->_right != 0)
+			x->_right->_set_parent(x);
+		y->_parent = x->_parent;
+		if (_tree_is_left_child(x))
+			x->_parent->_left = y;
+		else
+			x->_parentunsafe()->_right = y;
+		y->_left = x;
+		x->_set_parent(y);
+	}
+
+//	_tree_right_rotate
+	template <class NodePtr>
+	void _tree_right_rotate(NodePtr x)
+	{
+		NodePtr y = x->_left;
+		x->_left = y->_right;
+		if (x->_left != 0)
+			x->_left->_set_parent(x);
+		y->_parent = x->_parent;
+		if (_tree_is_left_child(x))
+			x->_parent->_left = y;
+		else
+			x->_parent_unsafe()->_right = y;
+		y->_right = x;
+		x->_set_parent(y);
+	}
+
+
+	//	_tree_balance_after_insert
+	template <class NodePtr>
+	void _tree_balance_after_insert(NodePtr root, NodePtr x)
+	{
+		x->_is_black = x == root;
+		while (x != root && !x->_parent_unsafe()->_is_black)
+		{
+			if (_tree_is_left_child(x->_parent_unsafe()))
+			{
+				NodePtr y = x->_parent_unsafe()->_parent_unsafe()->_right;
+				if (y != 0 && !y->_is_black)
+				{
+					x = x->_parent_unsafe();
+					x->_is_black = true;
+					x = x->_parent_unsafe();
+					x->_is_black = x == root;
+					y->_is_black = true;
+				}
+				else
+				{
+					if (!_tree_is_left_child(x))
+					{
+						x = x->_parent_unsafe();
+						_tree_left_rotate(x);
+					}
+					x = x->_parent_unsafe();
+					x->_is_black = true;
+					x = x->_parent_unsafe();
+					x->_is_black = false;
+					_tree_right_rotate(x);
+					break;
+				}
+			}
+			else
+			{
+				NodePtr y = x->_parent_unsafe()->_parent->_left;
+				if (y != 0 && !y->_is_black)
+				{
+					x = x->_parent_unsafe();
+					x->_is_black = true;
+					x = x->_parent_unsafe();
+					x->_is_black = x == root;
+					y->_is_black = true;
+				}
+				else
+				{
+					if (_tree_is_left_child(x))
+					{
+						x = x->_parent_unsafe();
+						_tree_right_rotate(x);
+					}
+					x = x->_parent_unsafe();
+					x->_is_black = true;
+					x = x->_parent_unsafe();
+					x->_is_black = false;
+					_tree_left_rotate(x);
+					break;
+				}
+			}
+		}
 	}
 
 //    _tree_node_base_types
@@ -426,11 +523,11 @@ namespace ft
 
         _node_allocator& _node_alloc() {return _pair1_.second();}
     private:
-        const _node_allocator& _node_alloc() const {return _pair1_.second();} // ?
+        const _node_allocator& _node_alloc() const {return _pair1_.second();}
 
-        _iter_pointer& _begin_node() {return _begin_node_;} // ?
+        _iter_pointer& _begin_node() {return _begin_node_;}
 
-        const _iter_pointer& _begin_node() const {return _begin_node_} // ?
+        const _iter_pointer& _begin_node() const {return _begin_node_}
     public:
         allocator_type _alloc() const {return allocator_type(_node_alloc());}
     private:
@@ -555,7 +652,7 @@ namespace ft
 		_node_base_pointer& _find_leaf_low(_parent_pointer& _parent, const key_type& v)
 		{
 			_node_pointer n = __root();
-			if (n != nullptr)
+			if (n != 0)
 			{
 				while (true)
 				{
@@ -640,6 +737,20 @@ namespace ft
 				return _find_leaf_high(_parent, v);
 			}
 			return _find_leaf_low(_parent, v);
+		}
+
+		void _insert_node_at(_parent_pointer     _parent,
+							  _node_base_pointer& _child,
+							  _node_base_pointer _new_node)
+		{
+			_new_node->__left = 0;
+			_new_node->_right = 0;
+			_new_node->_parent = _parent;
+			_child = _new_node;
+			if (_begin_node()->_left != 0)
+				_begin_node() = static_cast<_iter_pointer>(_begin_node()->_left);
+			_tree_balance_after_insert(_end_node()->_left, _child);
+			++size();
 		}
 
 		struct _DetachedTreeCache
