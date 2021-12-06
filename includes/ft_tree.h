@@ -58,7 +58,7 @@ namespace ft
             return static_cast<EndNodePtr>(_tree_min(x->_right));
         while (!_tree_is_left_child(x))
             x = x->_parent_unsafe();
-        return static_cast<EndNodePtrd>(x->_parent);
+        return static_cast<EndNodePtr>(x->_parent);
     }
 
 //    _tree_prev_iter
@@ -202,7 +202,7 @@ namespace ft
     struct _tree_node_types;
 
     template<class NodePtr, class T, class VoidPtr>
-    struct _tree_node_types<NodePtr, _tree_node<T, VoidPtr>>:
+    struct _tree_node_types<NodePtr, _tree_node<T, VoidPtr> >:
             public _tree_node_base_types<VoidPtr>,
                    _tree_key_value_types<T>,
                    _tree_map_pointer_types<T, VoidPtr>
@@ -212,7 +212,7 @@ namespace ft
         typedef _tree_map_pointer_types<T, VoidPtr> _map_pointer_base;
     public:
         typedef typename pointer_traits<NodePtr>::element_type _node_type;
-        typedef _NodePtr _node_pointer;
+        typedef NodePtr _node_pointer;
         typedef T _node_value_type;
         typedef typename _rebind_pointer<VoidPtr, _node_value_type>::type _node_value_type_pointer;
         typedef typename _rebind_pointer<VoidPtr, const _node_value_type>::type _const_node_value_type_pointer;
@@ -224,7 +224,7 @@ namespace ft
     template<class ValueT, class VoidPtr>
     struct _make_tree_node_types
     {
-        typedef typename _rebind_pointer<VoidPtr, _tree_node<ValueT, ValuePtr> >::type _NodePtr;
+        typedef typename _rebind_pointer<VoidPtr, _tree_node<ValueT, VoidPtr> >::type _NodePtr;
         typedef _tree_node_types<_NodePtr> type;
     };
 
@@ -275,7 +275,7 @@ namespace ft
             return (*this);
         }
 
-        _tree_iterator operator++(int)
+        _tree_iterator operator--(int)
         {
             _tree_iterator t(*this);
 
@@ -402,7 +402,7 @@ namespace ft
         typedef typename _NodeTypes::_end_node_pointer _end_node_ptr;
         typedef typename _NodeTypes::_parent_pointer _parent_pointer;
         typedef typename _NodeTypes::_iter_pointer _iter_pointer;
-        typedef typename allocator_type::rebind<_node>::other _node_allocator;
+        typedef typename allocator_type::template rebind<_node>::other _node_allocator;
         typedef _tree_iterator<value_type, _node_pointer, difference_type> iterator;
         typedef _tree_const_iterator<value_type, _node_pointer, difference_type> const_iterator;
     private:
@@ -426,11 +426,11 @@ namespace ft
 
         _node_allocator& _node_alloc() {return _pair1_.second();}
     private:
-        const _node_allocator& _node_alloc() const {return _pair1_.second();} // ?
+        const _node_allocator& _node_alloc() const {return _pair1_.second();}
 
-        _iter_pointer& _begin_node() {return _begin_node_;} // ?
+        _iter_pointer& _begin_node() {return _begin_node_;}
 
-        const _iter_pointer& _begin_node() const {return _begin_node_} // ?
+        const _iter_pointer& _begin_node() const {return _begin_node_;}
     public:
         allocator_type _alloc() const {return allocator_type(_node_alloc());}
     private:
@@ -528,7 +528,7 @@ namespace ft
 				{
 					cache._get()->_value = *first;
 					_node_insert_multi(cache._get());
-					_cache._advance();
+                    cache._advance();
 				}
 			}
 			for (; first != last; ++first)
