@@ -19,8 +19,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="aa33f766-fbaa-495c-9083-436ea7852f78" name="Changes" comment="tree_iterator">
+      <change afterPath="$PROJECT_DIR$/includes/ft_nullptr.hpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/includes/ft_iterator.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/includes/ft_iterator.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/includes/ft_memory.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/includes/ft_memory.hpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/includes/ft_tree.h" beforeDir="false" afterPath="$PROJECT_DIR$/includes/ft_tree.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/includes/ft_type_traits.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/includes/ft_type_traits.hpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -101,17 +105,12 @@
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="settings.editor.selected.configurable" value="vcs.Git" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RunManager" selected="Makefile Application.all">
     <configuration default="true" type="GradleAppRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true">
       <method v="2">
         <option name="com.jetbrains.cidr.cpp.gradle.execution.GradleNativeBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
-      </method>
-    </configuration>
-    <configuration default="true" type="CLionExternalRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true">
-      <method v="2">
-        <option name="CLION.EXTERNAL.BUILD" enabled="true" />
       </method>
     </configuration>
     <configuration name="all" type="CLionNativeAppRunConfigurationType" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="ft_containers" TARGET_NAME="all" CONFIG_NAME="all" version="1">
@@ -163,6 +162,16 @@
       <workItem from="1638341065408" duration="2841000" />
       <workItem from="1638558492451" duration="5001000" />
       <workItem from="1638805592619" duration="1127000" />
+      <workItem from="1638870519543" duration="1778000" />
+      <workItem from="1638887407817" duration="232000" />
+      <workItem from="1638958206588" duration="1514000" />
+      <workItem from="1639124815945" duration="864000" />
+      <workItem from="1639132690531" duration="6082000" />
+      <workItem from="1639208237928" duration="7424000" />
+      <workItem from="1639407740571" duration="3134000" />
+      <workItem from="1639466350390" duration="2752000" />
+      <workItem from="1639494625302" duration="2101000" />
+      <workItem from="1639568213424" duration="2019000" />
     </task>
     <task id="LOCAL-00001" summary="tree_iterator">
       <created>1638268458233</created>
