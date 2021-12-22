@@ -16,6 +16,7 @@
 # include "ft_type_traits.hpp"
 # include "ft_utility.hpp"
 # include "ft_nullptr.hpp"
+# include <memory>
 
 namespace ft
 {
@@ -189,7 +190,7 @@ namespace ft
     template <class T>
     struct default_delete
     {
-        inline default_delete() = default;
+        inline default_delete();
     };
 
 //    unique_ptr
@@ -366,7 +367,7 @@ namespace ft
 
         operator bool() const
         {
-            return __ptr_.first() != nullptr;
+            return __ptr_.first() != ft_nullptr;
         }
 
         pointer release()
@@ -388,10 +389,10 @@ namespace ft
                 __ptr_.second()(__tmp);
         }
 
-        void reset(nullptr_t = nullptr)
+        void reset(nullptr_t = ft_nullptr)
         {
             pointer __tmp = __ptr_.first();
-            __ptr_.first() = nullptr;
+            __ptr_.first() = ft_nullptr;
             if (__tmp)
                 __ptr_.second()(__tmp);
         }

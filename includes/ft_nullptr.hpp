@@ -38,7 +38,7 @@ namespace ft
 
     inline nullptr_t _get_nullptr_t() {return nullptr_t(0);}
 
-#define nullptr _get_nullptr_t()
+#define ft_nullptr _get_nullptr_t()
 }
 
 #endif

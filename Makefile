@@ -28,8 +28,17 @@ PATH_OBJS = $(addprefix $(DIR_OBJS)/, $(OBJS))
 #TEST_OBJS = $(patsubst %.cpp, %.o, $(PATH_TEST_SRCS))
 #DIR_TEST_OBJS = test_objs
 
-HEADER = ft_containers.hpp ft_iterator.hpp ft_type_traits.hpp ft_algorithm.hpp ft_vector.hpp ft_map.hpp ft_tree.h \
-			ft_memory.hpp
+HEADER = ft_algorithm.hpp \
+         ft_containers.hpp \
+         ft_iterator.hpp \
+         ft_map.hpp \
+         ft_memory.hpp \
+         ft_nullptr.hpp \
+         ft_tree.hpp \
+         ft_type_traits.hpp \
+         ft_utility.hpp \
+         ft_vector.hpp
+
 DIR_HEADER = includes
 PATH_HEADER = $(addprefix $(DIR_HEADER)/, $(HEADER))
 

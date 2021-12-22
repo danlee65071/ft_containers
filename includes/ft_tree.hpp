@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_CONTAINERS_FT_TREE_H
-#define FT_CONTAINERS_FT_TREE_H
+#ifndef FT_CONTAINERS_FT_TREE_HPP
+#define FT_CONTAINERS_FT_TREE_HPP
 
 # include <memory>
 # include <__tree>
@@ -359,7 +359,7 @@ void _tree_remove(NodePtr root, NodePtr z)
 
 //    _tree_node_base
     template<class VoidPtr>
-    class _tree_node_base: _tree_node_base_types<VoidPtr>::_end_node_type
+    class _tree_node_base: public _tree_node_base_types<VoidPtr>::_end_node_type
     {
         typedef _tree_node_base_types<VoidPtr> _NodeBaseTypes;
     public:
@@ -473,10 +473,10 @@ void _tree_remove(NodePtr root, NodePtr z)
     template <class _Allocator>
     class _tree_node_destructor
     {
-        typedef _Allocator                                      allocator_type;
+        typedef _Allocator allocator_type;
 
     public:
-        typedef typename allocator_type::pointer                pointer;
+        typedef typename allocator_type::pointer pointer;
     private:
         typedef _tree_node_types<pointer> _NodeTypes;
         allocator_type& __na_;
@@ -484,16 +484,16 @@ void _tree_remove(NodePtr root, NodePtr z)
         _tree_node_destructor& operator=(const _tree_node_destructor&);
 
     public:
-        bool __value_constructed;
+        bool _value_constructed;
 
         explicit _tree_node_destructor(allocator_type& __na, bool __val = false): __na_(__na),
-        __value_constructed(__val)
+        _value_constructed(__val)
         {}
 
         void operator()(pointer __p)
         {
-            if (__value_constructed)
-                allocator_type::destroy(__na_, _NodeTypes::__get_ptr(__p->__value_));
+            if (_value_constructed)
+                allocator_type::destroy(__na_, _NodeTypes::_get_ptr(__p->_value));
             if (__p)
                 allocator_type::deallocate(__na_, __p, 1);
         }
@@ -572,6 +572,8 @@ void _tree_remove(NodePtr root, NodePtr z)
         template <class, class, class> friend class _tree;
         template <class, class, class> friend class _tree_const_iterator;
         template <class, class, class, class> friend class map;
+        template <class> friend class _map_iterator;
+        template <class, class, class> friend class  set;
     };
 
 //    _tree_const_iterator
@@ -646,6 +648,7 @@ void _tree_remove(NodePtr root, NodePtr z)
         template <class, class, class> friend class _tree;
         template <class, class, class, class> friend class map;
         template <class> friend class  _map_const_iterator;
+        template <class, class, class> friend class set;
     };
 
 //    tree
@@ -676,6 +679,7 @@ void _tree_remove(NodePtr root, NodePtr z)
         typedef typename _NodeTypes::_parent_pointer _parent_pointer;
         typedef typename _NodeTypes::_iter_pointer _iter_pointer;
         typedef typename allocator_type::template rebind<_node>::other _node_allocator;
+        typedef std::allocator_traits<_node_allocator> _node_traits;
         typedef _tree_iterator<value_type, _node_pointer, difference_type> iterator;
         typedef _tree_const_iterator<value_type, _node_pointer, difference_type> const_iterator;
     private:
@@ -692,9 +696,7 @@ void _tree_remove(NodePtr root, NodePtr z)
         {
             return static_cast<_iter_pointer>(
                     pointer_traits<_end_node_ptr>::pointer_to(
-                            const_cast<_end_node_t&>(_pair1_.first())
-                            )
-                    );
+                            const_cast<_end_node_t&>(_pair1_.first())));
         }
 
         _node_allocator& _node_alloc() {return _pair1_.second();}
@@ -965,7 +967,7 @@ void _tree_remove(NodePtr root, NodePtr z)
 
         _node_holder remove(const_iterator p);
 	private:
-        void _copy_assign_alloc(const _tree& t) {}
+        void _copy_assign_alloc(const _tree&) {}
 
         template <class Key>
         inline _node_base_pointer& _find_equal(_parent_pointer& parent, const Key& v) const
@@ -1148,11 +1150,11 @@ void _tree_remove(NodePtr root, NodePtr z)
             _parent_pointer parent, _node_base_pointer& child,
             _node_base_pointer new_node)
     {
-        new_node->_left_   = nullptr;
-        new_node->_right_  = nullptr;
-        new_node->_parent_ = parent;
+        new_node->_left   = ft_nullptr;
+        new_node->_right  = ft_nullptr;
+        new_node->_parent = parent;
         child = new_node;
-        if (_begin_node()->_left != nullptr)
+        if (_begin_node()->_left != ft_nullptr)
             _begin_node() = static_cast<_iter_pointer>(_begin_node()->_left);
         _tree_balance_after_insert(_end_node()->_left, child);
         ++size();
@@ -1167,13 +1169,13 @@ void _tree_remove(NodePtr root, NodePtr z)
     template <class T, class Compare, class Allocator>
     void _tree<T, Compare, Allocator>::destroy(_node_pointer nd)
     {
-        if (nd != nullptr)
+        if (nd != ft_nullptr)
         {
             destroy(static_cast<_node_pointer>(nd->_left));
             destroy(static_cast<_node_pointer>(nd->_right));
             _node_allocator& na = _node_alloc();
-            _node_allocator::destroy(na, _NodeTypes::_get_ptr(nd->_value));
-            _node_allocator::deallocate(na, nd, 1);
+            _node_traits::destroy(na, _NodeTypes::_get_ptr(nd->_value));
+            _node_traits::deallocate(na, nd, 1);
         }
     }
 
@@ -1183,7 +1185,7 @@ void _tree_remove(NodePtr root, NodePtr z)
         destroy(_root());
         size() = 0;
         _begin_node() = _end_node();
-        _end_node()->_left = nullptr;
+        _end_node()->_left = ft_nullptr;
     }
 
     template <class T, class Compare, class Allocator>
@@ -1234,7 +1236,7 @@ void _tree_remove(NodePtr root, NodePtr z)
             {
                 if (value_comp()(v, nd->_value))
                 {
-                    if (nd->_left != nullptr)
+                    if (nd->_left != ft_nullptr)
                     {
                         nd_ptr = addressof(nd->_left);
                         nd = static_cast<_node_pointer>(nd->_left);
@@ -1298,7 +1300,7 @@ void _tree_remove(NodePtr root, NodePtr z)
             const_iterator _next = next(hint);
             if (_next == end() || value_comp()(v, *_next))
             {
-                if (hint._get_np()->_right = nullptr)
+                if (hint._get_np()->_right == ft_nullptr)
                 {
                     parent = static_cast<_parent_pointer>(hint._ptr);
                     return static_cast<_node_base_pointer>(hint._ptr)->_right;

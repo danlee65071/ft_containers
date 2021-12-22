@@ -20,10 +20,10 @@ namespace ft
 //    nat
     struct _nat
     {
-        _nat() = delete;
-        _nat(const _nat&) = delete;
-        _nat& operator=(const _nat&) = delete;
-        ~_nat() = delete;
+        _nat();
+        _nat(const _nat&);
+        _nat& operator=(const _nat&);
+        ~_nat();
     };
 
     template <class>
@@ -213,6 +213,25 @@ namespace ft
         Tr* operator->() {return &_t;}
         explicit _rv(Tr& t): _t(t) {}
     };
+
+//    is_empty
+    template <class Tp>
+    struct _is_empty1: public Tp
+    {
+        double _lx;
+    };
+
+    struct _is_empty2
+    {
+        double _lx;
+    };
+
+    template <class Tp, bool = is_class<Tp>::value>
+    struct _empty : public integral_constant<bool, sizeof(_is_empty1<Tp>) == sizeof(_is_empty2)> {};
+
+    template <class Tp> struct _empty<Tp, false> : public false_type {};
+
+    template <class Tp> struct is_empty : public _empty<Tp> {};
 }
 
 #endif

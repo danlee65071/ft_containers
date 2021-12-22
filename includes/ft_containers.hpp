@@ -20,5 +20,6 @@
 # include "ft_algorithm.hpp"
 # include "ft_utility.hpp"
 # include "ft_vector.hpp"
+# include "ft_map.hpp"
 
 #endif
