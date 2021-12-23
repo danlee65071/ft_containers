@@ -6,12 +6,14 @@
 /*   By: hcharlsi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/10 17:00:44 by hcharlsi          #+#    #+#             */
-/*   Updated: 2021/11/20 02:37:49 by                  ###   ########.fr       */
+/*   Updated: 2021/12/22 20:41:09 by                  ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef ITERATOR_HPP
 #define ITERATOR_HPP
+
+# include "ft_type_traits.hpp"
 
 namespace ft
 {
@@ -88,6 +90,17 @@ namespace ft
         int int_n = static_cast<int>(n);
         _advance(it, int_n, typename iterator_traits<Iterator>::iterator_category());
     }
+
+//	next
+	template <class _InputIter>
+	inline _LIBCPP_INLINE_VISIBILITY _LIBCPP_CONSTEXPR_AFTER_CXX14
+	typename enable_if<std::__is_input_iterator<_InputIter>::value,_InputIter>::type
+	next(_InputIter __x,
+	typename iterator_traits<_InputIter>::difference_type __n = 1)
+{
+	_VSTD::advance(__x, __n);
+	return __x;
+}
 
 //    distance
     template<class InputIterator>

@@ -6,7 +6,7 @@
 /*   By: hcharlsi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/06 18:52:12 by hcharlsi          #+#    #+#             */
-/*   Updated: 2021/11/20 00:41:54 by                  ###   ########.fr       */
+/*   Updated: 2021/12/22 20:41:09 by                  ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,5 +20,6 @@
 # include "ft_algorithm.hpp"
 # include "ft_utility.hpp"
 # include "ft_vector.hpp"
+# include "ft_map.hpp"
 
 #endif

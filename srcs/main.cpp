@@ -6,7 +6,7 @@
 /*   By: hcharlsi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/10 21:09:40 by hcharlsi          #+#    #+#             */
-/*   Updated: 2021/11/20 02:35:27 by                  ###   ########.fr       */
+/*   Updated: 2021/12/22 20:41:09 by                  ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,13 @@ bool mycomp (char c1, char c2)
 bool mypredicate (int i, int j) {
 	return (i==j);
 }
+
+bool fncomp (char lhs, char rhs) {return lhs<rhs;}
+
+struct classcomp {
+    bool operator() (const char& lhs, const char& rhs) const
+    {return lhs<rhs;}
+};
 
 int main() {
     unsigned int start = clock();
@@ -498,6 +505,24 @@ int main() {
         std::cout << "\ndistance:\nThe distance is: " << ft::distance(first,last) << '\n';
     }
 
+    std::cout << "map\n\n";
+    {
+        ft::map<char,int> first;
+
+        first['a']=10;
+        first['b']=30;
+        first['c']=50;
+        first['d']=70;
+
+        ft::map<char,int> second (first.begin(),first.end());
+
+        ft::map<char,int> third (second);
+
+        ft::map<char,int,classcomp> fourth;                 // class as Compare
+
+        bool(*fn_pt)(char,char) = fncomp;
+        ft::map<char,int,bool(*)(char,char)> fifth(fn_pt);
+    }
     unsigned int end = clock();
     std::cout << '\n' << end - start << '\n';
     return 0;

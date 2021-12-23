@@ -6,7 +6,7 @@
 /*   By: hcharlsi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/04 19:34:42 by hcharlsi          #+#    #+#             */
-/*   Updated: 2021/11/21 18:37:39 by                  ###   ########.fr       */
+/*   Updated: 2021/12/22 20:41:09 by                  ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,18 @@
 
 namespace ft
 {
+//    nat
+    struct _nat
+    {
+        _nat();
+        _nat(const _nat&);
+        _nat& operator=(const _nat&);
+        ~_nat();
+    };
+
+    template <class>
+    struct __void_t { typedef void type; };
+
 //	enable_if false
 	template<bool B, class T = void>
 	struct enable_if
@@ -156,6 +168,70 @@ namespace ft
                                                         is_union<T>::value ||
                                                         is_class<T>::value > {};
 
+//    remove_reference
+    template< class T > struct remove_reference      {typedef T type;};
+    template< class T > struct remove_reference<T&>  {typedef T type;};
+
+//    add_lvalue_reference
+    template <class _Tp, bool = std::__is_referenceable<_Tp>::value> struct __add_lvalue_reference_impl { typedef _Tp  type; };
+    template <class _Tp> struct __add_lvalue_reference_impl<_Tp, true> { typedef _Tp& type; };
+
+    template <class _Tp> struct  add_lvalue_reference
+    {typedef typename __add_lvalue_reference_impl<_Tp>::type type;};
+
+//    is_reference
+    template <class _Tp> struct  is_reference        : public false_type {};
+    template <class _Tp> struct  is_reference<_Tp&>  : public true_type {};
+
+//    move
+    template <class _Tp>
+    inline _Tp& move(_Tp& __t)
+    {
+        return __t;
+    }
+
+    template <class _Tp>
+    inline const _Tp& move(const _Tp& __t)
+    {
+        return __t;
+    }
+
+//    forward
+    template <class _Tp>
+    inline _Tp& forward(typename remove_reference<_Tp>::type& __t)
+    {
+        return __t;
+    }
+
+//    _rv
+    template <class T>
+    class _rv
+    {
+        typedef typename remove_reference<T>::type Tr;
+        Tr& _t;
+    public:
+        Tr* operator->() {return &_t;}
+        explicit _rv(Tr& t): _t(t) {}
+    };
+
+//    is_empty
+    template <class Tp>
+    struct _is_empty1: public Tp
+    {
+        double _lx;
+    };
+
+    struct _is_empty2
+    {
+        double _lx;
+    };
+
+    template <class Tp, bool = is_class<Tp>::value>
+    struct _empty : public integral_constant<bool, sizeof(_is_empty1<Tp>) == sizeof(_is_empty2)> {};
+
+    template <class Tp> struct _empty<Tp, false> : public false_type {};
+
+    template <class Tp> struct is_empty : public _empty<Tp> {};
 }
 
 #endif

@@ -18,8 +18,23 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
+<<<<<<< HEAD
     <list default="true" id="aa33f766-fbaa-495c-9083-436ea7852f78" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+=======
+    <list default="true" id="aa33f766-fbaa-495c-9083-436ea7852f78" name="Changes" comment="tree done">
+      <change afterPath="$PROJECT_DIR$/.idea/ft_containers.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/Makefile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ft_container" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/includes/ft_containers.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/includes/ft_containers.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/includes/ft_map.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/includes/ft_map.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/includes/ft_memory.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/includes/ft_memory.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/includes/ft_nullptr.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/includes/ft_nullptr.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/includes/ft_tree.h" beforeDir="false" afterPath="$PROJECT_DIR$/includes/ft_tree.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/includes/ft_type_traits.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/includes/ft_type_traits.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/srcs/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/main.cpp" afterDir="false" />
+>>>>>>> 665e21a42e6210a7963e51e9e2fdad708ad022ea
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,16 +61,18 @@
     </file-type-list>
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/includes/ft_utility.hpp" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file:///Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__tree" root0="SKIP_INSPECTION" />
-    <setting file="file://$PROJECT_DIR$/includes/ft_tree.h" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file:///Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/memory" root0="SKIP_INSPECTION" />
-    <setting file="file://$PROJECT_DIR$/includes/ft_map.hpp" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file:///Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1/iterator" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/Makefile" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file:///Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__memory/allocator_traits.h" root0="SKIP_INSPECTION" />
-    <setting file="file:///Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__memory/pointer_traits.h" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/includes/ft_utility.hpp" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/includes/ft_tree.hpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/includes/ft_memory.hpp" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file:///Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/map" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/includes/ft_map.hpp" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/includes/ft_iterator.hpp" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/includes/ft_nullptr.hpp" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/includes/ft_type_traits.hpp" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file:///Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1/type_traits" root0="SKIP_INSPECTION" />
+    <setting file="file:///Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1/__tree" root0="SKIP_INSPECTION" />
+    <setting file="file:///Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1/__config" root0="SKIP_INSPECTION" />
   </component>
   <component name="MakefileLocalSettings">
     <option name="availableProjects">
@@ -84,6 +101,9 @@
       </map>
     </option>
   </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
   <component name="ProjectId" id="21VqC2OP8gaupoeAl8dGz6lL3XQ" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
@@ -94,6 +114,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="RunOnceActivity.cidr.known.project.marker" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="cf.first.check.clang-format" value="false" />
     <property name="cidr.known.project.marker" value="true" />
@@ -102,10 +123,15 @@
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="settings.editor.selected.configurable" value="vcs.Git" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RunManager" selected="Makefile Application.all">
-    <configuration name="all" type="CLionNativeAppRunConfigurationType" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="ft_containers" TARGET_NAME="all" CONFIG_NAME="all" version="1">
+    <configuration default="true" type="GradleAppRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true">
+      <method v="2">
+        <option name="com.jetbrains.cidr.cpp.gradle.execution.GradleNativeBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="all" type="CLionNativeAppRunConfigurationType" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="ft_containers" TARGET_NAME="all" CONFIG_NAME="all" version="1" RUN_PATH="$PROJECT_DIR$/ft_container">
       <method v="2">
         <option name="CLION.COMPOUND.BUILD" enabled="true" />
       </method>
@@ -130,11 +156,14 @@
         <option name="CLION.COMPOUND.BUILD" enabled="true" />
       </method>
     </configuration>
+<<<<<<< HEAD
     <configuration default="true" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
     </configuration>
+=======
+>>>>>>> 665e21a42e6210a7963e51e9e2fdad708ad022ea
     <list>
       <item itemvalue="Makefile Application.all" />
       <item itemvalue="Makefile Application.fclean" />
@@ -157,8 +186,31 @@
       <workItem from="1638265548600" duration="3417000" />
       <workItem from="1638277359689" duration="2694000" />
       <workItem from="1638341065408" duration="2841000" />
+<<<<<<< HEAD
       <workItem from="1638558492451" duration="7419000" />
       <workItem from="1638805770833" duration="150000" />
+=======
+      <workItem from="1638558492451" duration="5001000" />
+      <workItem from="1638805592619" duration="1127000" />
+      <workItem from="1638870519543" duration="1778000" />
+      <workItem from="1638887407817" duration="232000" />
+      <workItem from="1638958206588" duration="1514000" />
+      <workItem from="1639124815945" duration="864000" />
+      <workItem from="1639132690531" duration="6082000" />
+      <workItem from="1639208237928" duration="7424000" />
+      <workItem from="1639407740571" duration="3134000" />
+      <workItem from="1639466350390" duration="2752000" />
+      <workItem from="1639494625302" duration="2101000" />
+      <workItem from="1639568213424" duration="2861000" />
+      <workItem from="1639730826605" duration="3105000" />
+      <workItem from="1639744289206" duration="1407000" />
+      <workItem from="1639745838653" duration="1980000" />
+      <workItem from="1639750934934" duration="4832000" />
+      <workItem from="1640080684536" duration="3837000" />
+      <workItem from="1640090963481" duration="804000" />
+      <workItem from="1640092036523" duration="1705000" />
+      <workItem from="1640160017496" duration="2000" />
+>>>>>>> 665e21a42e6210a7963e51e9e2fdad708ad022ea
     </task>
     <task id="LOCAL-00001" summary="tree_iterator">
       <created>1638268458233</created>
@@ -167,12 +219,21 @@
       <option name="project" value="LOCAL" />
       <updated>1638268458233</updated>
     </task>
+<<<<<<< HEAD
     <task id="LOCAL-00002" summary="tree assign">
       <created>1638563696296</created>
       <option name="number" value="00002" />
       <option name="presentableId" value="LOCAL-00002" />
       <option name="project" value="LOCAL" />
       <updated>1638563696296</updated>
+=======
+    <task id="LOCAL-00002" summary="tree done">
+      <created>1639574325029</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1639574325029</updated>
+>>>>>>> 665e21a42e6210a7963e51e9e2fdad708ad022ea
     </task>
     <option name="localTasksCounter" value="3" />
     <servers />
@@ -190,11 +251,15 @@
         </entry>
       </map>
     </option>
-    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="tree_iterator" />
+<<<<<<< HEAD
     <MESSAGE value="tree assign" />
     <option name="LAST_COMMIT_MESSAGE" value="tree assign" />
+=======
+    <MESSAGE value="tree done" />
+    <option name="LAST_COMMIT_MESSAGE" value="tree done" />
+>>>>>>> 665e21a42e6210a7963e51e9e2fdad708ad022ea
   </component>
 </project>
