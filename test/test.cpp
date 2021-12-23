@@ -11,35 +11,24 @@
 /* ************************************************************************** */
 
 #include <iostream>
+#include <memory>
 #include "../includes/ft_memory.hpp"
-
-template<class T>
-struct Ptr {
-    T* pad; // add pad to show difference between 'this' and 'data'
-    T* data;
-    Ptr(T* arg) : pad(nullptr), data(arg)
-    {
-        std::cout << "Ctor this = " << this << std::endl;
-    }
-
-    ~Ptr() { delete data; }
-    T** operator&() { return &data; }
-};
-
-template<class T>
-void f(Ptr<T>* p)
-{
-    std::cout << "Ptr   overload called with p = " << p << '\n';
-}
-
-void f(int** p)
-{
-    std::cout << "int** overload called with p = " << p << '\n';
-}
+#include "../includes/ft_tree.hpp"
 
 int main()
 {
-    Ptr<int> p(new int(42));
-    f(&p);                 // calls int** overload
-    f(ft::addressof(p));  // calls Ptr<int>* overload, (= this)
+	typedef std::less<int> compare;
+	typedef std::allocator<int> allocator;
+
+	std::less<int> cmp;
+	std::allocator<int> alloc;
+	ft::_tree<int, compare, allocator> t(cmp, alloc);
+	t.insert(3);
+	t.insert(1);
+	t.insert(2);
+
+	ft::_tree<int, compare, allocator>::iterator it(t.begin());
+	std::cout << *it << std::endl;
+//	std::cout << *(++it) << std::endl;
+//	std::cout << *(++it) << std::endl;
 }
