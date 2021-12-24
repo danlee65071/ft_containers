@@ -14,6 +14,7 @@
 #define ITERATOR_HPP
 
 # include "ft_type_traits.hpp"
+#include <iterator>
 
 namespace ft
 {
@@ -92,15 +93,15 @@ namespace ft
     }
 
 //	next
-	template <class _InputIter>
-	inline _LIBCPP_INLINE_VISIBILITY _LIBCPP_CONSTEXPR_AFTER_CXX14
-	typename enable_if<std::__is_input_iterator<_InputIter>::value,_InputIter>::type
-	next(_InputIter __x,
-	typename iterator_traits<_InputIter>::difference_type __n = 1)
-{
-	_VSTD::advance(__x, __n);
-	return __x;
-}
+//	template <class _InputIter>
+//	inline _LIBCPP_INLINE_VISIBILITY _LIBCPP_CONSTEXPR_AFTER_CXX14
+//	typename enable_if<std::__is_input_iterator<_InputIter>::value, _InputIter>::type
+//	next(_InputIter __x,
+//	typename iterator_traits<_InputIter>::difference_type __n = 1)
+//{
+//	_VSTD::advance(__x, __n);
+//	return __x;
+//}
 
 //    distance
     template<class InputIterator>

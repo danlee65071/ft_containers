@@ -6,7 +6,7 @@
 /*   By: hcharlsi <hcharlsi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/21 16:35:26 by                   #+#    #+#             */
-/*   Updated: 2021/12/23 11:19:06 by hcharlsi         ###   ########.fr       */
+/*   Updated: 2021/12/24 11:17:52 by                  ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,11 @@ namespace ft
 	{
 		if (x->right != NULL)
 			return tree_min(x->right);
-		while (!tree_is_left_child(x))
-			x = x->parent;
+		if (x->parent != NULL)
+		{
+			while (!tree_is_left_child(x))
+				x = x->parent;
+		}
 		return x->parent;
 	}
 
@@ -157,9 +160,9 @@ namespace ft
 	private:
 		template <class, class, class> friend class _tree;
 		template <class, class> friend class tree_const_iterator;
-//		template <class> friend class map_iterator;
-//		template <class, class, class, class> friend class map;
-//		template <class, class, class> friend class set;
+		template <class> friend class map_iterator;
+		template <class, class, class, class> friend class map;
+		template <class, class, class> friend class set;
 	};
 
 	template <class T, class NodePtr>
@@ -276,7 +279,7 @@ namespace ft
 
 	template <class T, class Compare, class Allocator>
 	_tree<T, Compare, Allocator>::_tree(const value_compare &comp, const allocator_type &allocator):
-			cmp(comp), alloc(allocator), end_root(NULL), tree_size(0), root(NULL)
+			cmp(comp), alloc(allocator), root(NULL), end_root(NULL), tree_size(0)
 	{}
 
 	template <class T, class Compare, class Allocator>
@@ -325,7 +328,7 @@ namespace ft
 		}
 		node_ptr parent = t->parent;
 		node_ptr grand_parent = parent->parent;
-		node_ptr uncle = grand_parent->right;
+		node_ptr uncle = grand_parent == NULL ? NULL : grand_parent->right;
 
 		while (!parent->is_black)
 		{
@@ -381,18 +384,24 @@ namespace ft
 		node_ptr y = x->right;
 
 		x->right = y->left;
-		if (y->left != NULL)
-			y->left->parent = x;
+//		if (y->left != NULL)
+//			y->left->parent = x;
+		if (x->right != NULL)
+			x->parent = x->right;
 		y->parent = x->parent;
-		if (x->parent == NULL)
-			this->root = y;
+//		if (x->parent == NULL)
+//			this->root = y;
+//		else
+//		{
+//			if (x == x->parent->left)
+//				x->parent->left = y;
+//			else
+//				x->parent->right = y;
+//		}
+		if (tree_is_left_child(x))
+			x->parent->left = y;
 		else
-		{
-			if (x == x->parent->left)
-				x->parent->left = y;
-			else
-				x->parent->right = y;
-		}
+			x->parent->right = y;
 		y->left = x;
 		x->parent = y;
 	}
@@ -403,7 +412,7 @@ namespace ft
 		node_ptr y = x->left;
 
 		x->left = y->right;
-		if (x->left == NULL)
+		if (x->left != NULL)
 			x->parent = x->left;
 		y->parent = x->parent;
 		if (tree_is_left_child(x))
