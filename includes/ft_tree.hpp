@@ -6,7 +6,7 @@
 /*   By: hcharlsi <hcharlsi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/21 16:35:26 by                   #+#    #+#             */
-/*   Updated: 2021/12/24 11:17:52 by                  ###   ########.fr       */
+/*   Updated: 2021/12/25 18:43:10 by                  ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,12 +51,11 @@ namespace ft
 	{
 		if (x->right != NULL)
 			return tree_min(x->right);
-		if (x->parent != NULL)
-		{
-			while (!tree_is_left_child(x))
-				x = x->parent;
-		}
-		return x->parent;
+		while (!tree_is_left_child(x))
+			x = x->parent;
+		if (!tree_is_left_child(x))
+			return x->left;
+		return x;
 	}
 
 	template <class NodePtr>
@@ -106,7 +105,6 @@ namespace ft
 		node_ptr ptr;
 
 	public:
-		explicit tree_iterator(node_ptr p): ptr(p) {}
 		tree_iterator(tree_iterator const& p): ptr(p.ptr) {}
 
 		reference operator*() const
@@ -158,6 +156,7 @@ namespace ft
 		}
 
 	private:
+		explicit tree_iterator(node_ptr p): ptr(p) {}
 		template <class, class, class> friend class _tree;
 		template <class, class> friend class tree_const_iterator;
 		template <class> friend class map_iterator;
@@ -231,6 +230,7 @@ namespace ft
 
 	private:
 		explicit tree_const_iterator(node_ptr p): ptr(p) {}
+
 		template <class, class, class> friend class _tree;
 		template <class> friend class map_const_iterator;
 		template <class, class, class, class> friend class map;
@@ -343,7 +343,7 @@ namespace ft
 				}
 				else
 				{
-					if (t == parent->right)
+					if (parent && t == parent->right)
 					{
 						t = parent;
 						tree_left_rotate(t);
@@ -410,15 +410,19 @@ namespace ft
 	void _tree<T, Compare, Allocator>::tree_right_rotate(node_ptr x)
 	{
 		node_ptr y = x->left;
-
 		x->left = y->right;
 		if (x->left != NULL)
 			x->parent = x->left;
 		y->parent = x->parent;
-		if (tree_is_left_child(x))
-			x->parent->left = y;
+		if (x->parent != NULL)
+		{
+			if (tree_is_left_child(x))
+				x->parent->left = y;
+			else
+				x->parent->right = y;
+		}
 		else
-			x->parent->right = y;
+			x = y;
 		y->right = x;
 		x->parent = y;
 	}

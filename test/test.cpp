@@ -6,7 +6,7 @@
 /*   By: hcharlsi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/06 20:15:28 by hcharlsi          #+#    #+#             */
-/*   Updated: 2021/12/24 20:14:35 by                  ###   ########.fr       */
+/*   Updated: 2021/12/25 18:04:48 by                  ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int main()
 	ft::_tree<int, compare, allocator> t(cmp, alloc);
 	t.insert(3);
 	t.insert(1);
-//	t.insert(2);
+	t.insert(2);
 
 	ft::_tree<int, compare, allocator>::iterator it(t.begin());
 	std::cout << *it << std::endl;

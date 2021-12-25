@@ -6,7 +6,7 @@
 #    By: hcharlsi <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/06 12:32:59 by hcharlsi          #+#    #+#              #
-#   Updated: 2021/12/24 20:15:21 by                  ###   ########.fr       # #
+#   Updated: 2021/12/24 20:45:34 by                  ###   ########.fr       # #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,17 +21,9 @@ OBJS = $(patsubst %.cpp, %.o, $(SRCS))
 DIR_OBJS = objs
 PATH_OBJS = $(addprefix $(DIR_OBJS)/, $(OBJS))
 
-TEST_SRCS = test.cpp
-DIR_TEST_SRCS = test
-PATH_TEST_SRCS = $(addprefix $(DIR_TEST_SRCS)/, $(TEST_SRCS))
-
-TEST_OBJS = $(patsubst %.cpp, %.o, $(PATH_TEST_SRCS))
-DIR_TEST_OBJS = test_objs
-
 HEADER = ft_algorithm.hpp \
          ft_containers.hpp \
          ft_iterator.hpp \
-         ft_map.hpp \
          ft_memory.hpp \
          ft_nullptr.hpp \
          ft_tree.hpp \
@@ -81,17 +73,6 @@ fclean: clean
 	@$(RM) $(NAME)
 	@$(RM) $(TEST_NAME)
 	@echo "$(GREEN)fclean instruction was executed$(RESET)"
-
-test: $(TEST_NAME)
-
-$(TEST_NAME): logo $(TEST_OBJS)
-	@$(CC) $(FLAGS) $(TEST_OBJS) -o $@
-	@echo "$(GREEN)test was compiled$(RESET)"
-
-$(DIR_TEST_OBJS)/%.o: $(DIR_TEST_SRCS)/%.cpp $(PATH_HEADER) Makefile
-	@mkdir -p $(DIR_TEST_OBJS)
-	@$(CC) $(FLAGS) -c $< -o $@
-	@echo "$(GREEN).$(RESET)\c"
 
 re: fclean all
 
