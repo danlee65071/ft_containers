@@ -31,7 +31,7 @@ int main()
 	ft::_tree<int, compare, allocator>::iterator it(t.begin());
 	std::cout << *it << std::endl;
 	std::cout << *(++it) << std::endl;
-//	std::cout << *(++it) << std::endl;
+	std::cout << *(++it) << std::endl;
 
 
 //	std::__tree<int, compare, allocator> t1(cmp, alloc);

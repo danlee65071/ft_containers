@@ -6,7 +6,7 @@
 /*   By: hcharlsi <hcharlsi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/21 16:35:26 by                   #+#    #+#             */
-/*   Updated: 2021/12/25 18:43:10 by                  ###   ########.fr       */
+/*   Updated: 2021/12/29 22:16:16 by                  ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,8 @@ namespace ft
 			return tree_min(x->right);
 		while (!tree_is_left_child(x))
 			x = x->parent;
-		if (!tree_is_left_child(x))
-			return x->left;
+//		if (!tree_is_left_child(x))
+//			return x->left;
 		return x;
 	}
 
@@ -254,6 +254,7 @@ namespace ft
 		value_compare cmp;
 		allocator_type alloc;
 		node_ptr root;
+		node_ptr begin_root;
 		node_ptr end_root;
 		size_type tree_size;
 
@@ -261,12 +262,13 @@ namespace ft
 		explicit _tree(value_compare const& comp,
 					   allocator_type const& allocator);
 
-		_tree(_tree const& t): cmp(t.cmp), alloc(t.alloc), root(t.root), end_root(t.end_root), tree_size(t.tree_size) {}
+		_tree(_tree const& t): cmp(t.cmp), alloc(t.alloc), root(t.root),
+			end_root(t.end_root), tree_size(t.tree_size), begin_root(t.root) {}
 
 //		~_tree();
 
-		iterator begin() { return iterator(root); }
-		const_iterator begin() const { return const_iterator(root); }
+		iterator begin();
+//		const_iterator begin() const;
 		iterator end() { return iterator(end_root); }
 		const_iterator end() const { return const_iterator(end_root); }
 
@@ -279,8 +281,26 @@ namespace ft
 
 	template <class T, class Compare, class Allocator>
 	_tree<T, Compare, Allocator>::_tree(const value_compare &comp, const allocator_type &allocator):
-			cmp(comp), alloc(allocator), root(NULL), end_root(NULL), tree_size(0)
+			cmp(comp), alloc(allocator), root(NULL),
+				begin_root(NULL) ,end_root(NULL), tree_size(0)
 	{}
+
+	template <class T, class Compare, class Allocator>
+	typename _tree<T, Compare, Allocator>::iterator
+	_tree<T, Compare, Allocator>::begin()
+	{
+		this->begin_root = this->root;
+		while (this->begin_root->left != NULL)
+			this->begin_root = this->begin_root->left;
+		return (iterator)this->begin_root;
+	}
+
+//	template <class T, class Compare, class Allocator>
+//	typename _tree<T, Compare, Allocator>::const_iterator
+//	_tree<T, Compare, Allocator>::begin() const
+//	{
+//
+//	}
 
 	template <class T, class Compare, class Allocator>
 	void _tree<T, Compare, Allocator>::insert(const value_type &value)
@@ -384,47 +404,44 @@ namespace ft
 		node_ptr y = x->right;
 
 		x->right = y->left;
-//		if (y->left != NULL)
-//			y->left->parent = x;
-		if (x->right != NULL)
-			x->parent = x->right;
-		y->parent = x->parent;
-//		if (x->parent == NULL)
-//			this->root = y;
-//		else
-//		{
-//			if (x == x->parent->left)
-//				x->parent->left = y;
-//			else
-//				x->parent->right = y;
-//		}
-		if (tree_is_left_child(x))
-			x->parent->left = y;
+		if (y->left != NULL)
+			y->left->parent = x;
+		if (y != NULL) y->parent = x->parent;
+		if (x->parent) {
+			if (x == x->parent->left)
+				x->parent->left = y;
+			else
+				x->parent->right = y;
+		}
 		else
-			x->parent->right = y;
+			this->root = y;
 		y->left = x;
-		x->parent = y;
+		if (x != NULL)
+			x->parent = y;
 	}
 
 	template <class T, class Compare, class Allocator>
 	void _tree<T, Compare, Allocator>::tree_right_rotate(node_ptr x)
 	{
 		node_ptr y = x->left;
+
 		x->left = y->right;
-		if (x->left != NULL)
-			x->parent = x->left;
-		y->parent = x->parent;
-		if (x->parent != NULL)
+		if (y->right != NULL)
+			y->right->parent = x;
+		if (y != NULL)
+			y->parent = x->parent;
+		if (x->parent)
 		{
-			if (tree_is_left_child(x))
-				x->parent->left = y;
-			else
+			if (x == x->parent->right)
 				x->parent->right = y;
+			else
+				x->parent->left = y;
 		}
 		else
-			x = y;
+			this->root = y;
 		y->right = x;
-		x->parent = y;
+		if (x != NULL)
+			x->parent = y;
 	}
 }
 #endif
