@@ -6,7 +6,7 @@
 /*   By: hcharlsi <hcharlsi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/21 16:35:26 by                   #+#    #+#             */
-/*   Updated: 2022/01/01 21:45:47 by                  ###   ########.fr       */
+/*   Updated: 2022/01/01 21:52:57 by                  ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -562,7 +562,7 @@ namespace ft
 												  node_ptr parent)
 	{
 		node_ptr othernode;
-		while ((!node) || node->is_black && node != this->root)
+		while ((!node) || (node->is_black && node != this->root))
 		{
 			if (parent->left == node)
 			{
@@ -578,14 +578,16 @@ namespace ft
 				{
 					if (!(othernode->right) || othernode->right->is_black)
 					{
-						othernode->left->is_black = true;
+						if (othernode->left)
+							othernode->left->is_black = true;
 						othernode->is_black = false;
 						tree_right_rotate(othernode);
 						othernode = parent->right;
 					}
 					othernode->is_black = parent->is_black;
 					parent->is_black = true;
-					othernode->right->is_black = false;
+					if (othernode->right)
+						othernode->right->is_black = false;
 					tree_left_rotate(parent);
 					node = root;
 					break;
@@ -611,14 +613,16 @@ namespace ft
 				{
 					if (!(othernode->left) || othernode->left->is_black)
 					{
-						othernode->right->is_black = true;
+						if (othernode->right)
+							othernode->right->is_black = true;
 						othernode->is_black = false;
 						tree_left_rotate(othernode);
 						othernode = parent->left;
 					}
 					othernode->is_black = parent->is_black;
 					parent->is_black = true;
-					othernode->left->is_black = true;
+					if (othernode->left)
+						othernode->left->is_black = true;
 					tree_right_rotate(parent);
 					node = root;
 					break;
