@@ -6,7 +6,7 @@
 /*   By: hcharlsi <hcharlsi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/21 16:35:26 by                   #+#    #+#             */
-/*   Updated: 2022/01/01 22:14:26 by hcharlsi         ###   ########.fr       */
+/*   Updated: 2022/01/01 22:17:09 by hcharlsi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -488,13 +488,15 @@ namespace ft
 		node_ptr child, parent;
 		bool color;
 
-		while (p->value != key)
+		while (p && p->value != key)
 		{
 			if (p->value < key)
 				p = p->right;
 			else
 				p = p->left;
 		}
+		if (!p)
+			return;
 		if (p->left != NULL && p->right != NULL)
 		{
 			node_ptr replace = p;
