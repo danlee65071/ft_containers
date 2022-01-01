@@ -6,7 +6,7 @@
 /*   By: hcharlsi <hcharlsi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/21 16:35:26 by                   #+#    #+#             */
-/*   Updated: 2022/01/01 21:52:57 by                  ###   ########.fr       */
+/*   Updated: 2022/01/01 22:14:26 by hcharlsi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -567,6 +567,8 @@ namespace ft
 			if (parent->left == node)
 			{
 				othernode = parent->right;
+				if (!othernode)
+					break ;
 				if (!othernode->is_black)
 				{
 					othernode->is_black = true;
@@ -581,7 +583,8 @@ namespace ft
 						if (othernode->left)
 							othernode->left->is_black = true;
 						othernode->is_black = false;
-						tree_right_rotate(othernode);
+						if (othernode->right)
+							tree_right_rotate(othernode);
 						othernode = parent->right;
 					}
 					othernode->is_black = parent->is_black;
@@ -589,7 +592,7 @@ namespace ft
 					if (othernode->right)
 						othernode->right->is_black = false;
 					tree_left_rotate(parent);
-					node = root;
+					node = this->root;
 					break;
 				}
 			}
@@ -616,7 +619,8 @@ namespace ft
 						if (othernode->right)
 							othernode->right->is_black = true;
 						othernode->is_black = false;
-						tree_left_rotate(othernode);
+						if (othernode->right)
+							tree_left_rotate(othernode);
 						othernode = parent->left;
 					}
 					othernode->is_black = parent->is_black;
@@ -624,13 +628,13 @@ namespace ft
 					if (othernode->left)
 						othernode->left->is_black = true;
 					tree_right_rotate(parent);
-					node = root;
+					node = this->root;
 					break;
 				}
 			}
 		}
 		if (node)
-			node->is_black = false;
+			node->is_black = true;
 	}
 }
 #endif
