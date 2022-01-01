@@ -6,7 +6,7 @@
 /*   By: hcharlsi <hcharlsi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/21 16:35:26 by                   #+#    #+#             */
-/*   Updated: 2021/12/29 22:16:36 by                  ###   ########.fr       */
+/*   Updated: 2022/01/01 16:32:30 by                  ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -310,6 +310,12 @@ namespace ft
 		this->end_root = this->root;
 		while (this->end_root->right != NULL)
 			this->end_root = this->end_root->right;
+		node_ptr t = reinterpret_cast<node_ptr>(this->alloc.allocate(sizeof(node)));
+		t->parent = this->end_root;
+		t->left = NULL;
+		t->right = NULL;
+		t->value = this->begin_root->value;
+		this->end_root->right = t;
 		this->end_root = this->end_root->right;
 		return (iterator)this->end_root;
 	}
