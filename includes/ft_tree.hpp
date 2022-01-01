@@ -6,7 +6,7 @@
 /*   By: hcharlsi <hcharlsi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/21 16:35:26 by                   #+#    #+#             */
-/*   Updated: 2021/12/29 22:16:16 by                  ###   ########.fr       */
+/*   Updated: 2021/12/29 22:16:36 by                  ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ namespace ft
 			x = x->parent;
 //		if (!tree_is_left_child(x))
 //			return x->left;
-		return x;
+		return x->parent;
 	}
 
 	template <class NodePtr>
@@ -269,8 +269,9 @@ namespace ft
 
 		iterator begin();
 //		const_iterator begin() const;
-		iterator end() { return iterator(end_root); }
-		const_iterator end() const { return const_iterator(end_root); }
+		iterator end();
+//		iterator end() { return iterator(end_root); }
+//		const_iterator end() const { return const_iterator(end_root); }
 
 		void insert(const value_type& value);
 	private:
@@ -301,6 +302,17 @@ namespace ft
 //	{
 //
 //	}
+
+	template <class T, class Compare, class Allocator>
+	typename _tree<T, Compare, Allocator>::iterator
+	_tree<T, Compare, Allocator>::end()
+	{
+		this->end_root = this->root;
+		while (this->end_root->right != NULL)
+			this->end_root = this->end_root->right;
+		this->end_root = this->end_root->right;
+		return (iterator)this->end_root;
+	}
 
 	template <class T, class Compare, class Allocator>
 	void _tree<T, Compare, Allocator>::insert(const value_type &value)
