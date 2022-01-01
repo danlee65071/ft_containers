@@ -6,7 +6,7 @@
 /*   By: hcharlsi <hcharlsi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/21 16:35:26 by                   #+#    #+#             */
-/*   Updated: 2022/01/01 16:32:30 by                  ###   ########.fr       */
+/*   Updated: 2022/01/01 16:38:01 by                  ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,6 @@ namespace ft
 			return tree_min(x->right);
 		while (!tree_is_left_child(x))
 			x = x->parent;
-//		if (!tree_is_left_child(x))
-//			return x->left;
 		return x->parent;
 	}
 
@@ -62,7 +60,7 @@ namespace ft
 	inline NodePtr tree_prev_iter(NodePtr x)
 	{
 		if (x->left != NULL)
-			return tree_max(x);
+			return tree_max(x->left);
 		while (tree_is_left_child(x))
 			x = x->parent;
 		return x->parent;
@@ -314,7 +312,7 @@ namespace ft
 		t->parent = this->end_root;
 		t->left = NULL;
 		t->right = NULL;
-		t->value = this->begin_root->value;
+		t->value = 0;
 		this->end_root->right = t;
 		this->end_root = this->end_root->right;
 		return (iterator)this->end_root;
