@@ -6,7 +6,7 @@
 /*   By: hcharlsi <hcharlsi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/21 16:35:26 by                   #+#    #+#             */
-/*   Updated: 2022/01/01 16:38:01 by                  ###   ########.fr       */
+/*   Updated: 2022/01/01 21:45:47 by                  ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -266,14 +266,16 @@ namespace ft
 //		~_tree();
 
 		iterator begin();
-//		const_iterator begin() const;
+		const_iterator begin() const;
 		iterator end();
-//		iterator end() { return iterator(end_root); }
-//		const_iterator end() const { return const_iterator(end_root); }
+		const_iterator end() const;
 
 		void insert(const value_type& value);
+
+		void remove(const value_type& key);
 	private:
 		void fix_insert(node_ptr t);
+		void fix_remove(node_ptr node, node_ptr parent);
 		void tree_left_rotate(node_ptr x);
 		void tree_right_rotate(node_ptr x);
 	};
@@ -294,16 +296,35 @@ namespace ft
 		return (iterator)this->begin_root;
 	}
 
-//	template <class T, class Compare, class Allocator>
-//	typename _tree<T, Compare, Allocator>::const_iterator
-//	_tree<T, Compare, Allocator>::begin() const
-//	{
-//
-//	}
+	template <class T, class Compare, class Allocator>
+	typename _tree<T, Compare, Allocator>::const_iterator
+	_tree<T, Compare, Allocator>::begin() const
+	{
+		this->begin_root = this->root;
+		while (this->begin_root->left != NULL)
+			this->begin_root = this->begin_root->left;
+	}
 
 	template <class T, class Compare, class Allocator>
 	typename _tree<T, Compare, Allocator>::iterator
 	_tree<T, Compare, Allocator>::end()
+	{
+		this->end_root = this->root;
+		while (this->end_root->right != NULL)
+			this->end_root = this->end_root->right;
+		node_ptr t = reinterpret_cast<node_ptr>(this->alloc.allocate(sizeof(node)));
+		t->parent = this->end_root;
+		t->left = NULL;
+		t->right = NULL;
+		t->value = 0;
+		this->end_root->right = t;
+		this->end_root = this->end_root->right;
+		return (iterator)this->end_root;
+	}
+
+	template <class T, class Compare, class Allocator>
+	typename _tree<T, Compare, Allocator>::const_iterator
+	_tree<T, Compare, Allocator>::end() const
 	{
 		this->end_root = this->root;
 		while (this->end_root->right != NULL)
@@ -326,7 +347,7 @@ namespace ft
 		t->parent = NULL;
 		t->left = NULL;
 		t->right = NULL;
-		t->value = value;
+		this->alloc.construct(&t->value, value);
 		t->is_black = false;
 		if (this->root == NULL)
 		{
@@ -458,6 +479,154 @@ namespace ft
 		y->right = x;
 		if (x != NULL)
 			x->parent = y;
+	}
+
+	template <class T, class Compare, class Allocator>
+	void _tree<T, Compare, Allocator>::remove(const value_type &key)
+	{
+		node_ptr p = this->root;
+		node_ptr child, parent;
+		bool color;
+
+		while (p->value != key)
+		{
+			if (p->value < key)
+				p = p->right;
+			else
+				p = p->left;
+		}
+		if (p->left != NULL && p->right != NULL)
+		{
+			node_ptr replace = p;
+			replace = p->right;
+			while (replace->left != NULL)
+				replace = replace->left;
+			if (p->parent != NULL)
+			{
+				if (p->parent->left == p)
+					p->parent->left = replace;
+				else
+					p->parent->right = replace;
+			} else
+				this->root = replace;
+			child = replace->right;
+			parent = replace->parent;
+			color = replace->is_black;
+			if (parent == p)
+				parent = replace;
+			else
+			{
+				if (child != NULL)
+					child->parent = parent;
+				parent->left = child;
+
+				replace->right = p->right;
+				p->right->parent = replace;
+			}
+			replace->parent = p->parent;
+			replace->is_black = p->is_black;
+			replace->left = p->left;
+			p->left->parent = replace;
+			if (color)
+				fix_remove(child, parent);
+			this->alloc.destroy(&p->value);
+			this->alloc.deallocate(reinterpret_cast<int *>(p), 1);
+			return;
+		}
+		if (p->left != NULL)
+			child = p->left;
+		else
+			child = p->right;
+		parent = p->parent;
+		color = p->is_black;
+		if (child)
+			child->parent = parent;
+		if (parent)
+		{
+			if (p == parent->left)
+				parent->left = child;
+			else
+				parent->right = child;
+		}
+		else
+			this->root = child;
+
+		if (color)
+			fix_remove(child, parent);
+		this->alloc.destroy(&p->value);
+		this->alloc.deallocate(reinterpret_cast<int *>(p), 1);
+	}
+
+	template <class T, class Compare, class Allocator>
+	void _tree<T, Compare, Allocator>::fix_remove(node_ptr node,
+												  node_ptr parent)
+	{
+		node_ptr othernode;
+		while ((!node) || node->is_black && node != this->root)
+		{
+			if (parent->left == node)
+			{
+				othernode = parent->right;
+				if (!othernode->is_black)
+				{
+					othernode->is_black = true;
+					parent->is_black = false;
+					tree_left_rotate(parent);
+					othernode = parent->right;
+				}
+				else
+				{
+					if (!(othernode->right) || othernode->right->is_black)
+					{
+						othernode->left->is_black = true;
+						othernode->is_black = false;
+						tree_right_rotate(othernode);
+						othernode = parent->right;
+					}
+					othernode->is_black = parent->is_black;
+					parent->is_black = true;
+					othernode->right->is_black = false;
+					tree_left_rotate(parent);
+					node = root;
+					break;
+				}
+			}
+			else
+			{
+				othernode = parent->left;
+				if (!othernode->is_black)
+				{
+					othernode->is_black = true;
+					parent->is_black = false;
+					tree_right_rotate(parent);
+					othernode = parent->left;
+				}
+				if ((!othernode->left || othernode->left->is_black) && (!othernode->right || othernode->right->is_black))
+				{
+					othernode->is_black = false;
+					node = parent;
+					parent = node->parent;
+				}
+				else
+				{
+					if (!(othernode->left) || othernode->left->is_black)
+					{
+						othernode->right->is_black = true;
+						othernode->is_black = false;
+						tree_left_rotate(othernode);
+						othernode = parent->left;
+					}
+					othernode->is_black = parent->is_black;
+					parent->is_black = true;
+					othernode->left->is_black = true;
+					tree_right_rotate(parent);
+					node = root;
+					break;
+				}
+			}
+		}
+		if (node)
+			node->is_black = false;
 	}
 }
 #endif
