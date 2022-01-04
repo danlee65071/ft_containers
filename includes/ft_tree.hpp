@@ -272,8 +272,14 @@ namespace ft
 
 		void insert(const value_type& value);
 
-		void remove(const value_type& key);
+		void remove(const value_type& value);
+
+		void remove(iterator it);
+
+		void erase(node_ptr begin_ptr, node_ptr end_ptr);
+
 	private:
+		void remove_tree_el(const node_ptr& p);
 		void fix_insert(node_ptr t);
 		void fix_remove(node_ptr node, node_ptr parent);
 		void tree_left_rotate(node_ptr x);
@@ -482,21 +488,46 @@ namespace ft
 	}
 
 	template <class T, class Compare, class Allocator>
-	void _tree<T, Compare, Allocator>::remove(const value_type &key)
+	void _tree<T, Compare, Allocator>::remove(const value_type &value)
 	{
 		node_ptr p = this->root;
-		node_ptr child, parent;
-		bool color;
 
-		while (p && p->value != key)
+		while (p && p->value != value)
 		{
-			if (p->value < key)
+			if (p->value < value)
 				p = p->right;
 			else
 				p = p->left;
 		}
 		if (!p)
 			return;
+		remove_tree_el(p);
+	}
+
+	template <class T, class Compare, class Allocator>
+	void _tree<T, Compare, Allocator>::remove(iterator it)
+	{
+		node_ptr p = this->root;
+		value_type value = *it;
+
+		while (p && p->value != value)
+		{
+			if (p->value < value)
+				p = p->right;
+			else
+				p = p->left;
+		}
+		if (!p)
+			return;
+		remove_tree_el(p);
+	}
+
+	template <class T, class Compare, class Allocator>
+	void _tree<T, Compare, Allocator>::remove_tree_el(const node_ptr& p)
+	{
+		node_ptr child, parent;
+		bool color;
+
 		if (p->left != NULL && p->right != NULL)
 		{
 			node_ptr replace = p;
@@ -638,5 +669,13 @@ namespace ft
 		if (node)
 			node->is_black = true;
 	}
+
+//	template <class T, class Compare, class Allocator>
+//	void _tree<T, Compare, Allocator>::erase(node_ptr begin_ptr, node_ptr end_ptr)
+//	{
+//		if (this->root == NULL)
+//			return ;
+//		remove()
+//	}
 }
 #endif
