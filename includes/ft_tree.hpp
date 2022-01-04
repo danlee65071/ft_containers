@@ -276,7 +276,9 @@ namespace ft
 
 		void remove(iterator it);
 
-		void erase(node_ptr begin_ptr);
+		void erase(node_ptr& begin_ptr);
+
+		node_ptr& get_root() { return this->root; }
 
 	private:
 		void remove_tree_el(const node_ptr& p);
@@ -568,7 +570,7 @@ namespace ft
 			if (color)
 				fix_remove(child, parent);
 			this->alloc.destroy(&p->value);
-			this->alloc.deallocate(reinterpret_cast<int *>(p), 1);
+			this->alloc.deallocate(reinterpret_cast<value_type *>(p), 1);
 			return;
 		}
 		if (p->left != NULL)
@@ -676,13 +678,15 @@ namespace ft
 	}
 
 	template <class T, class Compare, class Allocator>
-	void _tree<T, Compare, Allocator>::erase(node_ptr begin_ptr)
+	void _tree<T, Compare, Allocator>::erase(node_ptr& begin_ptr)
 	{
 		if (begin_ptr == NULL)
 			return;
 		erase(begin_ptr->left);
 		erase(begin_ptr->right);
-		this->remove(begin_ptr->value);
+		this->alloc.destroy(&begin_ptr->value);
+		this->alloc.deallocate(reinterpret_cast<value_type *>(begin_ptr), 1);
+		begin_ptr = NULL;
 	}
 
 }
