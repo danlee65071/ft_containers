@@ -276,7 +276,7 @@ namespace ft
 
 		void remove(iterator it);
 
-		void erase(node_ptr& begin_ptr);
+		void clear(node_ptr& begin_ptr);
 
 		node_ptr& get_root() { return this->root; }
 
@@ -678,12 +678,12 @@ namespace ft
 	}
 
 	template <class T, class Compare, class Allocator>
-	void _tree<T, Compare, Allocator>::erase(node_ptr& begin_ptr)
+	void _tree<T, Compare, Allocator>::clear(node_ptr& begin_ptr)
 	{
 		if (begin_ptr == NULL)
 			return;
-		erase(begin_ptr->left);
-		erase(begin_ptr->right);
+		clear(begin_ptr->left);
+		clear(begin_ptr->right);
 		this->alloc.destroy(&begin_ptr->value);
 		this->alloc.deallocate(reinterpret_cast<value_type *>(begin_ptr), 1);
 		begin_ptr = NULL;
