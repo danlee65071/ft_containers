@@ -276,7 +276,7 @@ namespace ft
 
 		void remove(iterator it);
 
-		void erase(node_ptr begin_ptr, node_ptr end_ptr);
+		void erase(node_ptr begin_ptr);
 
 	private:
 		void remove_tree_el(const node_ptr& p);
@@ -315,9 +315,14 @@ namespace ft
 	typename _tree<T, Compare, Allocator>::iterator
 	_tree<T, Compare, Allocator>::end()
 	{
-		this->end_root = this->root;
-		while (this->end_root->right != NULL)
-			this->end_root = this->end_root->right;
+		node_ptr end_ptr = this->root;
+
+		while (end_ptr->right != NULL)
+			end_ptr = end_ptr->right;
+		if (this->end_root == end_ptr)
+			return (iterator)this->end_root;
+		else
+			this->end_root = end_ptr;
 		node_ptr t = reinterpret_cast<node_ptr>(this->alloc.allocate(sizeof(node)));
 		t->parent = this->end_root;
 		t->left = NULL;
@@ -670,12 +675,15 @@ namespace ft
 			node->is_black = true;
 	}
 
-//	template <class T, class Compare, class Allocator>
-//	void _tree<T, Compare, Allocator>::erase(node_ptr begin_ptr, node_ptr end_ptr)
-//	{
-//		if (this->root == NULL)
-//			return ;
-//		remove()
-//	}
+	template <class T, class Compare, class Allocator>
+	void _tree<T, Compare, Allocator>::erase(node_ptr begin_ptr)
+	{
+		if (begin_ptr == NULL)
+			return;
+		erase(begin_ptr->left);
+		erase(begin_ptr->right);
+		this->remove(begin_ptr->value);
+	}
+
 }
 #endif
