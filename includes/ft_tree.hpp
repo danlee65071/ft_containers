@@ -280,6 +280,8 @@ namespace ft
 
 		node_ptr& get_root() { return this->root; }
 
+		size_type size() const;
+
 	private:
 		void remove_tree_el(const node_ptr& p);
 		void fix_insert(node_ptr t);
@@ -386,6 +388,7 @@ namespace ft
 				q->left = t;
 		}
 		fix_insert(t);
+		this->tree_size++;
 	}
 
 	template <class T, class Compare, class Allocator>
@@ -595,6 +598,7 @@ namespace ft
 			fix_remove(child, parent);
 		this->alloc.destroy(&p->value);
 		this->alloc.deallocate(reinterpret_cast<int *>(p), 1);
+		this->tree_size--;
 	}
 
 	template <class T, class Compare, class Allocator>
@@ -686,7 +690,15 @@ namespace ft
 		clear(begin_ptr->right);
 		this->alloc.destroy(&begin_ptr->value);
 		this->alloc.deallocate(reinterpret_cast<value_type *>(begin_ptr), 1);
+		this->tree_size = 0;
 		begin_ptr = NULL;
+	}
+
+	template <class T, class Compare, class Allocator>
+	typename _tree<T, Compare, Allocator>::size_type
+	_tree<T, Compare, Allocator>::size() const
+	{
+		return this->tree_size;
 	}
 
 }

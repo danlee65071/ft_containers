@@ -505,25 +505,109 @@ int main() {
         std::cout << "\ndistance:\nThe distance is: " << ft::distance(first,last) << '\n';
     }
 
-    std::cout << "map\n\n";
-    {
-        ft::map<char,int> first;
+	std::cout << "\ntree\n";
+	{
+		typedef std::less<int> compare;
+		typedef std::allocator<int> allocator;
 
-        first['a']=10;
-        first['b']=30;
-        first['c']=50;
-        first['d']=70;
+		std::less<int> cmp;
+		std::allocator<int> alloc;
+		ft::_tree<int, compare, allocator> t(cmp, alloc);
 
-        ft::map<char,int> second (first.begin(),first.end());
+		t.insert(3);
+		t.insert(1);
+		t.insert(2);
 
-        ft::map<char,int> third (second);
+		std::cout << "tree iterator\n";
+		ft::_tree<int, compare, allocator>::iterator it(t.begin());
+		for (; it != t.end(); ++it)
+			std::cout << *it << std::endl;
 
-        ft::map<char,int,classcomp> fourth;                 // class as Compare
+		std::cout << "tree remove\n";
+		t.remove(it);
 
-        bool(*fn_pt)(char,char) = fncomp;
-        ft::map<char,int,bool(*)(char,char)> fifth(fn_pt);
-    }
+		ft::_tree<int, compare, allocator>::iterator it1(t.begin());
+		std::cout << *it1 << std::endl;
+		std::cout << *(++it1) << std::endl;
+
+		std::cout << "erase tree\n";
+		std::cout << "root value = " << t.get_root()->value << std::endl;
+		t.clear(t.get_root());
+		if (t.get_root() == NULL)
+			std::cout << "tree clear wroks!\n";
+
+		std::cout << "tree insert 4 els\n";
+		t.insert(3);
+		t.insert(1);
+		t.insert(2);
+		t.insert(4);
+
+		if (t.size() == 4)
+			std::cout << "tree size: " << t.size() << std::endl;
+		std::cout << "clear tree\n";
+		t.clear(t.get_root());
+		std::cout << "tree size: " << t.size() << std::endl;
+	}
+
+//    std::cout << "map\n\n";
+//    {
+//        ft::map<char,int> first;
+//
+//        first['a']=10;
+//        first['b']=30;
+//        first['c']=50;
+//        first['d']=70;
+//
+//        ft::map<char,int> second (first.begin(),first.end());
+//
+//        ft::map<char,int> third (second);
+//
+//        ft::map<char,int,classcomp> fourth;                 // class as Compare
+//
+//        bool(*fn_pt)(char,char) = fncomp;
+//        ft::map<char,int,bool(*)(char,char)> fifth(fn_pt);
+//    }
     unsigned int end = clock();
     std::cout << '\n' << end - start << '\n';
     return 0;
 }
+
+//#include <iostream>
+//#include <memory>
+//#include "../includes/ft_memory.hpp"
+//#include "../includes/ft_tree.hpp"
+//#include "__tree"
+//
+//int main()
+//{
+//	typedef std::less<int> compare;
+//	typedef std::allocator<int> allocator;
+//
+//	std::less<int> cmp;
+//	std::allocator<int> alloc;
+//	ft::_tree<int, compare, allocator> t(cmp, alloc);
+//	t.insert(3);
+//	t.insert(1);
+//	t.insert(2);
+//
+//	ft::_tree<int, compare, allocator>::iterator it(t.begin());
+//	std::cout << *it << std::endl;
+//	std::cout << *(++it) << std::endl;
+//	std::cout << *(++it) << std::endl;
+//
+//	t.remove(it);
+//
+//	ft::_tree<int, compare, allocator>::iterator it1(t.begin());
+//	std::cout << *it1 << std::endl;
+//	std::cout << *(++it1) << std::endl;
+//
+//	std::cout << "erase tree\n";
+////	std::__tree<int, compare, allocator> t1(cmp, alloc);
+////	t1.__insert_unique(3);
+////	t1.__insert_unique(1);
+//////	t.insert(2);
+////
+////	std::__tree<int, compare, allocator>::iterator it1(t1.begin());
+////	std::cout << *it1 << std::endl;
+////	std::cout << *(--it1) << std::endl;
+//}
