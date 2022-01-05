@@ -266,7 +266,10 @@ namespace ft
 		_tree(_tree const& t): cmp(t.cmp), alloc(t.alloc), root(t.root),
 			end_root(t.end_root), tree_size(t.tree_size), begin_root(t.root) {}
 
-//		~_tree();
+		~_tree()
+		{
+			clear(this->root);
+		}
 
 		iterator begin();
 		const_iterator begin() const;
