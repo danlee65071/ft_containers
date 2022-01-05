@@ -310,6 +310,9 @@ namespace ft
 		template <class Key>
 		const_iterator find(const Key& key) const;
 
+		template <class Key>
+		size_type count(const Key& k) const;
+
 	private:
 		void set_begin();
 		void set_end();
@@ -802,6 +805,24 @@ namespace ft
 		if (p != end() && !value_comp()(key, *p))
 			return p;
 		return end();
+	}
+
+	template <class T, class Compare, class Allocator>
+	template <class Key>
+	typename _tree<T, Compare, Allocator>::size_type
+	_tree<T, Compare, Allocator>::count(const Key &k) const
+	{
+		node_ptr r = root;
+		while (r != NULL)
+		{
+			if (value_comp()(k, r->value))
+				r = r->left;
+			else if (value_comp()(r->value, k))
+				r = r->right;
+			else
+				return 1;
+		}
+		return 0;
 	}
 
 }
