@@ -549,24 +549,34 @@ int main() {
 		std::cout << "tree size: " << t.size() << std::endl;
 	}
 
-//    std::cout << "map\n\n";
-//    {
-//        ft::map<char,int> first;
+   std::cout << "map\n\n";
+   {
+       ft::map<char,int> first;
+
+       first['a']=10;
+       first['b']=30;
+       first['c']=50;
+       first['d']=70;
+
+       ft::map<char,int> second (first.begin(),first.end());
+
+       ft::map<char,int> third (second);
 //
-//        first['a']=10;
-//        first['b']=30;
-//        first['c']=50;
-//        first['d']=70;
+//       ft::map<char,int,classcomp> fourth;                 // class as Compare
 //
-//        ft::map<char,int> second (first.begin(),first.end());
+//       bool(*fn_pt)(char,char) = fncomp;
+//       ft::map<char,int,bool(*)(char,char)> fifth(fn_pt);
+
+//		std::map<char,int> first1;
 //
-//        ft::map<char,int> third (second);
-//
-//        ft::map<char,int,classcomp> fourth;                 // class as Compare
-//
-//        bool(*fn_pt)(char,char) = fncomp;
-//        ft::map<char,int,bool(*)(char,char)> fifth(fn_pt);
-//    }
+//		first1['a']=10;
+//		first1['b']=30;
+//		first1['c']=50;
+//		first1['d']=70;
+
+//		std::map<char, int>::iterator it = first1.begin();
+//		std::cout << (*it)->first << std::endl;
+   }
     unsigned int end = clock();
     std::cout << '\n' << end - start << '\n';
     return 0;

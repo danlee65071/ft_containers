@@ -157,6 +157,8 @@ namespace ft
 		}
 
 	private:
+		node_ptr get_ptr() const { return ptr; }
+		node_ptr get_val() const { return ptr->value; }
 		explicit tree_iterator(node_ptr p): ptr(p) {}
 		template <class, class, class> friend class _tree;
 		template <class, class> friend class tree_const_iterator;
@@ -173,6 +175,7 @@ namespace ft
 		typedef T value_type;
 		typedef NodePtr node_ptr;
 		typedef value_type& reference;
+		typedef value_type* pointer;
 
 	private:
 		typedef tree_iterator<T, NodePtr> non_const_it;
@@ -264,8 +267,8 @@ namespace ft
 		explicit _tree(value_compare const& comp,
 					   allocator_type const& allocator);
 
-		_tree(_tree const& t): cmp(t.cmp), alloc(t.alloc), root(t.root),
-			end_root(t.end_root), tree_size(t.tree_size), begin_root(t.root) {}
+		_tree(const _tree& t): cmp(t.cmp), alloc(t.alloc), root(t.root),
+			begin_root(t.root), end_root(t.end_root) , tree_size(t.tree_size) {}
 
 		~_tree()
 		{
@@ -337,6 +340,11 @@ namespace ft
 			return this->alloc;
 		}
 
+		template <class Key>
+		pair<iterator, iterator> equal_range(const Key& k);
+
+		template <class Key>
+		pair<const_iterator, const_iterator> equal_range(const Key& k) const;
 	private:
 		void set_begin();
 		void set_end();
@@ -792,7 +800,7 @@ namespace ft
 	{
 		while (root != NULL)
 		{
-			if (!value_comp()(root->value, key))
+			if (!value_comp()(root->value.first, key))
 			{
 				result = root;
 				root = root->left;
@@ -827,7 +835,7 @@ namespace ft
 	_tree<T, Compare, Allocator>::find(const Key &key)
 	{
 		iterator p = get_lower_bound(key, this->root, this->end_root);
-		if (p != end() && !value_comp()(key, *p))
+		if (p != end() && !this->value_comp()(key, (*p).first))
 			return p;
 		return end();
 	}
@@ -838,7 +846,7 @@ namespace ft
 	_tree<T, Compare, Allocator>::find(const Key &key) const
 	{
 		iterator p = get_lower_bound(key, this->root, this->end_root);
-		if (p != end() && !value_comp()(key, *p))
+		if (p != end() && !value_comp()(key, (*p).first))
 			return p;
 		return end();
 	}
@@ -895,6 +903,54 @@ namespace ft
 				root = root->right;
 		}
 		return (iterator)(result);
+	}
+
+	template <class T, class Compare, class Allocator>
+	template <class Key>
+	pair<typename _tree<T, Compare, Allocator>::iterator,
+			typename _tree<T, Compare, Allocator>::iterator>
+			_tree<T, Compare, Allocator>::equal_range(const Key &k)
+	{
+		node_ptr res = this->end_root;
+		node_ptr rt = this->root;
+		while (rt != NULL)
+		{
+			if (value_comp()(k, rt->value.first))
+			{
+				res = rt;
+				rt = rt->left;
+			}
+			else if (value_comp()(rt->value.first, k))
+				rt = rt->right;
+			else
+				return pair<iterator, iterator>(iterator(rt),
+					iterator(rt->right != NULL ? tree_min(rt->right) : res));
+		}
+		return pair<iterator, iterator>(iterator(res), iterator(res));
+	}
+
+	template <class T, class Compare, class Allocator>
+	template <class Key>
+	pair<typename _tree<T, Compare, Allocator>::const_iterator,
+			typename _tree<T, Compare, Allocator>::const_iterator>
+	_tree<T, Compare, Allocator>::equal_range(const Key &k) const
+	{
+		node_ptr res = this->end_root;
+		node_ptr rt = this->root;
+		while (rt != NULL)
+		{
+			if (value_comp()(k, rt->value.first))
+			{
+				res = rt;
+				rt = rt->left;
+			}
+			else if (value_comp()(rt->value.first, k))
+				rt = rt->right;
+			else
+				return pair<const_iterator, const_iterator>(const_iterator(rt),
+															const_iterator(rt->right != NULL ? tree_min(rt->right) : res));
+		}
+		return pair<const_iterator, const_iterator>(const_iterator(res), const_iterator(res));
 	}
 
 }
