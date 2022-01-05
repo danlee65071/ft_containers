@@ -21,6 +21,8 @@
 # include "ft_nullptr.hpp"
 # include "ft_type_traits.hpp"
 # include "ft_algorithm.hpp"
+# include <limits>
+# include <algorithm>
 
 namespace ft
 {
@@ -247,6 +249,7 @@ namespace ft
 		typedef tree_iterator<T, node_ptr> iterator;
 		typedef tree_const_iterator<T, node_ptr> const_iterator;
 		typedef typename allocator_type::size_type size_type;
+		typedef typename allocator_type::difference_type difference_type;
 
 	private:
 		value_compare cmp;
@@ -281,6 +284,21 @@ namespace ft
 		node_ptr& get_root() { return this->root; }
 
 		size_type size() const;
+
+		size_type max_size() const
+		{
+			return std::min<size_type>(this->alloc.max_size(), std::numeric_limits<difference_type>::max());
+		}
+
+		void swap(_tree& t)
+		{
+			std::swap(this->cmp, t.cmp);
+			std::swap(this->alloc, t.alloc);
+			std::swap(this->root, t.root);
+			std::swap(this->begin_root, t.begin_root);
+			std::swap(this->end_root, t.end_root);
+			std::swap(this->tree_size, t.tree_size);
+		}
 
 	private:
 		void set_begin();
@@ -380,6 +398,8 @@ namespace ft
 			node_ptr q = NULL;
 			while (p != NULL)
 			{
+				if (p == this->end_root)
+					break;
 				q = p;
 				if (p->value < t->value)
 					p = p->right;
