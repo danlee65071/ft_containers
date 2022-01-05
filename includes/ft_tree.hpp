@@ -100,6 +100,7 @@ namespace ft
 		typedef T value_type;
 		typedef NodePtr node_ptr;
 		typedef value_type& reference;
+		typedef value_type* pointer;
 
 	private:
 		node_ptr ptr;
@@ -112,9 +113,9 @@ namespace ft
 			return ptr->value;
 		}
 
-		reference operator->() const
+		pointer operator->() const
 		{
-			return *this;
+			return pointer_traits<pointer>::pointer_to(ptr->value);
 		}
 
         tree_iterator& operator++()
