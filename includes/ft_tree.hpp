@@ -283,6 +283,8 @@ namespace ft
 		size_type size() const;
 
 	private:
+		void set_begin();
+		void set_end();
 		void remove_tree_el(const node_ptr& p);
 		void fix_insert(node_ptr t);
 		void fix_remove(node_ptr node, node_ptr parent);
@@ -297,12 +299,17 @@ namespace ft
 	{}
 
 	template <class T, class Compare, class Allocator>
-	typename _tree<T, Compare, Allocator>::iterator
-	_tree<T, Compare, Allocator>::begin()
+	void _tree<T, Compare, Allocator>::set_begin()
 	{
 		this->begin_root = this->root;
-		while (this->begin_root->left != NULL)
+		while (this->begin_root && this->begin_root->left != NULL)
 			this->begin_root = this->begin_root->left;
+	}
+
+	template <class T, class Compare, class Allocator>
+	typename _tree<T, Compare, Allocator>::iterator
+	_tree<T, Compare, Allocator>::begin()
+	{;
 		return (iterator)this->begin_root;
 	}
 
@@ -310,21 +317,23 @@ namespace ft
 	typename _tree<T, Compare, Allocator>::const_iterator
 	_tree<T, Compare, Allocator>::begin() const
 	{
-		this->begin_root = this->root;
-		while (this->begin_root->left != NULL)
-			this->begin_root = this->begin_root->left;
+		return (const_iterator)this->begin_root;
 	}
 
 	template <class T, class Compare, class Allocator>
-	typename _tree<T, Compare, Allocator>::iterator
-	_tree<T, Compare, Allocator>::end()
+	void _tree<T, Compare, Allocator>::set_end()
 	{
 		node_ptr end_ptr = this->root;
 
-		while (end_ptr->right != NULL)
+		if (this->root == NULL)
+		{
+			this->end_root = NULL;
+			return;
+		}
+		while (end_ptr && end_ptr->right != NULL)
 			end_ptr = end_ptr->right;
 		if (this->end_root == end_ptr)
-			return (iterator)this->end_root;
+			return ;
 		else
 			this->end_root = end_ptr;
 		node_ptr t = reinterpret_cast<node_ptr>(this->alloc.allocate(sizeof(node)));
@@ -334,6 +343,12 @@ namespace ft
 		t->value = 0;
 		this->end_root->right = t;
 		this->end_root = this->end_root->right;
+	}
+
+	template <class T, class Compare, class Allocator>
+	typename _tree<T, Compare, Allocator>::iterator
+	_tree<T, Compare, Allocator>::end()
+	{
 		return (iterator)this->end_root;
 	}
 
@@ -341,17 +356,7 @@ namespace ft
 	typename _tree<T, Compare, Allocator>::const_iterator
 	_tree<T, Compare, Allocator>::end() const
 	{
-		this->end_root = this->root;
-		while (this->end_root->right != NULL)
-			this->end_root = this->end_root->right;
-		node_ptr t = reinterpret_cast<node_ptr>(this->alloc.allocate(sizeof(node)));
-		t->parent = this->end_root;
-		t->left = NULL;
-		t->right = NULL;
-		t->value = 0;
-		this->end_root->right = t;
-		this->end_root = this->end_root->right;
-		return (iterator)this->end_root;
+		return (const_iterator)this->end_root;
 	}
 
 	template <class T, class Compare, class Allocator>
@@ -389,6 +394,8 @@ namespace ft
 		}
 		fix_insert(t);
 		this->tree_size++;
+		set_begin();
+		set_end();
 	}
 
 	template <class T, class Compare, class Allocator>
@@ -599,6 +606,8 @@ namespace ft
 		this->alloc.destroy(&p->value);
 		this->alloc.deallocate(reinterpret_cast<int *>(p), 1);
 		this->tree_size--;
+		set_begin();
+		set_end();
 	}
 
 	template <class T, class Compare, class Allocator>
@@ -692,6 +701,8 @@ namespace ft
 		this->alloc.deallocate(reinterpret_cast<value_type *>(begin_ptr), 1);
 		this->tree_size = 0;
 		begin_ptr = NULL;
+		set_begin();
+		set_end();
 	}
 
 	template <class T, class Compare, class Allocator>
