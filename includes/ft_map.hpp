@@ -167,6 +167,9 @@ namespace ft
 		typedef typename allocator_type::size_type size_type;
 	private:
 		typedef _tree<value_type, key_compare, allocator_type> base;
+		typedef typename base::node_ptr node_ptr;
+		typedef typename base::iterator tree_iterator;
+		typedef typename base::const_iterator const_tree_iterator;
 		base tree;
 	public:
 		typedef map_iterator<typename base::iterator> iterator;
@@ -190,8 +193,49 @@ namespace ft
 			insert(x.begin(), x.end());
 		}
 
+		~map() { tree.~_tree(); }
 
+		map& operator= (const map& x)
+		{
+			if (this != &x)
+			{
+				tree.clear(tree.get_root());
+				tree.cmp = x.tree.cmp;
+				tree.alloc = x.tree.alloc;
+				insert(x.begin(), x.end());
+			}
+			return *this;
+		}
+
+		iterator begin() { return tree.begin(); }
+		const_iterator begin() const { return tree.begin(); }
+		iterator end() { return tree.end(); }
+		const_iterator end() const { return tree.end(); }
+		reverse_iterator rbegin() { return reverse_iterator(end()); }
+		const_reverse_iterator rbegin() const { return const_reverse_iterator(end()); }
+		reverse_iterator rend() { return reverse_iterator(begin()); }
+		const_reverse_iterator rend() const { return const_reverse_iterator(begin()); }
+
+		bool empty() const { return tree.size() == 0; }
+
+		size_type size() const { return tree.size(); }
+
+		size_type max_size() const { tree.max_size(); }
+
+		mapped_type& operator[] (const key_type& k);
 	};
+
+	template <class Key, class T, class Compare, class Allocator>
+	typename map<Key, T, Compare, Allocator>::mapped_type&
+	map<Key, T, Compare, Allocator>::operator[](const key_type &k)
+	{
+		tree_iterator p = tree.find(k);
+		if (p == tree.end())
+		{
+
+		}
+	}
+
 }
 
 #endif
