@@ -6,7 +6,7 @@
 /*   By: hcharlsi <hcharlsi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/21 16:35:26 by                   #+#    #+#             */
-/*   Updated: 2022/01/01 22:17:09 by hcharlsi         ###   ########.fr       */
+/*   Updated: 2022/01/06 02:43:13 by hcharlsi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -267,8 +267,7 @@ namespace ft
 		explicit _tree(value_compare const& comp,
 					   allocator_type const& allocator);
 
-		_tree(const _tree& t): cmp(t.cmp), alloc(t.alloc), root(t.root),
-			begin_root(t.root), end_root(t.end_root) , tree_size(t.tree_size) {}
+		_tree(const _tree& t): cmp(t.cmp), alloc(t.alloc) {}
 
 		~_tree()
 		{
