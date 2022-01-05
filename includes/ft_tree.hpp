@@ -279,6 +279,9 @@ namespace ft
 
 		void insert(const value_type& value);
 
+		template <class InputIterator>
+		void insert(InputIterator first, InputIterator last);
+
 		void remove(const value_type& value);
 
 		void remove(iterator it);
@@ -400,7 +403,7 @@ namespace ft
 		t->parent = this->end_root;
 		t->left = NULL;
 		t->right = NULL;
-		t->value = 0;
+//		t->value = 0;
 		this->end_root->right = t;
 		this->end_root = this->end_root->right;
 	}
@@ -518,6 +521,14 @@ namespace ft
 			}
 		}
 		root->is_black = true;
+	}
+
+	template <class T, class Compare, class Allocator>
+	template <class InputIterator>
+	void _tree<T, Compare, Allocator>::insert(InputIterator first, InputIterator last)
+	{
+		for (; first != last; ++first)
+			insert(*first);
 	}
 
 	template <class T, class Compare, class Allocator>
