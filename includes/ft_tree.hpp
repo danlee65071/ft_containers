@@ -300,6 +300,16 @@ namespace ft
 			std::swap(this->tree_size, t.tree_size);
 		}
 
+		value_compare& value_comp() { return this->cmp; }
+
+		const value_compare& value_comp() const { return this->cmp; }
+
+		template <class Key>
+		iterator find(const Key& key);
+
+		template <class Key>
+		const_iterator find(const Key& key) const;
+
 	private:
 		void set_begin();
 		void set_end();
@@ -308,6 +318,10 @@ namespace ft
 		void fix_remove(node_ptr node, node_ptr parent);
 		void tree_left_rotate(node_ptr x);
 		void tree_right_rotate(node_ptr x);
+		template <class Key>
+		iterator get_lower_bound(const Key& key, node_ptr root, node_ptr result);
+		template <class Key>
+		const_iterator get_lower_bound(const Key& key, node_ptr root, node_ptr result) const;
 	};
 
 	template <class T, class Compare, class Allocator>
@@ -730,6 +744,64 @@ namespace ft
 	_tree<T, Compare, Allocator>::size() const
 	{
 		return this->tree_size;
+	}
+
+	template <class T, class Compare, class Allocator>
+	template <class Key>
+	typename _tree<T, Compare, Allocator>::iterator
+	_tree<T, Compare, Allocator>::get_lower_bound(const Key &key, node_ptr root, node_ptr result)
+	{
+		while (root != NULL)
+		{
+			if (!value_comp()(root->value, key))
+			{
+				result = root;
+				root = root->left;
+			}
+			else
+				root = root->right;
+		}
+		return (iterator)(result);
+	}
+
+	template <class T, class Compare, class Allocator>
+	template <class Key>
+	typename _tree<T, Compare, Allocator>::const_iterator
+	_tree<T, Compare, Allocator>::get_lower_bound(const Key &key, node_ptr root, node_ptr result) const
+	{
+		while (root != NULL)
+		{
+			if (!value_comp()(root->value, key))
+			{
+				result = root;
+				root = root->left;
+			}
+			else
+				root = root->right;
+		}
+		return (iterator)(result);
+	}
+
+	template <class T, class Compare, class Allocator>
+	template <class Key>
+	typename _tree<T, Compare, Allocator>::iterator
+	_tree<T, Compare, Allocator>::find(const Key &key)
+	{
+		iterator p = get_lower_bound(key, this->root, this->end_root);
+		if (p != end() && !value_comp()(key, *p))
+			return p;
+		return end();
+	}
+
+	template <class T, class Compare, class Allocator>
+	template <class Key>
+	typename _tree<T, Compare, Allocator>::const_iterator
+	_tree<T, Compare, Allocator>::find(const Key &key) const
+	{
+		iterator p = get_lower_bound(key, this->root, this->end_root);
+		if (p != end() && !value_comp()(key, *p))
+			return p;
+		return end();
 	}
 
 }
