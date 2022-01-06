@@ -275,8 +275,15 @@ namespace ft
 
 		void erase (iterator first, iterator last)
 		{
-			for (; first != last; ++first)
-				tree.remove(first.it);
+//			for (; first != last; ++first)
+//				tree.remove(first.it);
+			iterator buf;
+			while (first != last)
+			{
+				buf = first;
+				++first;
+				tree.remove(buf.it);
+			}
 		}
 
 		void swap (map& x) { tree.swap(x.tree); }
@@ -301,10 +308,10 @@ namespace ft
 		const_iterator upper_bound (const key_type& k) const { return tree.upper_bound(k); }
 
 		pair<iterator,iterator> equal_range (const key_type& k)
-		{ return tree.template equal_range(k); }
+		{ return tree.equal_range(k); }
 
 		pair<const_iterator,const_iterator> equal_range (const key_type& k) const
-		{ return tree.template equal_range(k); }
+		{ return tree.equal_range(k); }
 
 		allocator_type get_allocator() const { return tree.get_allocator(); }
 	};

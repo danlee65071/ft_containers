@@ -335,6 +335,18 @@ namespace ft
 			return get_lower_bound(key, this->root, this->end_root);
 		}
 
+		template<class Key>
+		iterator upper_bound(const Key& key)
+		{
+			return get_upper_bound(key, this->root, this->end_root);
+		}
+
+		template<class Key>
+		const_iterator upper_bound(const Key& key) const
+		{
+			return get_upper_bound(key, this->root, this->end_root);
+		}
+
 		allocator_type get_allocator() const
 		{
 			return this->alloc;
@@ -860,9 +872,9 @@ namespace ft
 		node_ptr r = root;
 		while (r != NULL)
 		{
-			if (value_comp()(k, r->value))
+			if (value_comp()(k, r->value.first))
 				r = r->left;
-			else if (value_comp()(r->value, k))
+			else if (value_comp()(r->value.first, k))
 				r = r->right;
 			else
 				return 1;
@@ -877,7 +889,7 @@ namespace ft
 	{
 		while (root != NULL)
 		{
-			if (value_comp()(root->value, key))
+			if (value_comp()(key, root->value.first))
 			{
 				result = root;
 				root = root->left;
@@ -895,7 +907,7 @@ namespace ft
 	{
 		while (root != NULL)
 		{
-			if (value_comp()(root->value, key))
+			if (value_comp()(key, root->value.first))
 			{
 				result = root;
 				root = root->left;
