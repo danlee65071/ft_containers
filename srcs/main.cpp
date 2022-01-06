@@ -560,23 +560,42 @@ int main() {
 
        ft::map<char,int> second (first.begin(),first.end());
 
-       ft::map<char,int> third (second);
-//
-//       ft::map<char,int,classcomp> fourth;                 // class as Compare
-//
-//       bool(*fn_pt)(char,char) = fncomp;
-//       ft::map<char,int,bool(*)(char,char)> fifth(fn_pt);
+//       ft::map<char,int> third (second);
 
-//		std::map<char,int> first1;
-//
-//		first1['a']=10;
-//		first1['b']=30;
-//		first1['c']=50;
-//		first1['d']=70;
+       ft::map<char,int,classcomp> fourth;                 // class as Compare
 
-//		std::map<char, int>::iterator it = first1.begin();
-//		std::cout << (*it)->first << std::endl;
+       bool(*fn_pt)(char,char) = fncomp;
+       ft::map<char,int,bool(*)(char,char)> fifth(fn_pt);
    }
+	{
+		ft::map<char,int> first;
+		ft::map<char,int> second;
+
+		first['x']=8;
+		first['y']=16;
+		first['z']=32;
+
+		second=first;                // second now contains 3 ints
+		first=ft::map<char,int>();  // and first is now empty
+
+		std::cout << "Size of first: " << first.size() << '\n';
+		std::cout << "Size of second: " << second.size() << '\n';
+		return 0;
+	}
+	{
+		ft::map<char,int> mymap;
+
+		mymap['b'] = 100;
+		mymap['a'] = 200;
+		mymap['c'] = 300;
+
+		// show content:
+		for (ft::map<char,int>::iterator it=mymap.begin(); it!=mymap.end(); ++it)
+			std::cout << it->first << " => " << it->second << '\n';
+
+		return 0;
+	}
+
     unsigned int end = clock();
     std::cout << '\n' << end - start << '\n';
     return 0;

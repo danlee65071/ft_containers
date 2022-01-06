@@ -158,7 +158,7 @@ namespace ft
 
 	private:
 		node_ptr get_ptr() const { return ptr; }
-		node_ptr get_val() const { return ptr->value; }
+		value_type get_val() const { return ptr->value; }
 		explicit tree_iterator(node_ptr p): ptr(p) {}
 		template <class, class, class> friend class _tree;
 		template <class, class> friend class tree_const_iterator;
@@ -360,6 +360,7 @@ namespace ft
 		iterator get_upper_bound(const Key& key, node_ptr root, node_ptr result);
 		template <class Key>
 		const_iterator get_upper_bound(const Key& key, node_ptr root, node_ptr result) const;
+		template <class, class, class, class> friend class map;
 	};
 
 	template <class T, class Compare, class Allocator>
