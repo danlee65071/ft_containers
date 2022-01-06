@@ -13,15 +13,12 @@
 #ifndef FT_CONTAINERS_FT_MAP_HPP
 #define FT_CONTAINERS_FT_MAP_HPP
 
-# include <functional>
 # include <memory>
 # include "ft_utility.hpp"
 # include "ft_iterator.hpp"
 # include "ft_tree.hpp"
 # include "ft_type_traits.hpp"
 # include "ft_memory.hpp"
-# include "ft_nullptr.hpp"
-# include <map>
 
 namespace ft
 {

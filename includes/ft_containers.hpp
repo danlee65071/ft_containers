@@ -20,6 +20,7 @@
 # include "ft_algorithm.hpp"
 # include "ft_utility.hpp"
 # include "ft_vector.hpp"
-#include "ft_tree.hpp"
+# include "ft_tree.hpp"
+# include "ft_set.hpp"
 
 #endif
