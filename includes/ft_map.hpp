@@ -251,7 +251,8 @@ namespace ft
 		iterator insert (iterator position, const value_type& val)
 		{
 			(void)position;
-			return tree.insert(val);
+			tree.insert(val);
+			return find(val.first);
 		}
 
 		template <class InputIterator>
@@ -266,13 +267,16 @@ namespace ft
 		size_type erase (const key_type& k)
 		{
 			iterator position = find(k);
-			tree.remove(position);
+			if (position == end())
+				return 0;
+			tree.remove(position.it);
+			return 1;
 		}
 
 		void erase (iterator first, iterator last)
 		{
 			for (; first != last; ++first)
-				tree.remove(first);
+				tree.remove(first.it);
 		}
 
 		void swap (map& x) { tree.swap(x.tree); }
@@ -312,7 +316,7 @@ namespace ft
 		iterator p = find(k);
 		if (p == end())
 		{
-			insert(value_type(k, 0));
+			insert(value_type(k, mapped_type()));
 			p = find(k);
 		}
 		return p.it->second;
