@@ -103,7 +103,7 @@ namespace ft
 
 		reference operator*() const { return *it; }
 
-		pointer operator->() const { return pointer_traits<pointer>::pointer_to(it); }
+		pointer operator->() const { return it.operator->(); }
 
 		map_const_iterator& operator++()
 		{
