@@ -22,5 +22,6 @@
 # include "ft_vector.hpp"
 # include "ft_tree.hpp"
 # include "ft_set.hpp"
+# include "ft_stack.hpp"
 
 #endif
