@@ -580,7 +580,6 @@ int main() {
 
 		std::cout << "Size of first: " << first.size() << '\n';
 		std::cout << "Size of second: " << second.size() << '\n';
-		return 0;
 	}
 	{
 		ft::map<char,int> mymap;
@@ -593,9 +592,71 @@ int main() {
 		for (ft::map<char,int>::iterator it=mymap.begin(); it!=mymap.end(); ++it)
 			std::cout << it->first << " => " << it->second << '\n';
 
-		return 0;
+	}
+	{
+		ft::map<char,int> mymap;
+
+		mymap['x'] = 100;
+		mymap['y'] = 200;
+		mymap['z'] = 300;
+
+		// show content:
+		ft::map<char,int>::reverse_iterator rit;
+		for (rit=mymap.rbegin(); rit!=mymap.rend(); ++rit)
+			std::cout << rit->first << " => " << rit->second << '\n';
+
+	}
+	{
+		ft::map<char,int> mymap;
+
+		mymap['a']=10;
+		mymap['b']=20;
+		mymap['c']=30;
+
+		while (!mymap.empty())
+		{
+			std::cout << mymap.begin()->first << " => " << mymap.begin()->second << '\n';
+			mymap.erase(mymap.begin());
+		}
 	}
 
+	{
+		ft::map<char,int> mymap;
+		mymap['a']=101;
+		mymap['b']=202;
+		mymap['c']=302;
+
+		std::cout << "mymap.size() is " << mymap.size() << '\n';
+
+	}
+	{
+		int i;
+		ft::map<int,int> mymap;
+
+		if (mymap.max_size()>1000)
+		{
+			for (i=0; i<1000; i++) mymap[i]=0;
+			std::cout << "The map contains 1000 elements.\n";
+		}
+		else std::cout << "The map could not hold 1000 elements.\n";
+
+	}
+	{
+		ft::map<char,std::string> mymap;
+
+		mymap['a']="an element";
+		mymap['b']="another element";
+		mymap['c']=mymap['b'];
+
+		std::cout << "mymap['a'] is " << mymap['a'] << '\n';
+		std::cout << "mymap['b'] is " << mymap['b'] << '\n';
+		std::cout << "mymap['c'] is " << mymap['c'] << '\n';
+		std::cout << "mymap['d'] is " << mymap['d'] << '\n';
+
+		std::cout << "mymap now contains " << mymap.size() << " elements.\n";
+
+		return 0;
+	}
     unsigned int end = clock();
     std::cout << '\n' << end - start << '\n';
     return 0;

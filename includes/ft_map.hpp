@@ -36,7 +36,7 @@ namespace ft
 	private:
 		TreeIterator it;
 	public:
-		map_iterator() {}
+		map_iterator(): it() {}
 
 		map_iterator(TreeIterator i): it(i) {}
 
@@ -231,17 +231,21 @@ namespace ft
 
 		size_type size() const { return tree.size(); }
 
-		size_type max_size() const { tree.max_size(); }
+		size_type max_size() const { return tree.max_size(); }
 
 		mapped_type& operator[] (const key_type& k);
 
 		pair<iterator,bool> insert (const value_type& val)
 		{
 			iterator i = find(val.first);
+			bool is_exist = false;
 
 			if (i == end())
+			{
 				tree.insert(val);
-			return make_pair(find(val.first), true);
+				is_exist = true;
+			}
+			return pair<iterator, bool>(find(val.first), is_exist);
 		}
 
 		iterator insert (iterator position, const value_type& val)
@@ -257,7 +261,7 @@ namespace ft
 				insert(*first);
 		}
 
-		void erase (iterator position) { tree.remove(position); }
+		void erase (iterator position) { tree.remove(position.it); }
 
 		size_type erase (const key_type& k)
 		{

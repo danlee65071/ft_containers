@@ -14,7 +14,7 @@
 #define ITERATOR_HPP
 
 # include "ft_type_traits.hpp"
-#include <iterator>
+# include <iterator>
 
 namespace ft
 {
@@ -39,7 +39,7 @@ namespace ft
 	template<class Iterator>
 	struct iterator_traits
 	{
-		typedef typename Iterator::difference_type difference_type;
+		typedef ptrdiff_t difference_type;
 		typedef typename Iterator::value_type value_type;
 		typedef typename Iterator::pointer pointer;
 		typedef typename Iterator::reference reference;

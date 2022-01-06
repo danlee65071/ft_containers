@@ -106,6 +106,7 @@ namespace ft
 		node_ptr ptr;
 
 	public:
+		tree_iterator(): ptr() {}
 		tree_iterator(tree_iterator const& p): ptr(p.ptr) {}
 
 		reference operator*() const
@@ -115,7 +116,7 @@ namespace ft
 
 		pointer operator->() const
 		{
-			return pointer_traits<pointer>::pointer_to(ptr->value);
+			return &(ptr->value);
 		}
 
         tree_iterator& operator++()
@@ -685,7 +686,7 @@ namespace ft
 		if (color)
 			fix_remove(child, parent);
 		this->alloc.destroy(&p->value);
-		this->alloc.deallocate(reinterpret_cast<int *>(p), 1);
+		this->alloc.deallocate(reinterpret_cast<value_type *>(p), 1);
 		this->tree_size--;
 		set_begin();
 		set_end();
