@@ -14,7 +14,6 @@
 #define FT_CONTAINERS_FT_TREE_H
 
 # include <memory>
-# include "ft_memory.hpp"
 # include "ft_utility.hpp"
 # include "ft_iterator.hpp"
 # include "ft_type_traits.hpp"
@@ -451,7 +450,6 @@ namespace ft
 		t->parent = this->end_root;
 		t->left = NULL;
 		t->right = NULL;
-//		t->value = 0;
 		this->end_root->right = t;
 		this->end_root = this->end_root->right;
 	}

@@ -18,7 +18,6 @@
 # include "ft_iterator.hpp"
 # include "ft_tree.hpp"
 # include "ft_type_traits.hpp"
-# include "ft_memory.hpp"
 
 namespace ft
 {
@@ -272,8 +271,6 @@ namespace ft
 
 		void erase (iterator first, iterator last)
 		{
-//			for (; first != last; ++first)
-//				tree.remove(first.it);
 			iterator buf;
 			while (first != last)
 			{

@@ -25,8 +25,6 @@ HEADER = ft_algorithm.hpp \
          ft_containers.hpp \
          ft_iterator.hpp \
          ft_map.hpp \
-         ft_nullptr.hpp \
-         ft_memory.hpp \
          ft_set.hpp \
          ft_tree.hpp \
          ft_type_traits.hpp \
