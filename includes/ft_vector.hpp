@@ -51,7 +51,7 @@ namespace ft
 //      range constructor
         template<class InputIterator>
         vector(InputIterator first,
-               typename enable_if<!is_integral<InputIterator>::value, InputIterator>::type last,
+               typename ft::enable_if<!ft::is_integral<InputIterator>::value, InputIterator>::type last,
                 const allocator_type& alloc = allocator_type());
 //      fill constructor
         explicit vector(size_type n, const value_type& val = value_type(), const allocator_type& alloc = allocator_type());

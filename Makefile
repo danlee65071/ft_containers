@@ -35,7 +35,7 @@ HEADER = ft_algorithm.hpp \
 DIR_HEADER = includes
 PATH_HEADER = $(addprefix $(DIR_HEADER)/, $(HEADER))
 
-CC = clang++
+CC = g++
 FLAGS = -Werror -Wextra -Wall -std=c++98 -g
 RM = rm -rf
 

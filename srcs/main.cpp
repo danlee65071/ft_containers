@@ -169,7 +169,7 @@ int main() {
 //    max_size
 		std::cout << "max size my vector: " << fill_v.max_size() << '\n';
 
-//    ft::vector<int> ft_range_v(it1, it2);
+   ft::vector<int> ft_range_v(it1, it2);
 
 //    vector copy constructor
 		ft::vector<int> copy_v(fill_v);
